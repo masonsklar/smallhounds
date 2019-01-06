@@ -1,0 +1,125 @@
+{
+	"textures": [
+		{
+			"image": "door.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 991,
+				"h": 1480
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "2",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 469,
+						"h": 1142
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 334,
+						"h": 1142
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 334,
+						"h": 1142
+					}
+				},
+				{
+					"filename": "1",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 470,
+						"h": 1141
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 470,
+						"h": 989
+					},
+					"frame": {
+						"x": 337,
+						"y": 1,
+						"w": 470,
+						"h": 989
+					}
+				},
+				{
+					"filename": "3",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 470,
+						"h": 1141
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 470,
+						"h": 989
+					},
+					"frame": {
+						"x": 337,
+						"y": 1,
+						"w": 470,
+						"h": 989
+					}
+				},
+				{
+					"filename": "0",
+					"rotated": true,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 469,
+						"h": 1141
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 334,
+						"h": 989
+					},
+					"frame": {
+						"x": 1,
+						"y": 1145,
+						"w": 334,
+						"h": 989
+					}
+				},
+				{
+					"filename": "4",
+					"rotated": true,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 469,
+						"h": 1141
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 334,
+						"h": 989
+					},
+					"frame": {
+						"x": 1,
+						"y": 1145,
+						"w": 334,
+						"h": 989
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:f648bc43a08ca1121f93df4d81375a0f:2b5f06337d7fb36a3960ce0a0f5cd81e:2a34754d8ab80f40243b52c06ba4cba5$"
+	}
+}
