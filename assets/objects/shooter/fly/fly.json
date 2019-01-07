@@ -1,7 +1,7 @@
 {
 	"textures": [
 		{
-			"image": "fly-0.png",
+			"image": "assets/objects/shooter/fly/fly-0.png",
 			"format": "RGBA8888",
 			"size": {
 				"w": 1900,
@@ -390,7 +390,7 @@
 			]
 		},
 		{
-			"image": "fly-1.png",
+			"image": "assets/objects/shooter/fly/fly-1.png",
 			"format": "RGBA8888",
 			"size": {
 				"w": 1900,
@@ -779,7 +779,7 @@
 			]
 		},
 		{
-			"image": "fly-2.png",
+			"image": "assets/objects/shooter/fly/fly-2.png",
 			"format": "RGBA8888",
 			"size": {
 				"w": 1900,
@@ -1168,7 +1168,7 @@
 			]
 		},
 		{
-			"image": "fly-3.png",
+			"image": "assets/objects/shooter/fly/fly-3.png",
 			"format": "RGBA8888",
 			"size": {
 				"w": 1900,
@@ -1557,7 +1557,7 @@
 			]
 		},
 		{
-			"image": "fly-4.png",
+			"image": "assets/objects/shooter/fly/fly-4.png",
 			"format": "RGBA8888",
 			"size": {
 				"w": 1900,
@@ -1925,7 +1925,7 @@
 			]
 		},
 		{
-			"image": "fly-5.png",
+			"image": "assets/objects/shooter/fly/fly-5.png",
 			"format": "RGBA8888",
 			"size": {
 				"w": 1900,
@@ -2251,7 +2251,7 @@
 			]
 		},
 		{
-			"image": "fly-6.png",
+			"image": "assets/objects/shooter/fly/fly-6.png",
 			"format": "RGBA8888",
 			"size": {
 				"w": 1900,
