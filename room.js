@@ -240,7 +240,7 @@ function preload() {
 	//this.load.atlas('pages', 'assets/chooser/pages.png', 'assets/chooser/pages.json');
 	// middle room
 	this.load.atlas('flip', 'assets/objects/card/anim/flip.png', 'assets/objects/card/anim/flip.json');
-	this.load.atlas('cardatlas', 'assets/objects/card/anim/card.png', 'assets/objects/card/anim/card.json');
+	this.load.atlas('cardatlas', 'assets/objects/card/card.png', 'assets/objects/card/card.json');
 	this.load.multiatlas('flyatlas', 'assets/objects/shooter/fly/fly.json');
 	this.load.multiatlas('couchatlas', 'assets/objects/couch/couch.json');
 	this.load.atlas('sqatlas', 'assets/objects/couch/sq/sq.png', 'assets/objects/couch/sq/sq.json');
@@ -412,6 +412,59 @@ function create() {
 		end: 119,
 		zeroPad: 3
 	});
+	
+	var flipStartFrames = this.anims.generateFrameNames('cardatlas', {
+		prefix: 'flipstart',
+		start: 0,
+		end: 15,
+		zeroPad: 2
+	});
+	var flipBackFrames = this.anims.generateFrameNames('cardatlas', {
+		prefix: 'flipback',
+		start: 0,
+		end: 60,
+		zeroPad: 2
+	});
+	var flip1 = this.anims.generateFrameNames('cardatlas', {
+		prefix: 'flip1_',
+		start: 0,
+		end: 43,
+		zeroPad: 2	
+	});
+	var flip2 = this.anims.generateFrameNames('cardatlas', {
+		prefix: 'flip2_',
+		start: 0,
+		end: 43,
+		zeroPad: 2	
+	});
+	var flip3 = this.anims.generateFrameNames('cardatlas', {
+		prefix: 'flip3_',
+		start: 0,
+		end: 43,
+		zeroPad: 2	
+	});
+	var flip4 = this.anims.generateFrameNames('cardatlas', {
+		prefix: 'flip4_',
+		start: 0,
+		end: 43,
+		zeroPad: 2	
+	});
+	var flip5 = this.anims.generateFrameNames('cardatlas', {
+		prefix: 'flip5_',
+		start: 0,
+		end: 43,
+		zeroPad: 2	
+	});
+	var flip6 = this.anims.generateFrameNames('cardatlas', {
+		prefix: 'flip6_',
+		start: 0,
+		end: 43,
+		zeroPad: 2	
+	});
+	
+	
+	var cardPolygon = new Phaser.Geom.Polygon([ 46,95, 120,130, 73,150, 1,117 ]);
+	var flipArray = [0, flip1, flip2, flip3, flip4, flip5, flip6];
 	// !right room
 	lampFrames = this.anims.generateFrameNames('wobble', {
 		start: 0,
@@ -419,64 +472,6 @@ function create() {
 		zeroPad: 2
 	});
 	lampPolygon = new Phaser.Geom.Polygon([68, 126, 49, 105, 69, 19, 109, 0, 150, 19, 170, 106, 150, 127, 143, 207, 109, 220, 79, 207, 68, 126]);
-
-	cardFrames = this.anims.generateFrameNames('cardatlas', {
-		prefix: 'flip',
-		start: 0,
-		end: 11,
-		zeroPad: 2
-	});
-	var cardPolygon = new Phaser.Geom.Polygon([38, 75, 0, 58, 22, 47, 60, 64]);
-	var cardBackFrames = this.anims.generateFrameNames('cardatlas', {
-		prefix: 'flipback',
-		start: 0,
-		end: 27,
-		zeroPad: 2
-	});
-	back1 = this.anims.generateFrameNames('cardatlas', {
-		prefix: 'back',
-		start: 1,
-		end: 1,
-		zeroPad: 1
-	});
-	flip1 = this.anims.generateFrameNames('cardatlas', {
-		prefix: 'flip',
-		start: 12,
-		end: 27,
-		zeroPad: 2
-	});
-	flip2 = this.anims.generateFrameNames('cardatlas', {
-		prefix: 'flip2',
-		start: 0,
-		end: 15,
-		zeroPad: 2
-	});
-	flip3 = this.anims.generateFrameNames('cardatlas', {
-		prefix: 'flip3',
-		start: 0,
-		end: 15,
-		zeroPad: 1
-	});
-	flip4 = this.anims.generateFrameNames('cardatlas', {
-		prefix: 'flip4',
-		start: 0,
-		end: 15,
-		zeroPad: 1
-	});
-	flip5 = this.anims.generateFrameNames('cardatlas', {
-		prefix: 'flip5',
-		start: 0,
-		end: 15,
-		zeroPad: 1
-	});
-	flip6 = this.anims.generateFrameNames('cardatlas', {
-		prefix: 'flip6',
-		start: 0,
-		end: 15,
-		zeroPad: 1
-	});
-	var flipArray = [0, flip1, flip2, flip3, flip4, flip5, flip6];
-	// right room
 	holesFrames = this.anims.generateFrameNames('holesatlas', {
 		prefix: 'holes',
 		start: 0,
@@ -542,18 +537,18 @@ function create() {
 		color: '#ffffff'
 	}).setOrigin(0.5).setText(chooserStats.page[chooserStats.currentPage].optB);
 	// !middle room
-	card1a = this.add.sprite(1125, 934, 'flip', '00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1);
-	card1b = this.add.sprite(1160, 916, 'flip', '00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1);
-	card1c = this.add.sprite(1196, 898, 'flip', '00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1);
-	card1d = this.add.sprite(1232, 880, 'flip', '00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1);
-	card2a = this.add.sprite(1170, 955, 'flip', '00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2);
-	card2b = this.add.sprite(1206, 937, 'flip', '00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2);
-	card2c = this.add.sprite(1242, 919, 'flip', '00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2);
-	card2d = this.add.sprite(1278, 901, 'flip', '00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2);
-	card3a = this.add.sprite(1216, 976, 'flip', '00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3);
-	card3b = this.add.sprite(1252, 958, 'flip', '00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3);
-	card3c = this.add.sprite(1288, 940, 'flip', '00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3);
-	card3d = this.add.sprite(1324, 922, 'flip', '00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3);
+	card1a = this.add.sprite(1125, 934, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1).setScale(0.5);
+	card1b = this.add.sprite(1160, 916, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1).setScale(0.5);
+	card1c = this.add.sprite(1196, 898, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1).setScale(0.5);
+	card1d = this.add.sprite(1232, 880, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1).setScale(0.5);
+	card2a = this.add.sprite(1170, 955, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2).setScale(0.5);
+	card2b = this.add.sprite(1206, 937, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2).setScale(0.5);
+	card2c = this.add.sprite(1242, 919, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2).setScale(0.5);
+	card2d = this.add.sprite(1278, 901, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2).setScale(0.5);
+	card3a = this.add.sprite(1216, 976, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3).setScale(0.5);
+	card3b = this.add.sprite(1252, 958, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3).setScale(0.5);
+	card3c = this.add.sprite(1288, 940, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3).setScale(0.5);
+	card3d = this.add.sprite(1324, 922, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3).setScale(0.5);
 	//shooter 
 	var score = this.add.text(1600, 220, '0', {
 		fontFamily: 'magistral',
@@ -987,23 +982,24 @@ function create() {
 		}
 	});
 	// !middle room
+
 	for (i = 1; i < 7; i++) {
 		this.anims.create({
 			key: 'flip' + i,
-			frames: cardFrames,
+			frames: flipStartFrames,
 			frameRate: 30
 		}).addFrame(flipArray[i]);
 	}
 
 	var flip = this.anims.create({
-		key: 'flip',
-		frames: cardFrames,
+		key: 'flipstart',
+		frames: flipStartFrames,
 		frameRate: 30
 	});
 
 	this.anims.create({
 		key: 'flipback',
-		frames: cardBackFrames,
+		frames: flipBackFrames,
 		frameRate: 30
 	});
 	this.anims.create({
@@ -1641,7 +1637,7 @@ function create() {
 							cardContainer.list.forEach(function(e) {
 								e.input.enabled = true;
 							});
-						}, 1500);
+						}, 2500);
 					}
 				}
 			} else {
@@ -2105,7 +2101,7 @@ function create() {
 	// left room
 	var chooseContainer = this.add.container(100, 1280, [chooser, chooserBg, caption, redButton, greenButton, redText, greenText]);
 	// middle room
-	var cardContainer = this.add.container(0, -45, [card1a, card1b, card1c, card1c, card1d, card2a, card2b, card2c, card2d, card3a, card3b, card3c, card3d]);
+	var cardContainer = this.add.container(-15, -50, [card1a, card1b, card1c, card1c, card1d, card2a, card2b, card2c, card2d, card3a, card3b, card3c, card3d]);
 	flipOrder = cardContainer.list;
 	for (i = 0; i < faces.length; i++) {
 		cardContainer.list[i].face = faces[i];
