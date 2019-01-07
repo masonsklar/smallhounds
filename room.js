@@ -1354,7 +1354,7 @@ function create() {
 				targets: [cursor],
 				y: 623,
 				alpha: 0,
-				duration: 1500,
+				duration: 1750,
 				repeat: 0
 			});
 			bgShow = this.tweens.add({
