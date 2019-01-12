@@ -1606,24 +1606,28 @@ function create() {
 							e.input.enabled = true;
 						});
 						if (totalFlipped == 12) {
+							firstCard = null;
+							secondCard = null;
+							firstFlip = null;
 							setTimeout(function() {
 								if (confirm("Song for you!")) {
 									openExternalLink('https://www.youtube.com/watch?v=Y5KMl11I7Zs');
 								}
-							}, 6700);
+							}, 8000);
 							flipOrder.forEach(function(e) {
-								totalFlipped--;
+								totalFlipped-=0.5;
 								setTimeout(function() {
 									cardContainer.bringToTop(e);
 									e.anims.play('flipback');
 									e.flipped = false;
-								}, 3000 + (totalFlipped * 300));
-								shuffle(faces);
+								}, 2000 + (totalFlipped * 300));
+								
+							});
+							
+							shuffle(faces);
 								for (var i = 0; i < faces.length; i++) {
-									console.log(i);
 									cardContainer.list[i].face = faces[i];
 								}
-							});
 						}
 					} else {
 						setTimeout(function() {
@@ -1637,7 +1641,7 @@ function create() {
 							cardContainer.list.forEach(function(e) {
 								e.input.enabled = true;
 							});
-						}, 2500);
+						}, 1750);
 					}
 				}
 			} else {
@@ -2101,8 +2105,8 @@ function create() {
 	// left room
 	var chooseContainer = this.add.container(100, 1280, [chooser, chooserBg, caption, redButton, greenButton, redText, greenText]);
 	// middle room
-	var cardContainer = this.add.container(-15, -50, [card1a, card1b, card1c, card1c, card1d, card2a, card2b, card2c, card2d, card3a, card3b, card3c, card3d]);
-	flipOrder = cardContainer.list;
+	var cardContainer = this.add.container(-15, -50, [card1a, card1b, card1c, card1d, card2a, card2b, card2c, card2d, card3a, card3b, card3c, card3d]);
+	flipOrder = [card1a, card1b, card1c, card1d, card2a, card2b, card2c, card2d, card3a, card3b, card3c, card3d, card3d, card3c,card3b,card3a, card2d, card2c, card2b,card2a,card1d,card1c,card1b,card1a];
 	for (i = 0; i < faces.length; i++) {
 		cardContainer.list[i].face = faces[i];
 	}
