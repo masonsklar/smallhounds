@@ -165,10 +165,6 @@ var config = {
 var game = new Phaser.Game(config);
 
 function preload() {
-	var progressBar = this.add.graphics();
-	var progressBox = this.add.graphics();
-	progressBox.fillStyle(0xffca4d, 0);
-	progressBox.fillRect(240, 270, 320, 50);
 	var width = this.cameras.main.width;
 	var height = this.cameras.main.height;
 	var loadingText = this.make.text({
@@ -190,6 +186,10 @@ function preload() {
 			fill: '#ffffff'
 		}
 	});
+	var progressBar = this.add.graphics();
+	var progressBox = this.add.graphics();
+	progressBox.fillStyle(0xffca4d, 0);
+	progressBox.fillRect(240, 270, 320, 50);
 	percentText.setOrigin(0.5, 0.5);
 	this.load.on('progress', function(value) {
 		progressBar.clear();
@@ -239,7 +239,6 @@ function preload() {
 	this.load.multiatlas('pages', 'assets/chooser/pages/pages.json');
 	//this.load.atlas('pages', 'assets/chooser/pages.png', 'assets/chooser/pages.json');
 	// middle room
-	this.load.atlas('flip', 'assets/objects/card/anim/flip.png', 'assets/objects/card/anim/flip.json');
 	this.load.atlas('cardatlas', 'assets/objects/card/card.png', 'assets/objects/card/card.json');
 	this.load.multiatlas('flyatlas', 'assets/objects/shooter/fly/fly.json');
 	this.load.multiatlas('couchatlas', 'assets/objects/couch/couch.json');
@@ -472,6 +471,7 @@ function create() {
 		zeroPad: 2
 	});
 	lampPolygon = new Phaser.Geom.Polygon([68, 126, 49, 105, 69, 19, 109, 0, 150, 19, 170, 106, 150, 127, 143, 207, 109, 220, 79, 207, 68, 126]);
+	holesPolygon = new Phaser.Geom.Polygon([814, 174, 812, 112, 845, 72, 875, 80, 877, 143, 1210, 78, 1210, 16, 1231, 3, 1272, 40, 1273, 108, 1210, 78, 877, 143, 814, 174]);
 	holesFrames = this.anims.generateFrameNames('holesatlas', {
 		prefix: 'holes',
 		start: 0,
@@ -636,7 +636,7 @@ function create() {
 	book4 = this.add.sprite(2210, 90, 'bookatlas', 'book4').setOrigin(0).setInteractive();
 	shelfPlant = this.add.sprite(2220, 67, 'shelfplantimg').setOrigin(0).setInteractive();
 	var tableLegs = this.add.sprite(1637, 656, 'tablelegs').setOrigin(0).setScale(0.5);
-	var mouseHoles = this.add.sprite(1626, 502, 'holesatlas', 'holes0').setOrigin(0).setScale(0.5).setInteractive();
+	var mouseHoles = this.add.sprite(1626, 502, 'holesatlas', 'holes0').setOrigin(0).setScale(0.5).setInteractive(holesPolygon, Phaser.Geom.Polygon.Contains);
 	var topLeg = this.add.sprite(1860, 667, 'topleg').setOrigin(0).setScale(0.5);
 	var tableTop = this.add.sprite(1626, 537, 'tabletop').setOrigin(0).setScale(0.5);
 	lamp = this.add.sprite(1600, 385, 'wobble', '00').setOrigin(0).setInteractive(lampPolygon, Phaser.Geom.Polygon.Contains);
