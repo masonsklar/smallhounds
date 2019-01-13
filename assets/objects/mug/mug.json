@@ -1,0 +1,188 @@
+{
+	"textures": [
+		{
+			"image": "mug.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 472,
+				"h": 262
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "mug4",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 176,
+						"h": 134
+					},
+					"spriteSourceSize": {
+						"x": 38,
+						"y": 0,
+						"w": 100,
+						"h": 134
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 100,
+						"h": 134
+					}
+				},
+				{
+					"filename": "mug2",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 176,
+						"h": 134
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 10,
+						"w": 134,
+						"h": 124
+					},
+					"frame": {
+						"x": 1,
+						"y": 137,
+						"w": 134,
+						"h": 124
+					}
+				},
+				{
+					"filename": "mug6",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 176,
+						"h": 134
+					},
+					"spriteSourceSize": {
+						"x": 38,
+						"y": 10,
+						"w": 134,
+						"h": 124
+					},
+					"frame": {
+						"x": 103,
+						"y": 1,
+						"w": 134,
+						"h": 124
+					}
+				},
+				{
+					"filename": "mug1",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 176,
+						"h": 134
+					},
+					"spriteSourceSize": {
+						"x": 23,
+						"y": 10,
+						"w": 115,
+						"h": 124
+					},
+					"frame": {
+						"x": 137,
+						"y": 127,
+						"w": 115,
+						"h": 124
+					}
+				},
+				{
+					"filename": "mug3",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 176,
+						"h": 134
+					},
+					"spriteSourceSize": {
+						"x": 23,
+						"y": 10,
+						"w": 115,
+						"h": 124
+					},
+					"frame": {
+						"x": 239,
+						"y": 1,
+						"w": 115,
+						"h": 124
+					}
+				},
+				{
+					"filename": "mug5",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 176,
+						"h": 134
+					},
+					"spriteSourceSize": {
+						"x": 38,
+						"y": 10,
+						"w": 115,
+						"h": 124
+					},
+					"frame": {
+						"x": 356,
+						"y": 1,
+						"w": 115,
+						"h": 124
+					}
+				},
+				{
+					"filename": "mug7",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 176,
+						"h": 134
+					},
+					"spriteSourceSize": {
+						"x": 38,
+						"y": 10,
+						"w": 115,
+						"h": 124
+					},
+					"frame": {
+						"x": 254,
+						"y": 127,
+						"w": 115,
+						"h": 124
+					}
+				},
+				{
+					"filename": "mug8",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 176,
+						"h": 134
+					},
+					"spriteSourceSize": {
+						"x": 38,
+						"y": 10,
+						"w": 100,
+						"h": 124
+					},
+					"frame": {
+						"x": 371,
+						"y": 127,
+						"w": 100,
+						"h": 124
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:34d40810e03ed1b416d1c3fbe3ad54da:03a0b6fee4eb68ee8f7fa0967dde74d3:662933102e04eb02daa7a39c8918bacf$"
+	}
+}
