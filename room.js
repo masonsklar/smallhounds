@@ -1,3 +1,5 @@
+var context;
+
 var _anims;
 var booksContainer;
 var chooseContainer;
@@ -161,8 +163,11 @@ var config = {
 	height: 800,
 	backgroundColor: '#ffca4d',
 	scene: [scene],
+	audio: {
+        context: context
+    }
 };
-var game = new Phaser.Game(config);
+//var game = new Phaser.Game(config);
 
 function preload() {
 	var width = this.cameras.main.width;
@@ -179,7 +184,7 @@ function preload() {
 	loadingText.setOrigin(0.5, 0.5);
 	var percentText = this.make.text({
 		x: width / 2,
-		y: height / 2 - 5,
+		y: height / 2 ,
 		text: '0%',
 		style: {
 			font: '36pt magistral',
@@ -237,6 +242,7 @@ function preload() {
 	this.load.atlas('dooratlas', 'assets/objects/door/door.png', 'assets/objects/door/door.json');
 	this.load.multiatlas('plantcycleatlas', 'assets/objects/plantcycle/plantcycle.json');
 	this.load.multiatlas('pages', 'assets/chooser/pages/pages.json');
+	this.load.atlas('mugatlas', 'assets/objects/mug/mug.png', 'assets/objects/mug/mug.json');
 	//this.load.atlas('pages', 'assets/chooser/pages.png', 'assets/chooser/pages.json');
 	// middle room
 	this.load.atlas('cardatlas', 'assets/objects/card/card.png', 'assets/objects/card/card.json');
@@ -269,6 +275,34 @@ function preload() {
 }
 
 function create() {
+	
+	function resizeApp ()
+{
+	// Width-height-ratio of game resolution
+    // Replace 360 with your game width, and replace 640 with your game height
+	let game_ratio		= 800 / 800;
+	
+	// Make div full height of browser and keep the ratio of game resolution
+	let div			= document.getElementById('gameframe');
+	div.style.width		= (window.innerHeight * game_ratio) + 'px';
+	div.style.height	= window.innerHeight + 'px';
+	
+	// Check if device DPI messes up the width-height-ratio
+	let canvas			= document.getElementsByTagName('canvas')[0];
+	
+	let dpi_w	= parseInt(div.style.width) / canvas.width;
+	let dpi_h	= parseInt(div.style.height) / canvas.height;		
+	
+	let height	= window.innerHeight * (dpi_w / dpi_h);
+	let width	= height * game_ratio;
+	
+	// Scale canvas	
+	canvas.style.width	= width + 'px';
+	canvas.style.height	= height + 'px';
+}
+
+window.addEventListener('resize', resizeApp);
+	
 	// !create frames
 	// !left room
 	sizePosterPolygon = new Phaser.Geom.Polygon([273, 472, 0, 600, 0, 126, 273, 0]);
@@ -411,7 +445,7 @@ function create() {
 		end: 119,
 		zeroPad: 3
 	});
-	
+
 	var flipStartFrames = this.anims.generateFrameNames('cardatlas', {
 		prefix: 'flipstart',
 		start: 0,
@@ -428,41 +462,41 @@ function create() {
 		prefix: 'flip1_',
 		start: 0,
 		end: 43,
-		zeroPad: 2	
+		zeroPad: 2
 	});
 	var flip2 = this.anims.generateFrameNames('cardatlas', {
 		prefix: 'flip2_',
 		start: 0,
 		end: 43,
-		zeroPad: 2	
+		zeroPad: 2
 	});
 	var flip3 = this.anims.generateFrameNames('cardatlas', {
 		prefix: 'flip3_',
 		start: 0,
 		end: 43,
-		zeroPad: 2	
+		zeroPad: 2
 	});
 	var flip4 = this.anims.generateFrameNames('cardatlas', {
 		prefix: 'flip4_',
 		start: 0,
 		end: 43,
-		zeroPad: 2	
+		zeroPad: 2
 	});
 	var flip5 = this.anims.generateFrameNames('cardatlas', {
 		prefix: 'flip5_',
 		start: 0,
 		end: 43,
-		zeroPad: 2	
+		zeroPad: 2
 	});
 	var flip6 = this.anims.generateFrameNames('cardatlas', {
 		prefix: 'flip6_',
 		start: 0,
 		end: 43,
-		zeroPad: 2	
+		zeroPad: 2
 	});
-	
-	
-	var cardPolygon = new Phaser.Geom.Polygon([ 46,95, 120,130, 73,150, 1,117 ]);
+
+
+	var cardPolygon = new Phaser.Geom.Polygon([46, 95, 120, 130, 73, 150, 1, 117]);
 	var flipArray = [0, flip1, flip2, flip3, flip4, flip5, flip6];
 	// !right room
 	lampFrames = this.anims.generateFrameNames('wobble', {
@@ -516,7 +550,7 @@ function create() {
 		fontSize: 18,
 		color: '#225a89',
 	}).setOrigin(0);
-	frontPlant = this.add.sprite(0, 1010, 'plantcycleatlas', '0').setOrigin(0).setInteractive(frontPlantPolygon, Phaser.Geom.Polygon.Contains).setScale(0.5);
+	frontPlant = this.add.sprite(0, 1020, 'plantcycleatlas', '0').setOrigin(0).setInteractive(frontPlantPolygon, Phaser.Geom.Polygon.Contains).setScale(0.5);
 	var chooser = this.add.sprite(0, 0, 'chooser').setOrigin(0).setScale(0.5).setInteractive();
 	chooserBg = this.add.sprite(10, 10, 'pages', 'page' + chooserStats.page[chooserStats.currentPage].index).setOrigin(0).setScale(0.5);
 	var caption = this.add.text(20, 320, ['Wow, its beautiful outside!', 'Where are we going?'], {
@@ -536,7 +570,13 @@ function create() {
 		fontSize: 30,
 		color: '#ffffff'
 	}).setOrigin(0.5).setText(chooserStats.page[chooserStats.currentPage].optB);
+	var mug1 = this.add.sprite(616, 1150, 'mugatlas', 'mug1').setOrigin(0).setScale(0.5).setInteractive();
+	mug1.pos = 1;
 	// !middle room
+	var mug2 = this.add.sprite(1278, 797, 'mugatlas', 'mug3').setOrigin(0).setScale(0.5).setInteractive();
+	mug2.pos = 3;
+	var mug3 = this.add.sprite(1461, 826, 'mugatlas', 'mug7').setOrigin(0).setScale(0.5).setInteractive();
+	mug3.pos = 7;
 	card1a = this.add.sprite(1125, 934, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1).setScale(0.5);
 	card1b = this.add.sprite(1160, 916, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1).setScale(0.5);
 	card1c = this.add.sprite(1196, 898, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1).setScale(0.5);
@@ -640,6 +680,8 @@ function create() {
 	var topLeg = this.add.sprite(1860, 667, 'topleg').setOrigin(0).setScale(0.5);
 	var tableTop = this.add.sprite(1626, 537, 'tabletop').setOrigin(0).setScale(0.5);
 	lamp = this.add.sprite(1600, 385, 'wobble', '00').setOrigin(0).setInteractive(lampPolygon, Phaser.Geom.Polygon.Contains);
+	var mug4 = this.add.sprite(1835, 578, 'mugatlas', 'mug6').setOrigin(0).setScale(0.5).setInteractive();
+	mug4.pos = 6;
 	// !create sounds
 	var wobbleSound = this.sound.add('wobblesound');
 	// left room
@@ -982,7 +1024,6 @@ function create() {
 		}
 	});
 	// !middle room
-
 	for (i = 1; i < 7; i++) {
 		this.anims.create({
 			key: 'flip' + i,
@@ -1346,19 +1387,26 @@ function create() {
     }, this);*/
 	// !universal
 	cursor.on('pointerdown', function() {
+		//context = new AudioContext();
+		context.resume();
+		console.log(context);
+		game.sound.play('chime8');
 		tween = this.tweens.add({
-				targets: [cursor],
-				y: 623,
-				alpha: 0,
-				duration: 1750,
-				repeat: 0
-			});
-			bgShow = this.tweens.add({
-				targets: [bgM],
-				alpha: 1,
-				duration: 1000,
-				repeat: 0
-			});
+			targets: [cursor],
+			y: 623,
+			alpha: 0,
+			duration: 1750,
+			repeat: 0
+		});
+		bgShow = this.tweens.add({
+			targets: [bgM],
+			alpha: 1,
+			duration: 1000,
+			repeat: 0
+		});
+		
+		
+		
 	}, this);
 	leftButton.on('pointerdown', function() {
 		//this.input.stopPropagation();
@@ -1503,6 +1551,48 @@ function create() {
 			currentPlant = 0;
 		}
 	}, this);
+		
+	mug1.on('pointerdown', function(){
+		p=mug1.pos;
+		if(p<8){
+			p++;
+		} else {
+			p=1;
+		}
+		mug1.pos=p;
+		mug1.setFrame('mug'+p);
+	});
+	mug2.on('pointerdown', function(){
+		p=mug2.pos;
+		if(p<8){
+			p++;
+		} else {
+			p=1;
+		}
+		mug2.pos=p;
+		mug2.setFrame('mug'+p);
+	});
+	mug3.on('pointerdown', function(){
+		p=mug3.pos;
+		if(p<8){
+			p++;
+		} else {
+			p=1;
+		}
+		mug3.pos=p;
+		mug3.setFrame('mug'+p);
+	});
+	mug4.on('pointerdown', function(){
+		p=mug4.pos;
+		if(p<8){
+			p++;
+		} else {
+			p=1;
+		}
+		mug4.pos=p;
+		mug4.setFrame('mug'+p);
+	});
+	
 	// !chooser
 	this.input.setTopOnly(true);
 	redButton.on('pointerdown', function() {
@@ -1526,7 +1616,6 @@ function create() {
 		}
 	}, this);
 	// !middle room
-	var cushions = [0, 'w', 'y', 'b', 'c'];
 
 	sq1.on('pointerdown', function() {
 
@@ -1615,19 +1704,19 @@ function create() {
 								}
 							}, 8000);
 							flipOrder.forEach(function(e) {
-								totalFlipped-=0.5;
+								totalFlipped -= 0.5;
 								setTimeout(function() {
 									cardContainer.bringToTop(e);
 									e.anims.play('flipback');
 									e.flipped = false;
 								}, 2000 + (totalFlipped * 300));
-								
+
 							});
-							
+
 							shuffle(faces);
-								for (var i = 0; i < faces.length; i++) {
-									cardContainer.list[i].face = faces[i];
-								}
+							for (var i = 0; i < faces.length; i++) {
+								cardContainer.list[i].face = faces[i];
+							}
 						}
 					} else {
 						setTimeout(function() {
@@ -2104,9 +2193,17 @@ function create() {
 	var uiContainer = this.add.container(800, 283, [leftButton, rightButton, invKey]);
 	// left room
 	var chooseContainer = this.add.container(100, 1280, [chooser, chooserBg, caption, redButton, greenButton, redText, greenText]);
+	var mugs = this.add.container(0, 0, [mug1, mug2, mug3]);
+	
+		/*for (i = 0; i < 3; i++) {
+		mugs.list[i].on('pointerdown', function(x){
+			console.log(mugs.list[i]);
+			mugClick(mugs.list[i]);
+		}, this);
+	}*/
 	// middle room
 	var cardContainer = this.add.container(-15, -50, [card1a, card1b, card1c, card1d, card2a, card2b, card2c, card2d, card3a, card3b, card3c, card3d]);
-	flipOrder = [card1a, card1b, card1c, card1d, card2a, card2b, card2c, card2d, card3a, card3b, card3c, card3d, card3d, card3c,card3b,card3a, card2d, card2c, card2b,card2a,card1d,card1c,card1b,card1a];
+	flipOrder = [card1a, card1b, card1c, card1d, card2a, card2b, card2c, card2d, card3a, card3b, card3c, card3d, card3d, card3c, card3b, card3a, card2d, card2c, card2b, card2a, card1d, card1c, card1b, card1a];
 	for (i = 0; i < faces.length; i++) {
 		cardContainer.list[i].face = faces[i];
 	}
