@@ -276,7 +276,7 @@ function preload() {
 
 function create() {
 	
-	function resizeApp ()
+	/*function resizeApp ()
 {
 	// Width-height-ratio of game resolution
     // Replace 360 with your game width, and replace 640 with your game height
@@ -299,7 +299,36 @@ function create() {
 	// Scale canvas	
 	canvas.style.width	= width + 'px';
 	canvas.style.height	= height + 'px';
+}*/
+
+	function resizeApp ()
+{
+	// Width-height-ratio of game resolution
+    // Replace 360 with your game width, and replace 640 with your game height
+	
+	// Make div full height of browser and keep the ratio of game resolution
+	let div			= document.getElementById('gameframe');
+	div.style.width		= window.innerHeight + 'px';
+	div.style.height	= window.innerHeight + 'px';
+	
+	// Check if device DPI messes up the width-height-ratio
+	let canvas			= document.getElementsByTagName('canvas')[0];
+	
+	let dpi_w	= parseInt(div.style.width) / canvas.width;
+	let dpi_h	= parseInt(div.style.height) / canvas.height;		
+	
+	if (window.innerHeight <= window.innerWidth){
+	var height	= window.innerHeight * (dpi_w / dpi_h);
+	var width	= window.innerHeight * (dpi_w / dpi_h);
+	} else if (window.innerHeight > window.innerWidth){
+	var height	= window.innerWidth * (dpi_w / dpi_h);
+	var width	= window.innerWidth * (dpi_w / dpi_h);
+	}
+	// Scale canvas	
+	canvas.style.width	= width + 'px';
+	canvas.style.height	= height + 'px';
 }
+
 
 window.addEventListener('resize', resizeApp);
 	
@@ -1358,6 +1387,125 @@ window.addEventListener('resize', resizeApp);
 			book10tween.pause();
 		}
 	});
+	
+	var book1Stween = this.tweens.add({
+		targets: [book1],
+		x: '-=34',
+		y: '+=16',
+		duration: 250,
+		yoyo: true,
+		ease: 'Power2',
+		repeat: -1,
+		paused: true,
+		onRepeat: function() {
+			book1Stween.pause();
+		}
+	});
+	var book2Stween = this.tweens.add({
+		targets: [book2],
+		x: '-=34',
+		y: '+=16',
+		duration: 250,
+		yoyo: true,
+		ease: 'Power2',
+		repeat: -1,
+		paused: true,
+		onRepeat: function() {
+			book2Stween.pause();
+		}
+	});
+	var book3Stween = this.tweens.add({
+		targets: [book3],
+		x: '-=34',
+		y: '+=16',
+		duration: 250,
+		yoyo: true,
+		ease: 'Power2',
+		repeat: -1,
+		paused: true,
+		onRepeat: function() {
+			book3Stween.pause();
+		}
+	});
+	var book5Stween = this.tweens.add({
+		targets: [book5],
+		x: '-=34',
+		y: '+=16',
+		duration: 250,
+		yoyo: true,
+		ease: 'Power2',
+		repeat: -1,
+		paused: true,
+		onRepeat: function() {
+			book5Stween.pause();
+		}
+	});
+	var book6Stween = this.tweens.add({
+		targets: [book6],
+		x: '-=34',
+		y: '+=16',
+		duration: 250,
+		yoyo: true,
+		ease: 'Power2',
+		repeat: -1,
+		paused: true,
+		onRepeat: function() {
+			book6Stween.pause();
+		}
+	});
+	var book7Stween = this.tweens.add({
+		targets: [book7],
+		x: '-=34',
+		y: '+=16',
+		duration: 250,
+		yoyo: true,
+		ease: 'Power2',
+		repeat: -1,
+		paused: true,
+		onRepeat: function() {
+			book7Stween.pause();
+		}
+	});
+	var book8Stween = this.tweens.add({
+		targets: [book8],
+		x: '-=34',
+		y: '+=16',
+		duration: 250,
+		yoyo: true,
+		ease: 'Power2',
+		repeat: -1,
+		paused: true,
+		onRepeat: function() {
+			book8Stween.pause();
+		}
+	});
+	var book9Stween = this.tweens.add({
+		targets: [book9],
+		x: '-=34',
+		y: '+=16',
+		duration: 250,
+		yoyo: true,
+		ease: 'Power2',
+		repeat: -1,
+		paused: true,
+		onRepeat: function() {
+			book9Stween.pause();
+		}
+	});
+	var book10Stween = this.tweens.add({
+		targets: [book10],
+		x: '-=34',
+		y: '+=16',
+		duration: 250,
+		yoyo: true,
+		ease: 'Power2',
+		repeat: -1,
+		paused: true,
+		onRepeat: function() {
+			book10Stween.pause();
+		}
+	});
+	
 	this.anims.create({
 		key: 'mousehole',
 		frames: holesFrames,
@@ -2179,6 +2327,35 @@ window.addEventListener('resize', resizeApp);
 		sequence(2);
 		chime2.play();
 	}, this);
+	
+	book1.on('pointerout', function() {
+		book1Stween.resume();
+	}, this);
+	book2.on('pointerout', function() {
+		book2Stween.resume();
+	}, this);
+	book3.on('pointerout', function() {
+		book3Stween.resume();
+	}, this);
+	book5.on('pointerout', function() {
+		book5Stween.resume();
+	}, this);
+	book6.on('pointerout', function() {
+		book6Stween.resume();
+	}, this);
+	book7.on('pointerout', function() {
+		book7Stween.resume();
+	}, this);
+	book8.on('pointerout', function() {
+		book8Stween.resume();
+	}, this);
+	book9.on('pointerout', function() {
+		book9Stween.resume();
+	}, this);
+	book10.on('pointerout', function() {
+		book10Stween.resume();
+	}, this);
+	
 	mouseHoles.on('pointerdown', function() {
 		this.anims.play('mousehole');
 	});
