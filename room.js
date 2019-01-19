@@ -1,4 +1,32 @@
 var context;
+	var resizeApp = function()
+{
+	// Width-height-ratio of game resolution
+    // Replace 360 with your game width, and replace 640 with your game height
+	
+	// Make div full height of browser and keep the ratio of game resolution
+	let div			= document.getElementById('gameframe');
+	div.style.width		= window.innerHeight + 'px';
+	div.style.height	= window.innerHeight + 'px';
+	
+	// Check if device DPI messes up the width-height-ratio
+	let canvas			= document.getElementsByTagName('canvas')[0];
+	
+	let dpi_w	= parseInt(div.style.width) / canvas.width;
+	let dpi_h	= parseInt(div.style.height) / canvas.height;		
+	
+	if (window.innerHeight <= window.innerWidth){
+	var height	= window.innerHeight * (dpi_w / dpi_h);
+	var width	= window.innerHeight * (dpi_w / dpi_h);
+	
+	} else if (window.innerHeight > window.innerWidth){
+	var height	= window.innerWidth * (dpi_w / dpi_h);
+	var width	= window.innerWidth * (dpi_w / dpi_h);
+	}
+	// Scale canvas	
+	canvas.style.width	= width + 'px';
+	canvas.style.height	= height + 'px';
+}
 var _anims;
 var booksContainer;
 var chooseContainer;
@@ -176,6 +204,10 @@ var config = {
 //var game = new Phaser.Game(config);
 
 function preload() {
+	resizeApp();
+	$('#gameframe').css({
+		"background": "#ffca4d"
+	})
 	this.add.image(400, 400, 'logo').setScale(0.5);
 	var width = this.cameras.main.width;
 	var height = this.cameras.main.height;
@@ -308,33 +340,7 @@ function create() {
 	canvas.style.height	= height + 'px';
 }*/
 
-	function resizeApp ()
-{
-	// Width-height-ratio of game resolution
-    // Replace 360 with your game width, and replace 640 with your game height
-	
-	// Make div full height of browser and keep the ratio of game resolution
-	let div			= document.getElementById('gameframe');
-	div.style.width		= window.innerHeight + 'px';
-	div.style.height	= window.innerHeight + 'px';
-	
-	// Check if device DPI messes up the width-height-ratio
-	let canvas			= document.getElementsByTagName('canvas')[0];
-	
-	let dpi_w	= parseInt(div.style.width) / canvas.width;
-	let dpi_h	= parseInt(div.style.height) / canvas.height;		
-	
-	if (window.innerHeight <= window.innerWidth){
-	var height	= window.innerHeight * (dpi_w / dpi_h);
-	var width	= window.innerHeight * (dpi_w / dpi_h);
-	} else if (window.innerHeight > window.innerWidth){
-	var height	= window.innerWidth * (dpi_w / dpi_h);
-	var width	= window.innerWidth * (dpi_w / dpi_h);
-	}
-	// Scale canvas	
-	canvas.style.width	= width + 'px';
-	canvas.style.height	= height + 'px';
-}
+
 
 
 window.addEventListener('resize', resizeApp);
@@ -1397,8 +1403,8 @@ window.addEventListener('resize', resizeApp);
 	
 	var book1Stween = this.tweens.add({
 		targets: [book1],
-		x: '-=34',
-		y: '+=16',
+		x: '-=25.5',
+		y: '+=12',
 		duration: 250,
 		yoyo: true,
 		ease: 'Power2',
@@ -1410,8 +1416,8 @@ window.addEventListener('resize', resizeApp);
 	});
 	var book2Stween = this.tweens.add({
 		targets: [book2],
-		x: '-=34',
-		y: '+=16',
+		x: '-=25.5',
+		y: '+=12',
 		duration: 250,
 		yoyo: true,
 		ease: 'Power2',
@@ -1423,8 +1429,8 @@ window.addEventListener('resize', resizeApp);
 	});
 	var book3Stween = this.tweens.add({
 		targets: [book3],
-		x: '-=34',
-		y: '+=16',
+		x: '-=25.5',
+		y: '+=12',
 		duration: 250,
 		yoyo: true,
 		ease: 'Power2',
@@ -1436,8 +1442,8 @@ window.addEventListener('resize', resizeApp);
 	});
 	var book5Stween = this.tweens.add({
 		targets: [book5],
-		x: '-=34',
-		y: '+=16',
+		x: '-=25.5',
+		y: '+=12',
 		duration: 250,
 		yoyo: true,
 		ease: 'Power2',
@@ -1449,8 +1455,8 @@ window.addEventListener('resize', resizeApp);
 	});
 	var book6Stween = this.tweens.add({
 		targets: [book6],
-		x: '-=34',
-		y: '+=16',
+		x: '-=25.5',
+		y: '+=12',
 		duration: 250,
 		yoyo: true,
 		ease: 'Power2',
@@ -1462,8 +1468,8 @@ window.addEventListener('resize', resizeApp);
 	});
 	var book7Stween = this.tweens.add({
 		targets: [book7],
-		x: '-=34',
-		y: '+=16',
+		x: '-=25.5',
+		y: '+=12',
 		duration: 250,
 		yoyo: true,
 		ease: 'Power2',
@@ -1475,8 +1481,8 @@ window.addEventListener('resize', resizeApp);
 	});
 	var book8Stween = this.tweens.add({
 		targets: [book8],
-		x: '-=34',
-		y: '+=16',
+		x: '-=25.5',
+		y: '+=12',
 		duration: 250,
 		yoyo: true,
 		ease: 'Power2',
@@ -1488,8 +1494,8 @@ window.addEventListener('resize', resizeApp);
 	});
 	var book9Stween = this.tweens.add({
 		targets: [book9],
-		x: '-=34',
-		y: '+=16',
+		x: '-=25.5',
+		y: '+=12',
 		duration: 250,
 		yoyo: true,
 		ease: 'Power2',
@@ -1501,8 +1507,8 @@ window.addEventListener('resize', resizeApp);
 	});
 	var book10Stween = this.tweens.add({
 		targets: [book10],
-		x: '-=34',
-		y: '+=16',
+		x: '-=25.5',
+		y: '+=12',
 		duration: 250,
 		yoyo: true,
 		ease: 'Power2',
