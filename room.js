@@ -1,5 +1,4 @@
 var context;
-
 var _anims;
 var booksContainer;
 var chooseContainer;
@@ -153,7 +152,13 @@ var scene = {
 	key: 'room',
 	preload: preload,
 	create: create,
-	update: update
+	pack: {
+        files: [
+            { type: 'image', key: 'logo', url: 'assets/ui/logo.png' }
+        ]
+    },
+	update: update,
+	
 };
 
 var config = {
@@ -165,41 +170,43 @@ var config = {
 	scene: [scene],
 	audio: {
         context: context
-    }
+    },
+    
 };
 //var game = new Phaser.Game(config);
 
 function preload() {
+	this.add.image(400, 400, 'logo').setScale(0.5);
 	var width = this.cameras.main.width;
 	var height = this.cameras.main.height;
 	var loadingText = this.make.text({
 		x: width / 2,
-		y: height / 2 - 50,
+		y: 0,
 		text: 'loading...',
 		style: {
 			font: '36pt magistral',
-			fill: '#ffffff'
+			fill: '#ffca4d'
 		}
 	});
 	loadingText.setOrigin(0.5, 0.5);
+	var progressBar = this.add.graphics();
+	var progressBox = this.add.graphics();
 	var percentText = this.make.text({
 		x: width / 2,
-		y: height / 2 ,
+		y: 500 ,
 		text: '0%',
 		style: {
 			font: '36pt magistral',
 			fill: '#ffffff'
 		}
 	});
-	var progressBar = this.add.graphics();
-	var progressBox = this.add.graphics();
-	progressBox.fillStyle(0xffca4d, 0);
-	progressBox.fillRect(240, 270, 320, 50);
+	progressBox.fillStyle(0xffffff, 0);
+	progressBox.fillRect(200, 465, 300, 600);
 	percentText.setOrigin(0.5, 0.5);
 	this.load.on('progress', function(value) {
 		progressBar.clear();
 		progressBar.fillStyle(0x225a89, 1);
-		progressBar.fillRect(250, 280, 300 * value, 30);
+		progressBar.fillRect(150, 465, 500 * value, 70);
 		percentText.setText(parseInt(value * 100) + '%');
 	});
 
@@ -217,7 +224,7 @@ function preload() {
 	this.load.image('roomL', 'assets/bg/roomL.png');
 	this.load.image('roomM', 'assets/bg/roomM.png');
 	this.load.image('roomR', 'assets/bg/roomR.png');
-	this.load.image('logo', 'assets/ui/logo.png');
+	//this.load.image('logo', 'assets/ui/logo.png');
 	this.load.image('left', 'assets/ui/left.png');
 	this.load.image('right', 'assets/ui/right.png');
 	// left room
@@ -1534,11 +1541,11 @@ window.addEventListener('resize', resizeApp);
 
     }, this);*/
 	// !universal
-	cursor.on('pointerdown', function() {
+	//cursor.on('pointerdown', function() {
 		//context = new AudioContext();
 		context.resume();
 		console.log(context);
-		game.sound.play('chime8');
+		// game.sound.play('chime8');
 		tween = this.tweens.add({
 			targets: [cursor],
 			y: 623,
@@ -1555,7 +1562,7 @@ window.addEventListener('resize', resizeApp);
 		
 		
 		
-	}, this);
+	//}, this);
 	leftButton.on('pointerdown', function() {
 		//this.input.stopPropagation();
 		if (currentRoom == 1) {
