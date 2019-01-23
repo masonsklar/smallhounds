@@ -17,12 +17,12 @@ var game;
 	let dpi_h	= parseInt(div.style.height) / div.height;		
 	
 	if (window.innerHeight <= window.innerWidth){
-	var height	= window.innerHeight * 0.8;
-	var width	= window.innerHeight * 0.8;
+	var height	= window.innerHeight;
+	var width	= window.innerHeight;
 	
 	} else if (window.innerHeight > window.innerWidth){
-	var width	= window.innerWidth * 0.8;
-	var height	= window.innerWidth * 0.8;
+	var width	= window.innerWidth;
+	var height	= window.innerWidth;
 	}
 	// Scale canvas	
 	div.style.width	= width + 'px';
