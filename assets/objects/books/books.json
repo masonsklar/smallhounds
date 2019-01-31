@@ -4,282 +4,282 @@
 			"image": "books.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 504,
-				"h": 519
+				"w": 967,
+				"h": 970
 			},
 			"scale": 1,
 			"frames": [
 				{
 					"filename": "shelf",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 604,
+						"h": 307
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 604,
+						"h": 307
+					},
 					"frame": {
 						"x": 1,
 						"y": 1,
-						"w": 303,
-						"h": 154
-					},
-					"rotated": false,
-					"trimmed": false,
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 303,
-						"h": 154
-					},
-					"sourceSize": {
-						"w": 303,
-						"h": 154
-					}
-				},
-				{
-					"filename": "selfplant",
-					"frame": {
-						"x": 1,
-						"y": 157,
-						"w": 135,
-						"h": 213
-					},
-					"rotated": false,
-					"trimmed": false,
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 135,
-						"h": 213
-					},
-					"sourceSize": {
-						"w": 135,
-						"h": 213
-					}
-				},
-				{
-					"filename": "book6",
-					"frame": {
-						"x": 1,
-						"y": 372,
-						"w": 107,
-						"h": 146
-					},
-					"rotated": false,
-					"trimmed": false,
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 107,
-						"h": 146
-					},
-					"sourceSize": {
-						"w": 107,
-						"h": 146
-					}
-				},
-				{
-					"filename": "book2",
-					"frame": {
-						"x": 110,
-						"y": 372,
-						"w": 106,
-						"h": 146
-					},
-					"rotated": false,
-					"trimmed": false,
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 106,
-						"h": 146
-					},
-					"sourceSize": {
-						"w": 106,
-						"h": 146
+						"w": 604,
+						"h": 307
 					}
 				},
 				{
 					"filename": "book10",
-					"frame": {
-						"x": 138,
-						"y": 157,
-						"w": 90,
-						"h": 174
-					},
 					"rotated": false,
 					"trimmed": false,
+					"sourceSize": {
+						"w": 179,
+						"h": 346
+					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 90,
-						"h": 174
+						"w": 179,
+						"h": 346
 					},
-					"sourceSize": {
-						"w": 90,
-						"h": 174
+					"frame": {
+						"x": 607,
+						"y": 1,
+						"w": 179,
+						"h": 346
 					}
 				},
 				{
-					"filename": "book9",
-					"frame": {
-						"x": 306,
-						"y": 1,
-						"w": 106,
-						"h": 146
-					},
+					"filename": "book6",
 					"rotated": false,
 					"trimmed": false,
+					"sourceSize": {
+						"w": 212,
+						"h": 291
+					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 106,
-						"h": 146
+						"w": 212,
+						"h": 291
 					},
-					"sourceSize": {
-						"w": 106,
-						"h": 146
+					"frame": {
+						"x": 1,
+						"y": 310,
+						"w": 212,
+						"h": 291
 					}
 				},
 				{
 					"filename": "book1",
-					"frame": {
-						"x": 414,
-						"y": 1,
-						"w": 89,
-						"h": 165
-					},
 					"rotated": false,
 					"trimmed": false,
+					"sourceSize": {
+						"w": 177,
+						"h": 328
+					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 89,
-						"h": 165
+						"w": 177,
+						"h": 328
 					},
-					"sourceSize": {
-						"w": 89,
-						"h": 165
+					"frame": {
+						"x": 215,
+						"y": 310,
+						"w": 177,
+						"h": 328
 					}
 				},
 				{
 					"filename": "book4",
-					"frame": {
-						"x": 230,
-						"y": 157,
-						"w": 89,
-						"h": 164
-					},
 					"rotated": false,
 					"trimmed": false,
+					"sourceSize": {
+						"w": 177,
+						"h": 327
+					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 89,
-						"h": 164
+						"w": 177,
+						"h": 327
 					},
-					"sourceSize": {
-						"w": 89,
-						"h": 164
+					"frame": {
+						"x": 1,
+						"y": 603,
+						"w": 177,
+						"h": 327
 					}
 				},
 				{
 					"filename": "book5",
-					"frame": {
-						"x": 321,
-						"y": 149,
-						"w": 89,
-						"h": 164
-					},
 					"rotated": false,
 					"trimmed": false,
+					"sourceSize": {
+						"w": 177,
+						"h": 327
+					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 89,
-						"h": 164
+						"w": 177,
+						"h": 327
 					},
-					"sourceSize": {
-						"w": 89,
-						"h": 164
-					}
-				},
-				{
-					"filename": "book11",
 					"frame": {
-						"x": 412,
-						"y": 168,
-						"w": 90,
-						"h": 157
-					},
-					"rotated": false,
-					"trimmed": false,
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 90,
-						"h": 157
-					},
-					"sourceSize": {
-						"w": 90,
-						"h": 157
+						"x": 394,
+						"y": 310,
+						"w": 177,
+						"h": 327
 					}
 				},
 				{
 					"filename": "book8",
-					"frame": {
-						"x": 218,
-						"y": 333,
-						"w": 89,
-						"h": 164
-					},
 					"rotated": false,
 					"trimmed": false,
+					"sourceSize": {
+						"w": 177,
+						"h": 327
+					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 89,
-						"h": 164
+						"w": 177,
+						"h": 327
 					},
+					"frame": {
+						"x": 573,
+						"y": 349,
+						"w": 177,
+						"h": 327
+					}
+				},
+				{
+					"filename": "selfplant",
+					"rotated": false,
+					"trimmed": false,
 					"sourceSize": {
-						"w": 89,
-						"h": 164
+						"w": 135,
+						"h": 213
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 135,
+						"h": 213
+					},
+					"frame": {
+						"x": 394,
+						"y": 639,
+						"w": 135,
+						"h": 213
 					}
 				},
 				{
 					"filename": "book7",
-					"frame": {
-						"x": 309,
-						"y": 323,
-						"w": 96,
-						"h": 158
-					},
 					"rotated": false,
 					"trimmed": false,
+					"sourceSize": {
+						"w": 190,
+						"h": 314
+					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 96,
-						"h": 158
+						"w": 190,
+						"h": 314
 					},
+					"frame": {
+						"x": 180,
+						"y": 640,
+						"w": 190,
+						"h": 314
+					}
+				},
+				{
+					"filename": "book2",
+					"rotated": false,
+					"trimmed": false,
 					"sourceSize": {
-						"w": 96,
-						"h": 158
+						"w": 211,
+						"h": 291
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 211,
+						"h": 291
+					},
+					"frame": {
+						"x": 531,
+						"y": 678,
+						"w": 211,
+						"h": 291
 					}
 				},
 				{
 					"filename": "book3",
-					"frame": {
-						"x": 407,
-						"y": 327,
-						"w": 96,
-						"h": 157
-					},
 					"rotated": false,
 					"trimmed": false,
+					"sourceSize": {
+						"w": 190,
+						"h": 313
+					},
 					"spriteSourceSize": {
 						"x": 0,
 						"y": 0,
-						"w": 96,
-						"h": 157
+						"w": 190,
+						"h": 313
 					},
+					"frame": {
+						"x": 752,
+						"y": 349,
+						"w": 190,
+						"h": 313
+					}
+				},
+				{
+					"filename": "book9",
+					"rotated": false,
+					"trimmed": false,
 					"sourceSize": {
-						"w": 96,
-						"h": 157
+						"w": 211,
+						"h": 292
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 211,
+						"h": 292
+					},
+					"frame": {
+						"x": 752,
+						"y": 664,
+						"w": 211,
+						"h": 292
+					}
+				},
+				{
+					"filename": "book11",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 178,
+						"h": 312
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 178,
+						"h": 312
+					},
+					"frame": {
+						"x": 788,
+						"y": 1,
+						"w": 178,
+						"h": 312
 					}
 				}
 			]
@@ -288,6 +288,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:b5cdcea53e8000cbecd89262136f41e2:3826fddee3e42c40a66bff4e8e83d8a6:8ec260063b39ecbef90e2ef69960ad87$"
+		"smartupdate": "$TexturePacker:SmartUpdate:ee64da5ae08f208ef32f652805d9aa2e:f1f756a36dcbf300d0d9f9583f594af4:8ec260063b39ecbef90e2ef69960ad87$"
 	}
 }
