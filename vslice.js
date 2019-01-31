@@ -1,34 +1,17 @@
 var context;
-	var resizeApp = function()
-{
-	// Width-height-ratio of game resolution
-    // Replace 360 with your game width, and replace 640 with your game height
-	
-	// Make div full height of browser and keep the ratio of game resolution
-	let div			= document.getElementById('gameframe');
-	div.style.width		= window.innerHeight + 'px';
-	div.style.height	= window.innerHeight + 'px';
-	
-	// Check if device DPI messes up the width-height-ratio
-	let canvas			= document.getElementsByTagName('canvas')[0];
-	
-	let dpi_w	= parseInt(div.style.width) / canvas.width;
-	let dpi_h	= parseInt(div.style.height) / canvas.height;		
-	
-	if (window.innerHeight <= window.innerWidth){
-	var height	= window.innerHeight * (dpi_w / dpi_h);
-	var width	= window.innerHeight * (dpi_w / dpi_h);
-	
-	} else if (window.innerHeight > window.innerWidth){
-	var height	= window.innerWidth * (dpi_w / dpi_h);
-	var width	= window.innerWidth * (dpi_w / dpi_h);
-	}
-	// Scale canvas	
-	canvas.style.width	= width + 'px';
-	canvas.style.height	= height + 'px';
+var game;
+
+window.onload = function() {
+	//context = new AudioContext();
+	$('#gameframe').click(function() {
+		if (game == undefined) {
+			//context.resume();
+			game = new Phaser.Game(config);
+		}
+	});
 }
+
 var _anims;
-var widedowFrames;
 var booksContainer;
 var chooseContainer;
 var book1tween;
@@ -56,7 +39,6 @@ var shooterTick = 0;
 var dodgeCounter = 0;
 var keyGetTween;
 var p1;
-var flip6;
 var pane1;
 var pane2;
 var pane3;
@@ -65,7 +47,6 @@ var chooserTweenUp;
 var chooserTweenDownPrep;
 var greenText;
 var chooserBg;
-var bookCircFrames;
 var nextSize = 1;
 var cropGrid = {
 	p1: {
@@ -184,12 +165,14 @@ var scene = {
 	preload: preload,
 	create: create,
 	pack: {
-        files: [
-            { type: 'image', key: 'logo', url: 'assets/ui/logo.png' }
-        ]
-    },
+		files: [{
+			type: 'image',
+			key: 'logo',
+			url: 'assets/ui/logo.png'
+		}]
+	},
 	update: update,
-	
+
 };
 
 var config = {
@@ -200,14 +183,13 @@ var config = {
 	backgroundColor: '#ffca4d',
 	scene: [scene],
 	audio: {
-        context: context
-    },
-    
+		context: context
+	},
+
 };
 //var game = new Phaser.Game(config);
 
 function preload() {
-	resizeApp();
 	$('#gameframe').css({
 		"background": "#ffca4d"
 	})
@@ -228,7 +210,7 @@ function preload() {
 	var progressBox = this.add.graphics();
 	var percentText = this.make.text({
 		x: width / 2,
-		y: 500 ,
+		y: 500,
 		text: '0%',
 		style: {
 			font: '36pt magistral',
@@ -284,9 +266,6 @@ function preload() {
 	this.load.atlas('sizeposteratlas', 'assets/objects/sizeposter/sizeposter.png', 'assets/objects/sizeposter/sizeposter.json');
 	this.load.atlas('dooratlas', 'assets/objects/door/door.png', 'assets/objects/door/door.json');
 	this.load.multiatlas('plantcycleatlas', 'assets/objects/plantcycle/plantcycle.json');
-	this.load.multiatlas('leftwindowatlas', 'assets/objects/leftwindow/leftwindow.json');
-	this.load.multiatlas('widedowatlas', 'assets/objects/widedow/widedow.json');
-	this.load.multiatlas('rightwindowatlas', 'assets/objects/rightwindow/rightwindow.json');
 	this.load.multiatlas('pages', 'assets/chooser/pages/pages.json');
 	this.load.atlas('mugatlas', 'assets/objects/mug/mug.png', 'assets/objects/mug/mug.json');
 	//this.load.atlas('pages', 'assets/chooser/pages.png', 'assets/chooser/pages.json');
@@ -294,7 +273,6 @@ function preload() {
 	this.load.atlas('cardatlas', 'assets/objects/card/card.png', 'assets/objects/card/card.json');
 	this.load.multiatlas('flyatlas', 'assets/objects/shooter/fly/fly.json');
 	this.load.multiatlas('couchatlas', 'assets/objects/couch/couch.json');
-	this.load.atlas('bookstackatlas', 'assets/objects/bookstack/bookstack.png', 'assets/objects/bookstack/bookstack.json');
 	this.load.atlas('sqatlas', 'assets/objects/couch/sq/sq.png', 'assets/objects/couch/sq/sq.json');
 	this.load.atlas('obstacleatlas', 'assets/objects/shooter/obstacle/obstacle.png', 'assets/objects/shooter/obstacle/obstacle.json');
 	this.load.atlas('shooteratlas', 'assets/objects/shooter/p1.png', 'assets/objects/shooter/p1.json');
@@ -306,13 +284,9 @@ function preload() {
 	// !load audio
 	this.load.audio('wobblesound', 'assets/objects/lamp/audio/i.mp3');
 	//universal
-	this.load.audio('mugsound', 'assets/objects/mug/mug.mp3');
 	//left room
+	this.load.audio('shootloop', 'assets/objects/shooter/shootloop.wav');
 	//middle room
-	this.load.audio('cardflipsound', 'assets/objects/card/cardflip.mp3');
-	this.load.audio('flipbacksound', 'assets/objects/card/flipback.mp3');
-	this.load.audio('cardwinsound', 'assets/objects/card/win.mp3');
-	this.load.audio('shootloop', 'assets/objects/shooter/shootloop.mp3');
 	//right room
 	this.load.audio('chime1', 'assets/objects/books/audio/1.mp3');
 	this.load.audio('chime2', 'assets/objects/books/audio/2.mp3');
@@ -326,37 +300,7 @@ function preload() {
 }
 
 function create() {
-	
-	/*function resizeApp ()
-{
-	// Width-height-ratio of game resolution
-    // Replace 360 with your game width, and replace 640 with your game height
-	let game_ratio		= 800 / 800;
-	
-	// Make div full height of browser and keep the ratio of game resolution
-	let div			= document.getElementById('gameframe');
-	div.style.width		= (window.innerHeight * game_ratio) + 'px';
-	div.style.height	= window.innerHeight + 'px';
-	
-	// Check if device DPI messes up the width-height-ratio
-	let canvas			= document.getElementsByTagName('canvas')[0];
-	
-	let dpi_w	= parseInt(div.style.width) / canvas.width;
-	let dpi_h	= parseInt(div.style.height) / canvas.height;		
-	
-	let height	= window.innerHeight * (dpi_w / dpi_h);
-	let width	= height * game_ratio;
-	
-	// Scale canvas	
-	canvas.style.width	= width + 'px';
-	canvas.style.height	= height + 'px';
-}*/
 
-
-
-
-window.addEventListener('resize', resizeApp);
-	
 	// !create frames
 	// !left room
 	sizePosterPolygon = new Phaser.Geom.Polygon([273, 472, 0, 600, 0, 126, 273, 0]);
@@ -374,24 +318,6 @@ window.addEventListener('resize', resizeApp);
 	var doorCloseFrames = this.anims.generateFrameNames('dooratlas', {
 		start: 2,
 		end: 4
-	});
-	var leftWindowFrames = this.anims.generateFrameNames('leftwindowatlas', {
-		prefix: 'leftwindow',
-		start: 0,
-		end: 359,
-		zeroPad: 3
-	});
-	widedowFrames = this.anims.generateFrameNames('widedowatlas', {
-		prefix: 'widedow',
-		start: 0,
-		end: 359,
-		zeroPad: 3
-	});
-	var rightWindowFrames = this.anims.generateFrameNames('rightwindowatlas', {
-		prefix: 'rightwindow',
-		start: 0,
-		end: 269,
-		zeroPad: 3
 	});
 	plantCycle1Frames = this.anims.generateFrameNames('plantcycleatlas', {
 		start: 0,
@@ -560,21 +486,14 @@ window.addEventListener('resize', resizeApp);
 		end: 43,
 		zeroPad: 2
 	});
-	flip6 = this.anims.generateFrameNames('cardatlas', {
+	var flip6 = this.anims.generateFrameNames('cardatlas', {
 		prefix: 'flip6_',
 		start: 0,
 		end: 43,
 		zeroPad: 2
 	});
-	bookCircFrames = this.anims.generateFrameNames('bookstackatlas',{
-		prefix: 'bookstack',
-		start: 0,
-		end: 47,
-		zeroPad: 2
-	})
 
 
-	var bookStackPoly = new Phaser.Geom.Polygon([ 279,248, 193,287, 88,240, 72,200, 90,113, 175,71, 278,122 ]);
 	var cardPolygon = new Phaser.Geom.Polygon([46, 95, 120, 130, 73, 150, 1, 117]);
 	var flipArray = [0, flip1, flip2, flip3, flip4, flip5, flip6];
 	// !right room
@@ -594,51 +513,13 @@ window.addEventListener('resize', resizeApp);
 	// !create sprites
 	// !universal
 	//var bg = this.add.sprite(0, 0, 'room').setOrigin(0).setScale(0.5);
-	
 	var bgL = this.add.sprite(0, 0, 'roomL').setOrigin(0).setScale(0.5).setInteractive();
 	var bgM = this.add.sprite(800, 0, 'roomM').setOrigin(0).setScale(0.5).setAlpha(0);
 	var bgR = this.add.sprite(1600, 0, 'roomR').setOrigin(0).setScale(0.5);
-	var polygon = new Phaser.Geom.Polygon([
-        0, 1062.5,
-        537, 810,
-        537,0,
-        537, 810,
-        800, 933,
-        1353, 677.5,
-        1353, 0,
-        1353, 677.5,
-        1600, 792.5,
-        2182, 521,
-        2182, 0,
-        2182, 521,
-        2400, 622.5
-    ]);
-
-    var graphics = this.add.graphics({ x: 0, y: 0 });
-
-    graphics.lineStyle(1, 0xffffff);
-
-    graphics.beginPath();
-
-    graphics.moveTo(polygon.points[0].x, polygon.points[0].y);
-
-    for (var i = 1; i < polygon.points.length; i++)
-    {
-        graphics.lineTo(polygon.points[i].x, polygon.points[i].y);
-    }
-
-    //graphics.closePath();
-    graphics.strokePath();
-	
-	
-	
 	//var logo = this.add.sprite(860, -130, 'logo').setOrigin(0).setScale(0.5);
-	var leftWindow = this.add.sprite(605, 396, 'leftwindowatlas', 'leftwindow000').setOrigin(0).setScale(0.5);
-	var widedow = this.add.sprite(833, 298, 'widedowatlas', 'widedow000').setOrigin(0).setScale(0.5);
-	var rightWindow = this.add.sprite(1791, 20, 'rightwindowatlas', 'rightwindow000').setOrigin(0).setScale(0.5);
 	var cursor = this.add.sprite(1200, -170, 'logo').setScale(0.5).setInteractive();
-	var leftButton = this.add.sprite(10, 382, 'left').setOrigin(0).setInteractive();
-	var rightButton = this.add.sprite(754, 382, 'right').setOrigin(0).setInteractive();
+	//var leftButton = this.add.sprite(10, 382, 'left').setOrigin(0).setInteractive();
+	//var rightButton = this.add.sprite(754, 382, 'right').setOrigin(0).setInteractive();
 	var invKey = this.add.sprite(10, -80, 'obstacleatlas', 'key1').setOrigin(0).setScale(0.5).setInteractive();
 	invKey.alpha = 0;
 	// !left room
@@ -667,7 +548,7 @@ window.addEventListener('resize', resizeApp);
 		fontSize: 18,
 		color: '#225a89',
 	}).setOrigin(0);
-	frontPlant = this.add.sprite(0, 1020, 'plantcycleatlas', '0').setOrigin(0).setInteractive(frontPlantPolygon, Phaser.Geom.Polygon.Contains).setScale(0.5);
+	
 	var chooser = this.add.sprite(0, 0, 'chooser').setOrigin(0).setScale(0.5).setInteractive();
 	chooserBg = this.add.sprite(10, 10, 'pages', 'page' + chooserStats.page[chooserStats.currentPage].index).setOrigin(0).setScale(0.5);
 	var caption = this.add.text(20, 320, ['Wow, its beautiful outside!', 'Where are we going?'], {
@@ -687,52 +568,25 @@ window.addEventListener('resize', resizeApp);
 		fontSize: 30,
 		color: '#ffffff'
 	}).setOrigin(0.5).setText(chooserStats.page[chooserStats.currentPage].optB);
-	var mugSound = this.sound.add('mugsound');
-	mugSound.volume=0.25;
 	var mug1 = this.add.sprite(616, 1150, 'mugatlas', 'mug1').setOrigin(0).setScale(0.5).setInteractive();
 	mug1.pos = 1;
 	// !middle room
 	
-	card1a = this.add.sprite(1125, 934, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1).setScale(0.5);
-	card1b = this.add.sprite(1160, 916, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1).setScale(0.5);
-	card1c = this.add.sprite(1196, 898, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1).setScale(0.5);
-	card1d = this.add.sprite(1232, 880, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1).setScale(0.5);
-	card2a = this.add.sprite(1170, 955, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2).setScale(0.5);
-	card2b = this.add.sprite(1206, 937, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2).setScale(0.5);
-	card2c = this.add.sprite(1242, 919, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2).setScale(0.5);
-	card2d = this.add.sprite(1278, 901, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2).setScale(0.5);
-	card3a = this.add.sprite(1216, 976, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3).setScale(0.5);
-	card3b = this.add.sprite(1252, 958, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3).setScale(0.5);
-	card3c = this.add.sprite(1288, 940, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3).setScale(0.5);
-	card3d = this.add.sprite(1324, 922, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3).setScale(0.5);
-	//shooter 
-	var score = this.add.text(1600, 220, '0', {
+		//shooter 
+	var score = this.add.text(1580, 220, '0', {
 		fontFamily: 'magistral',
 		fontSize: 64,
 		color: '#ffffff'
 	}).setOrigin(1, 0);
-	controlStrip = this.add.sprite(1292, 260, 'shooteratlas', 'cs00').setOrigin(0).setScale(0.5).setInteractive();
-	var shooterBg = this.add.sprite(1388, 323, 'flyatlas', '0').setOrigin(0).setScale(0.5);
-	pane1 = this.add.sprite(1388, 323, 'obstacleatlas', '0').setOrigin(0).setScale(0.5);
-	pane2 = this.add.sprite(1456, 355, 'obstacleatlas', '0').setOrigin(0).setScale(0.5);
-	pane3 = this.add.sprite(1525, 387, 'obstacleatlas', Math.floor(Math.random() * 12) + 1).setOrigin(0).setScale(0.5);
+	controlStrip = this.add.sprite(1232, 230, 'shooteratlas', 'cs00').setOrigin(0).setScale(0.5).setInteractive();
+	var shooterBg = this.add.sprite(1388, 228, 'flyatlas', '0').setOrigin(0).setScale(0.5);
+	pane1 = this.add.sprite(1388, 228, 'obstacleatlas', '0').setOrigin(0).setScale(0.5);
+	pane2 = this.add.sprite(1456, 260, 'obstacleatlas', '0').setOrigin(0).setScale(0.5);
+	pane3 = this.add.sprite(1525, 292, 'obstacleatlas', Math.floor(Math.random() * 12) + 1).setOrigin(0).setScale(0.5);
 
-	p1 = this.add.sprite(1388, 323, 'shooteratlas', '02').setOrigin(0).setScale(0.5);
+	p1 = this.add.sprite(1388, 228, 'shooteratlas', '02').setOrigin(0).setScale(0.5);
 
-	var bgCouch = this.add.sprite(834, 621, 'bgcouch').setOrigin(0).setScale(0.5);
-	var couch = this.add.sprite(863, 696, 'couchatlas', 'couch000').setOrigin(0).setScale(0.5);
-	var sq3 = this.add.sprite(1081, 662.5, 'sqatlas', 'w').setOrigin(0).setScale(0.5).setInteractive(sqPolygon, Phaser.Geom.Polygon.Contains);
-	var sq2 = this.add.sprite(960, 718.5, 'sqatlas', 'w').setOrigin(0).setScale(0.5).setInteractive(sqPolygon, Phaser.Geom.Polygon.Contains);
-	var sq1 = this.add.sprite(839, 775, 'sqatlas', 'w').setOrigin(0).setScale(0.5).setInteractive(sqPolygon, Phaser.Geom.Polygon.Contains);
-	var arm = this.add.sprite(1303.7, 671, 'arm').setOrigin(0).setScale(0.5);
-	var side = this.add.sprite(833.5, 805.5, 'side').setOrigin(0).setScale(0.5);
-	var coftable = this.add.sprite(1040, 779, 'coftable').setOrigin(0).setScale(0.5);var mug2 = this.add.sprite(1278, 797, 'mugatlas', 'mug3').setOrigin(0).setScale(0.5).setInteractive();
-	mug2.pos = 3;
-	var bookStack = this.add.sprite(1315,775, 'bookstackatlas', 'bookstack00').setOrigin(0).setScale(0.5).setInteractive(bookStackPoly, Phaser.Geom.Polygon.Contains);
-	var mug3 = this.add.sprite(1461, 826, 'mugatlas', 'mug7').setOrigin(0).setScale(0.5).setInteractive();
-	mug3.pos = 7;
-	// !right room
-	// create books
+	
 	spines = {
 
 		"book1": [{
@@ -782,22 +636,58 @@ window.addEventListener('resize', resizeApp);
 	book10polygon = new Phaser.Geom.Polygon(spines.book10[0].shape);
 	book11polygon = new Phaser.Geom.Polygon(spines.book11[0].shape);
 
-	bottomShelf = this.add.sprite(2082, 332, 'bookatlas', 'shelf').setOrigin(0);
-	book5 = this.add.sprite(2123, 217, 'bookatlas', 'book5').setOrigin(0).setInteractive(book5polygon, Phaser.Geom.Polygon.Contains);
+	//bottomShelf = this.add.sprite(2082, 332, 'bookatlas', 'shelf').setOrigin(0);
+	
+	book5 = this.add.sprite(2115, 217, 'bookatlas', 'book5').setOrigin(0).setInteractive(book5polygon, Phaser.Geom.Polygon.Contains);
 	book6 = this.add.sprite(2132, 255, 'bookatlas', 'book6').setOrigin(0).setInteractive(book6polygon, Phaser.Geom.Polygon.Contains);
 	book7 = this.add.sprite(2169, 251, 'bookatlas', 'book7').setOrigin(0).setInteractive(book7polygon, Phaser.Geom.Polygon.Contains);
-	book8 = this.add.sprite(2208, 267, 'bookatlas', 'book8').setOrigin(0).setInteractive(book8polygon, Phaser.Geom.Polygon.Contains);
-	book9 = this.add.sprite(2218, 295, 'bookatlas', 'book9').setOrigin(0).setInteractive(book9polygon, Phaser.Geom.Polygon.Contains);
+	book8 = this.add.sprite(2200, 267, 'bookatlas', 'book8').setOrigin(0).setInteractive(book8polygon, Phaser.Geom.Polygon.Contains);
+	book9 = this.add.sprite(2224, 295, 'bookatlas', 'book9').setOrigin(0).setInteractive(book9polygon, Phaser.Geom.Polygon.Contains);
 	book10 = this.add.sprite(2254, 273, 'bookatlas', 'book10').setOrigin(0).setInteractive(book10polygon, Phaser.Geom.Polygon.Contains);
 	book11 = this.add.sprite(2282, 300, 'bookatlas', 'book11').setOrigin(0).setInteractive();
 	topShelf = this.add.sprite(2082, 162, 'bookatlas', 'shelf').setOrigin(0);
-	book1 = this.add.sprite(2134, 53, 'bookatlas', 'book1').setOrigin(0).setInteractive(book1polygon, Phaser.Geom.Polygon.Contains);
+	book1 = this.add.sprite(2124, 53, 'bookatlas', 'book1').setOrigin(0).setInteractive(book1polygon, Phaser.Geom.Polygon.Contains);
 	book2 = this.add.sprite(2143, 91, 'bookatlas', 'book2').setOrigin(0).setInteractive(book2polygon, Phaser.Geom.Polygon.Contains);
 	book3 = this.add.sprite(2180, 86, 'bookatlas', 'book3').setOrigin(0).setInteractive(book3polygon, Phaser.Geom.Polygon.Contains);
 	book4 = this.add.sprite(2210, 90, 'bookatlas', 'book4').setOrigin(0).setInteractive();
-	shelfPlant = this.add.sprite(2220, 67, 'shelfplantimg').setOrigin(0).setInteractive();
+	shelfPlant = this.add.sprite(2192, 55, 'plantcycleatlas', '0').setOrigin(0).setScale(0.5).setInteractive(frontPlantPolygon, Phaser.Geom.Polygon.Contains);
+	var booksContainer = this.add.container(-790, 360, [ book5, book6, book7, book8, book9, book10, book11, topShelf, book1, book2, book3, book4, shelfPlant]);
+	var bgCouch = this.add.sprite(834, 621, 'bgcouch').setOrigin(0).setScale(0.5);
+	var couch = this.add.sprite(863, 696, 'couchatlas', 'couch000').setOrigin(0).setScale(0.5);
+	var sq3 = this.add.sprite(1081, 662.5, 'sqatlas', 'w').setOrigin(0).setScale(0.5).setInteractive(sqPolygon, Phaser.Geom.Polygon.Contains);
+	var sq2 = this.add.sprite(960, 718.5, 'sqatlas', 'w').setOrigin(0).setScale(0.5).setInteractive(sqPolygon, Phaser.Geom.Polygon.Contains);
+	var sq1 = this.add.sprite(839, 775, 'sqatlas', 'w').setOrigin(0).setScale(0.5).setInteractive(sqPolygon, Phaser.Geom.Polygon.Contains);
+	var arm = this.add.sprite(1303.7, 671, 'arm').setOrigin(0).setScale(0.5);
+	var side = this.add.sprite(833.5, 805.5, 'side').setOrigin(0).setScale(0.5);
+	
+	var coftable = this.add.sprite(1040, 779, 'coftable').setOrigin(0).setScale(0.5);
+	
+	var mug2 = this.add.sprite(1278, 797, 'mugatlas', 'mug3').setOrigin(0).setScale(0.5).setInteractive();
+	mug2.pos = 3;
+	var mug3 = this.add.sprite(1461, 826, 'mugatlas', 'mug7').setOrigin(0).setScale(0.5).setInteractive();
+	mug3.pos = 7;
+	card1a = this.add.sprite(1125, 934, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1).setScale(0.5);
+	card1b = this.add.sprite(1160, 916, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1).setScale(0.5);
+	card1c = this.add.sprite(1196, 898, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1).setScale(0.5);
+	card1d = this.add.sprite(1232, 880, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1).setScale(0.5);
+	card2a = this.add.sprite(1170, 955, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2).setScale(0.5);
+	card2b = this.add.sprite(1206, 937, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2).setScale(0.5);
+	card2c = this.add.sprite(1242, 919, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2).setScale(0.5);
+	card2d = this.add.sprite(1278, 901, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2).setScale(0.5);
+	card3a = this.add.sprite(1216, 976, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3).setScale(0.5);
+	card3b = this.add.sprite(1252, 958, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3).setScale(0.5);
+	card3c = this.add.sprite(1288, 940, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3).setScale(0.5);
+	card3d = this.add.sprite(1324, 922, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3).setScale(0.5);
+
+
+	
+
+	frontPlant = this.add.sprite(795, 800, 'plantcycleatlas', '0').setOrigin(0).setInteractive(frontPlantPolygon, Phaser.Geom.Polygon.Contains).setScale(0.5);
+	// !right room
+	// create books
+	
 	var tableLegs = this.add.sprite(1637, 656, 'tablelegs').setOrigin(0).setScale(0.5);
-	var mouseHoles = this.add.sprite(1624, 504, 'holesatlas', 'holes0').setOrigin(0).setScale(0.5).setInteractive(holesPolygon, Phaser.Geom.Polygon.Contains);
+	var mouseHoles = this.add.sprite(1626, 502, 'holesatlas', 'holes0').setOrigin(0).setScale(0.5).setInteractive(holesPolygon, Phaser.Geom.Polygon.Contains);
 	var topLeg = this.add.sprite(1860, 667, 'topleg').setOrigin(0).setScale(0.5);
 	var tableTop = this.add.sprite(1626, 537, 'tabletop').setOrigin(0).setScale(0.5);
 	lamp = this.add.sprite(1600, 385, 'wobble', '00').setOrigin(0).setInteractive(lampPolygon, Phaser.Geom.Polygon.Contains);
@@ -1107,26 +997,6 @@ window.addEventListener('resize', resizeApp);
 			frameRate: 30
 		});
 	}
-	var leftWindowDrift = this.anims.create({
-		key:'leftwindowdrift',
-		frames: leftWindowFrames,
-		frameRate:30,
-		repeat: -1
-	});
-	var widedowDrift = this.anims.create({
-		key:'widedowdrift',
-		frames: widedowFrames,
-		frameRate:30,
-		repeat: -1
-	});
-	
-	var rightWindowDrift = this.anims.create({
-		key:'rightwindowdrift',
-		frames: rightWindowFrames,
-		frameRate:30,
-		repeat: -1
-	});
-	
 	chooserTweenUp = this.tweens.add({
 		targets: [chooser, chooserBg, caption, redButton, greenButton, redText, greenText],
 		x: '+=0',
@@ -1374,12 +1244,6 @@ window.addEventListener('resize', resizeApp);
 		frameRate: 30,
 		repeat: -1
 	});
-	this.anims.create({
-		key: 'bookcirc',
-		frames: bookCircFrames,
-		frameRate: 30,
-		repeat:0
-	});
 	// !right room
 	this.anims.create({
 		key: 'lampwobble',
@@ -1505,7 +1369,7 @@ window.addEventListener('resize', resizeApp);
 			book10tween.pause();
 		}
 	});
-	
+
 	var book1Stween = this.tweens.add({
 		targets: [book1],
 		x: '-=25.5',
@@ -1623,7 +1487,7 @@ window.addEventListener('resize', resizeApp);
 			book10Stween.pause();
 		}
 	});
-	
+
 	this.anims.create({
 		key: 'mousehole',
 		frames: holesFrames,
@@ -1653,108 +1517,27 @@ window.addEventListener('resize', resizeApp);
     }, this);*/
 	// !universal
 	//cursor.on('pointerdown', function() {
-		//context = new AudioContext();
-		context.resume();
-		console.log(context);
-		// game.sound.play('chime8');
-		tween = this.tweens.add({
-			targets: [cursor],
-			y: 623,
-			alpha: 0,
-			duration: 1750,
-			repeat: 0
-		});
-		bgShow = this.tweens.add({
-			targets: [bgM],
-			alpha: 1,
-			duration: 1000,
-			repeat: 0
-		});
-		
-		
-		
+	//context = new AudioContext();
+	//context.resume();
+	//console.log(context);
+	// game.sound.play('chime8');
+	tween = this.tweens.add({
+		targets: [cursor],
+		y: 623,
+		alpha: 0,
+		duration: 1750,
+		repeat: 0
+	});
+	bgShow = this.tweens.add({
+		targets: [bgM],
+		alpha: 1,
+		duration: 1000,
+		repeat: 0
+	});
+
+
+
 	//}, this);
-	leftButton.on('pointerdown', function() {
-		//this.input.stopPropagation();
-		if (currentRoom == 1) {
-			currentRoom = 0;
-			leftButton.alpha = 0;
-			tween = this.tweens.add({
-				targets: [uiContainer],
-				x: 0,
-				y: 510,
-				duration: 750,
-				repeat: 0
-			});
-			tween2 = this.tweens.add({
-				targets: [cursor],
-				x: 400,
-				y: 850,
-				duration: 750,
-				repeat: 0
-			});
-		}
-		if (currentRoom == 2) {
-			currentRoom = 1;
-			rightButton.alpha = 1;
-			tween = this.tweens.add({
-				targets: [uiContainer],
-				x: 800,
-				y: 283,
-				duration: 750,
-				repeat: 0
-			});
-			tween2 = this.tweens.add({
-				targets: [cursor],
-				x: 1200,
-				y: 623,
-				duration: 750,
-				repeat: 0
-			});
-		}
-	}, this);
-	rightButton.on('pointerdown', function() {
-		//this.input.stopPropagation();
-		if (currentRoom == 1) {
-			currentRoom = 2;
-			rightButton.alpha = 0;
-			tween = this.tweens.add({
-				targets: [uiContainer],
-				x: 1600,
-				y: 60,
-				duration: 750,
-				repeat: 0
-			});
-			tween2 = this.tweens.add({
-				targets: [cursor],
-				x: 2000,
-				y: 400,
-				duration: 750,
-				repeat: 0
-			});
-		}
-		if (currentRoom === 0) {
-			currentRoom = 1;
-			leftButton.alpha = 1;
-			tween = this.tweens.add({
-				targets: [uiContainer],
-				x: 800,
-				y: 283,
-				duration: 750,
-				repeat: 0
-			});
-			tween2 = this.tweens.add({
-				targets: [cursor],
-				x: 1200,
-				y: 623,
-				duration: 750,
-				repeat: 0
-			});
-			if (chooserStats.up) {
-				chooserTweenDownPrep.resume();
-			}
-		}
-	}, this);
 
 	// !left room
 /*sizePoster.on('pointerover', function(pointer) {
@@ -1801,6 +1584,25 @@ window.addEventListener('resize', resizeApp);
 
 		}
 	}, this);
+	
+	
+	shelfPlant.on('pointerdown', function() {
+
+		if (currentPlant === 0) {
+			shelfPlant.play('plantcycle1');
+			currentPlant = 1;
+		} else if (currentPlant == 1) {
+			shelfPlant.play('plantcycle2');
+			currentPlant = 2;
+		} else if (currentPlant == 2) {
+			shelfPlant.play('plantcycle3');
+			currentPlant = 3;
+		} else if (currentPlant == 3) {
+			shelfPlant.play('plantcycle4');
+			currentPlant = 0;
+		}
+	}, this);
+	
 	frontPlant.on('pointerdown', function() {
 
 		if (currentPlant === 0) {
@@ -1817,71 +1619,20 @@ window.addEventListener('resize', resizeApp);
 			currentPlant = 0;
 		}
 	}, this);
-		
-	var mug1tween = this.tweens.add({
-		targets: [mug1],
-		y: '+=25',
-		duration: 100,
-		ease: 'Power2',
-		repeat: -1,
-		paused: true,
-		onRepeat: function() {
-			mug1tween.pause();
-		}
-	});
-	var mug2tween = this.tweens.add({
-		targets: [mug2],
-		y: '+=25',
-		duration: 100,
-		ease: 'Power2',
-		repeat: -1,
-		paused: true,
-		onRepeat: function() {
-			mug2tween.pause();
-		}
-	});
-	var mug3tween = this.tweens.add({
-		targets: [mug3],
-		y: '+=25',
-		duration: 100,
-		ease: 'Power2',
-		repeat: -1,
-		paused: true,
-		onRepeat: function() {
-			mug3tween.pause();
-		}
-	});
-	var mug4tween = this.tweens.add({
-		targets: [mug4],
-		y: '+=25',
-		duration: 100,
-		ease: 'Power2',
-		repeat: -1,
-		paused: true,
-		onRepeat: function() {
-			mug4tween.pause();
-		}
-	});
-		
-	mug1.on('pointerdown', function(){
-		mug1.y-=25;
-		mug1tween.resume();
-		mugSound.play();
-		p=mug1.pos;
-		if(p<8){
+
+	mug1.on('pointerdown', function() {
+		p = mug1.pos;
+		if (p < 8) {
 			p++;
 		} else {
-			p=1;
+			p = 1;
 		}
-		mug1.pos=p;
-		mug1.setFrame('mug'+p);
+		mug1.pos = p;
+		mug1.setFrame('mug' + p);
 	});
 	mug2.on('pointerdown', function() {
-		mug2.y-=25;
-		mug2tween.resume();
-		mugSound.play();
-		p = mug2.pos;
-		p2 = mug3.pos;
+		p2 = mug2.pos;
+		p3 = mug3.pos;
 		if (p < 8) {
 			p++;
 		} else {
@@ -1896,12 +1647,8 @@ window.addEventListener('resize', resizeApp);
 		mug3.pos = p2;
 		mug2.setFrame('mug' + p);
 		mug3.setFrame('mug' + p2);
-		mugSound.play();
 	});
 	mug3.on('pointerdown', function() {
-		mug3.y-=25;
-		mug3tween.resume();
-		mugSound.play();
 		p = mug2.pos;
 		p2 = mug3.pos;
 		if (p < 8) {
@@ -1919,20 +1666,17 @@ window.addEventListener('resize', resizeApp);
 		mug2.setFrame('mug' + p);
 		mug3.setFrame('mug' + p2);
 	});
-	mug4.on('pointerdown', function(){
-		mug4.y-=25;
-		mug4tween.resume();
-		mugSound.play();
-		p=mug4.pos;
-		if(p<8){
+	mug4.on('pointerdown', function() {
+		p = mug4.pos;
+		if (p < 8) {
 			p++;
 		} else {
-			p=1;
+			p = 1;
 		}
-		mug4.pos=p;
-		mug4.setFrame('mug'+p);
+		mug4.pos = p;
+		mug4.setFrame('mug' + p);
 	});
-	
+
 	// !chooser
 	this.input.setTopOnly(true);
 	redButton.on('pointerdown', function() {
@@ -1956,7 +1700,6 @@ window.addEventListener('resize', resizeApp);
 		}
 	}, this);
 	// !middle room
-
 	sq1.on('pointerdown', function() {
 
 		if (sq1.frame.name === 'w') {
@@ -1996,10 +1739,6 @@ window.addEventListener('resize', resizeApp);
 		}
 	}, this);
 
-	bookStack.on('pointerdown', function(){
-		bookStack.anims.play('bookcirc');
-	}, this)
-
 	var shuffle = function(array) {
 			var currentIndex = array.length,
 				temporaryValue, randomIndex;
@@ -2013,13 +1752,7 @@ window.addEventListener('resize', resizeApp);
 			}
 			return array;
 		};
-		var cardFlipSound = this.sound.add('cardflipsound');
-		var flipBackSound = this.sound.add('flipbacksound');
-		var cardWinSound = this.sound.add('cardwinsound');
-		cardFlipSound.volume=0.3;
-		flipBackSound.volume=0.3;
 	var cardFlip = function(x) {
-		
 			cardContainer.bringToTop(x);
 			//x.anims.play('flip'+(Math.floor(Math.random() * (1)) + 1).toString());
 			//wobbleSound.play();
@@ -2030,18 +1763,13 @@ window.addEventListener('resize', resizeApp);
 					firstCard = x.face;
 					firstFlip = x;
 					x.anims.play('flip' + x.face);
-					cardFlipSound.play();
 				} else {
 					cardContainer.list.forEach(function(e) {
 						e.input.enabled = false;
 					});
 					secondCard = x.face;
 					x.anims.play('flip' + x.face);
-					cardFlipSound.play();
 					if (firstCard == secondCard) {
-						setTimeout(function(){
-							cardWinSound.play();
-						}, 1250);
 						totalFlipped += 2;
 						firstCard = null;
 						secondCard = null;
@@ -2053,9 +1781,6 @@ window.addEventListener('resize', resizeApp);
 							firstCard = null;
 							secondCard = null;
 							firstFlip = null;
-							setTimeout(function(){
-								cardWinSound.play();
-							}, 7000);
 							setTimeout(function() {
 								if (confirm("Song for you!")) {
 									openExternalLink('https://www.youtube.com/watch?v=Y5KMl11I7Zs');
@@ -2066,7 +1791,6 @@ window.addEventListener('resize', resizeApp);
 								setTimeout(function() {
 									cardContainer.bringToTop(e);
 									e.anims.play('flipback');
-									cardFlipSound.play();
 									e.flipped = false;
 								}, 2000 + (totalFlipped * 300));
 
@@ -2080,7 +1804,6 @@ window.addEventListener('resize', resizeApp);
 					} else {
 						setTimeout(function() {
 							x.anims.play('flipback');
-							flipBackSound.play();
 							x.flipped = false;
 							firstFlip.anims.play('flipback');
 							firstFlip.flipped = false;
@@ -2196,7 +1919,8 @@ window.addEventListener('resize', resizeApp);
 			if (pane3.anims.currentAnim.key === 'obstacle0' && shooterTick == 4) {
 				pane1.anims.play(pane2.anims.currentAnim.key);
 				pane2.anims.play(pane3.anims.currentAnim.key);
-				if (dodgeCounter >= 21 && !keySpawned && !keyGot) {
+				if (dodgeCounter >= 29 && !keySpawned && !keyGot) {
+					console.log('I am make key get');
 					pane3.anims.play('keyget');
 					keySpawned = true;
 				} else if (dodgeCounter == 32) {
@@ -2538,8 +2262,35 @@ window.addEventListener('resize', resizeApp);
 		sequence(2);
 		chime2.play();
 	}, this);
-	
-	
+
+	book1.on('pointerout', function() {
+		book1Stween.resume();
+	}, this);
+	book2.on('pointerout', function() {
+		book2Stween.resume();
+	}, this);
+	book3.on('pointerout', function() {
+		book3Stween.resume();
+	}, this);
+	book5.on('pointerout', function() {
+		book5Stween.resume();
+	}, this);
+	book6.on('pointerout', function() {
+		book6Stween.resume();
+	}, this);
+	book7.on('pointerout', function() {
+		book7Stween.resume();
+	}, this);
+	book8.on('pointerout', function() {
+		book8Stween.resume();
+	}, this);
+	book9.on('pointerout', function() {
+		book9Stween.resume();
+	}, this);
+	book10.on('pointerout', function() {
+		book10Stween.resume();
+	}, this);
+
 	mouseHoles.on('pointerdown', function() {
 		this.anims.play('mousehole');
 	});
@@ -2551,12 +2302,12 @@ window.addEventListener('resize', resizeApp);
 	};
 	// !create containers
 	// universal
-	var uiContainer = this.add.container(800, 283, [leftButton, rightButton, invKey]);
+	var uiContainer = this.add.container(800, 283, [invKey]);
 	// left room
 	var chooseContainer = this.add.container(100, 1280, [chooser, chooserBg, caption, redButton, greenButton, redText, greenText]);
-//	var mugs = this.add.container(0, 0, [mug1, mug2, mug3]);
-	
-		/*for (i = 0; i < 3; i++) {
+	var mugs = this.add.container(0, 0, [mug1, mug2, mug3]);
+
+/*for (i = 0; i < 3; i++) {
 		mugs.list[i].on('pointerdown', function(x){
 			console.log(mugs.list[i]);
 			mugClick(mugs.list[i]);
@@ -2569,17 +2320,12 @@ window.addEventListener('resize', resizeApp);
 		cardContainer.list[i].face = faces[i];
 	}
 	// right room
-	var booksContainer = this.add.container(0, 0, [bottomShelf, book5, book6, book7, book8, book9, book10, book11, topShelf, book1, book2, book3, book4, shelfPlant]);
+	
 	bookChimes = [book4, book6, book10, book5, book8, book3, book9, book2, book1];
 
 	this.cameras.main.startFollow(cursor);
-	leftWindow.anims.play('leftwindowdrift');
-	widedow.anims.play('widedowdrift');
-	rightWindow.anims.play('rightwindowdrift');
+
 
 }
 
-function update() {
-	
-	
-}
+function update() {}
