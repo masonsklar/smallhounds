@@ -4,13 +4,150 @@
 			"image": "assets/objects/holes/holes-0.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 2048,
-				"h": 2044
+				"w": 2010,
+				"h": 2033
 			},
 			"scale": 1,
 			"frames": [
 				{
-					"filename": "holes33",
+					"filename": "holes1_32",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 195,
+						"y": 0,
+						"w": 1084,
+						"h": 735
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 1084,
+						"h": 735
+					}
+				},
+				{
+					"filename": "holes1_29",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 373,
+						"y": 0,
+						"w": 906,
+						"h": 705
+					},
+					"frame": {
+						"x": 1087,
+						"y": 1,
+						"w": 906,
+						"h": 705
+					}
+				},
+				{
+					"filename": "holes1_31",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 253,
+						"y": 0,
+						"w": 1026,
+						"h": 745
+					},
+					"frame": {
+						"x": 1,
+						"y": 738,
+						"w": 1026,
+						"h": 745
+					}
+				},
+				{
+					"filename": "holes2_36",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 338,
+						"y": 0,
+						"w": 941,
+						"h": 547
+					},
+					"frame": {
+						"x": 1,
+						"y": 1485,
+						"w": 941,
+						"h": 547
+					}
+				},
+				{
+					"filename": "holes1_35",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 299,
+						"y": 0,
+						"w": 980,
+						"h": 628
+					},
+					"frame": {
+						"x": 1029,
+						"y": 738,
+						"w": 980,
+						"h": 628
+					}
+				},
+				{
+					"filename": "holes2_32",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 338,
+						"y": 0,
+						"w": 941,
+						"h": 642
+					},
+					"frame": {
+						"x": 1029,
+						"y": 1368,
+						"w": 941,
+						"h": 642
+					}
+				}
+			]
+		},
+		{
+			"image": "assets/objects/holes/holes-1.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 2028,
+				"h": 2030
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "holes1_33",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -31,7 +168,7 @@
 					}
 				},
 				{
-					"filename": "holes37",
+					"filename": "holes2_31",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -39,178 +176,20 @@
 						"h": 745
 					},
 					"spriteSourceSize": {
-						"x": 343,
+						"x": 350,
 						"y": 0,
-						"w": 936,
-						"h": 566
+						"w": 929,
+						"h": 642
 					},
 					"frame": {
 						"x": 1098,
 						"y": 1,
-						"w": 936,
-						"h": 566
+						"w": 929,
+						"h": 642
 					}
 				},
 				{
-					"filename": "holes29",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 373,
-						"y": 0,
-						"w": 906,
-						"h": 705
-					},
-					"frame": {
-						"x": 1098,
-						"y": 569,
-						"w": 906,
-						"h": 705
-					}
-				},
-				{
-					"filename": "holes32",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 195,
-						"y": 0,
-						"w": 1084,
-						"h": 735
-					},
-					"frame": {
-						"x": 1,
-						"y": 678,
-						"w": 1084,
-						"h": 735
-					}
-				},
-				{
-					"filename": "holes35",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 299,
-						"y": 0,
-						"w": 980,
-						"h": 628
-					},
-					"frame": {
-						"x": 1,
-						"y": 1415,
-						"w": 980,
-						"h": 628
-					}
-				},
-				{
-					"filename": "holes19",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 505,
-						"h": 604
-					},
-					"frame": {
-						"x": 983,
-						"y": 1415,
-						"w": 505,
-						"h": 604
-					}
-				},
-				{
-					"filename": "holes18",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 557,
-						"h": 631
-					},
-					"frame": {
-						"x": 1490,
-						"y": 1276,
-						"w": 557,
-						"h": 631
-					}
-				}
-			]
-		},
-		{
-			"image": "assets/objects/holes/holes-1.png",
-			"format": "RGBA8888",
-			"size": {
-				"w": 2047,
-				"h": 2045
-			},
-			"scale": 1,
-			"frames": [
-				{
-					"filename": "holes34",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 242,
-						"y": 0,
-						"w": 1037,
-						"h": 652
-					},
-					"frame": {
-						"x": 1,
-						"y": 1,
-						"w": 1037,
-						"h": 652
-					}
-				},
-				{
-					"filename": "holes36",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 302,
-						"y": 0,
-						"w": 977,
-						"h": 599
-					},
-					"frame": {
-						"x": 1040,
-						"y": 1,
-						"w": 977,
-						"h": 599
-					}
-				},
-				{
-					"filename": "holes30",
+					"filename": "holes1_30",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -224,14 +203,14 @@
 						"h": 735
 					},
 					"frame": {
-						"x": 1040,
-						"y": 602,
+						"x": 1,
+						"y": 678,
 						"w": 969,
 						"h": 735
 					}
 				},
 				{
-					"filename": "holes31",
+					"filename": "holes2_34",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -239,20 +218,252 @@
 						"h": 745
 					},
 					"spriteSourceSize": {
-						"x": 253,
+						"x": 338,
 						"y": 0,
-						"w": 1026,
-						"h": 745
+						"w": 941,
+						"h": 614
 					},
 					"frame": {
 						"x": 1,
-						"y": 655,
-						"w": 1026,
-						"h": 745
+						"y": 1415,
+						"w": 941,
+						"h": 614
 					}
 				},
 				{
-					"filename": "holes27",
+					"filename": "holes1_34",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 242,
+						"y": 0,
+						"w": 1037,
+						"h": 652
+					},
+					"frame": {
+						"x": 972,
+						"y": 678,
+						"w": 1037,
+						"h": 652
+					}
+				},
+				{
+					"filename": "holes2_33",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 338,
+						"y": 0,
+						"w": 941,
+						"h": 641
+					},
+					"frame": {
+						"x": 972,
+						"y": 1332,
+						"w": 941,
+						"h": 641
+					}
+				}
+			]
+		},
+		{
+			"image": "assets/objects/holes/holes-2.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1853,
+				"h": 1972
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "holes1_36",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 302,
+						"y": 0,
+						"w": 977,
+						"h": 599
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 977,
+						"h": 599
+					}
+				},
+				{
+					"filename": "holes2_30",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 407,
+						"y": 0,
+						"w": 872,
+						"h": 642
+					},
+					"frame": {
+						"x": 980,
+						"y": 1,
+						"w": 872,
+						"h": 642
+					}
+				},
+				{
+					"filename": "holes2_35",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 338,
+						"y": 0,
+						"w": 941,
+						"h": 587
+					},
+					"frame": {
+						"x": 1,
+						"y": 602,
+						"w": 941,
+						"h": 587
+					}
+				},
+				{
+					"filename": "holes1_28",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 431,
+						"y": 0,
+						"w": 848,
+						"h": 669
+					},
+					"frame": {
+						"x": 944,
+						"y": 645,
+						"w": 848,
+						"h": 669
+					}
+				},
+				{
+					"filename": "holes1_37",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 343,
+						"y": 0,
+						"w": 936,
+						"h": 566
+					},
+					"frame": {
+						"x": 1,
+						"y": 1191,
+						"w": 936,
+						"h": 566
+					}
+				},
+				{
+					"filename": "holes1_61",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 520,
+						"h": 212
+					},
+					"frame": {
+						"x": 1,
+						"y": 1759,
+						"w": 520,
+						"h": 212
+					}
+				},
+				{
+					"filename": "holes1_02",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 766,
+						"y": 0,
+						"w": 513,
+						"h": 211
+					},
+					"frame": {
+						"x": 523,
+						"y": 1759,
+						"w": 513,
+						"h": 211
+					}
+				},
+				{
+					"filename": "holes2_29",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 465,
+						"y": 0,
+						"w": 814,
+						"h": 642
+					},
+					"frame": {
+						"x": 1038,
+						"y": 1316,
+						"w": 814,
+						"h": 642
+					}
+				}
+			]
+		},
+		{
+			"image": "assets/objects/holes/holes-3.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 2045,
+				"h": 2018
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "holes1_27",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -267,13 +478,13 @@
 					},
 					"frame": {
 						"x": 1,
-						"y": 1402,
+						"y": 1,
 						"w": 790,
 						"h": 642
 					}
 				},
 				{
-					"filename": "holes26",
+					"filename": "holes2_28",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -281,20 +492,20 @@
 						"h": 745
 					},
 					"spriteSourceSize": {
-						"x": 546,
+						"x": 528,
 						"y": 0,
-						"w": 733,
-						"h": 615
+						"w": 751,
+						"h": 642
 					},
 					"frame": {
 						"x": 793,
-						"y": 1402,
-						"w": 733,
-						"h": 615
+						"y": 1,
+						"w": 751,
+						"h": 642
 					}
 				},
 				{
-					"filename": "holes48",
+					"filename": "holes1_20",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -302,20 +513,20 @@
 						"h": 745
 					},
 					"spriteSourceSize": {
-						"x": 761,
+						"x": 808,
 						"y": 0,
-						"w": 518,
-						"h": 385
+						"w": 471,
+						"h": 583
 					},
 					"frame": {
-						"x": 1528,
-						"y": 1339,
-						"w": 518,
-						"h": 385
+						"x": 1546,
+						"y": 1,
+						"w": 471,
+						"h": 583
 					}
 				},
 				{
-					"filename": "holes2",
+					"filename": "holes1_22",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -323,31 +534,20 @@
 						"h": 745
 					},
 					"spriteSourceSize": {
-						"x": 766,
+						"x": 781,
 						"y": 0,
-						"w": 513,
-						"h": 211
+						"w": 498,
+						"h": 547
 					},
 					"frame": {
-						"x": 1528,
-						"y": 1726,
-						"w": 513,
-						"h": 211
+						"x": 1546,
+						"y": 586,
+						"w": 498,
+						"h": 547
 					}
-				}
-			]
-		},
-		{
-			"image": "assets/objects/holes/holes-2.png",
-			"format": "RGBA8888",
-			"size": {
-				"w": 2044,
-				"h": 2048
-			},
-			"scale": 1,
-			"frames": [
+				},
 				{
-					"filename": "holes38",
+					"filename": "holes1_38",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -362,13 +562,150 @@
 					},
 					"frame": {
 						"x": 1,
-						"y": 1,
+						"y": 1135,
 						"w": 884,
 						"h": 542
 					}
 				},
 				{
-					"filename": "holes39",
+					"filename": "holes1_41",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 474,
+						"y": 0,
+						"w": 805,
+						"h": 478
+					},
+					"frame": {
+						"x": 1,
+						"y": 645,
+						"w": 805,
+						"h": 478
+					}
+				},
+				{
+					"filename": "holes1_13",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 683,
+						"h": 488
+					},
+					"frame": {
+						"x": 808,
+						"y": 645,
+						"w": 683,
+						"h": 488
+					}
+				},
+				{
+					"filename": "holes2_43",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 577,
+						"y": 0,
+						"w": 702,
+						"h": 338
+					},
+					"frame": {
+						"x": 1,
+						"y": 1679,
+						"w": 702,
+						"h": 338
+					}
+				},
+				{
+					"filename": "holes1_46",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 657,
+						"y": 0,
+						"w": 622,
+						"h": 337
+					},
+					"frame": {
+						"x": 705,
+						"y": 1679,
+						"w": 622,
+						"h": 337
+					}
+				},
+				{
+					"filename": "holes2_37",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 396,
+						"y": 0,
+						"w": 883,
+						"h": 520
+					},
+					"frame": {
+						"x": 887,
+						"y": 1135,
+						"w": 883,
+						"h": 520
+					}
+				},
+				{
+					"filename": "holes1_45",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 605,
+						"y": 0,
+						"w": 674,
+						"h": 346
+					},
+					"frame": {
+						"x": 1329,
+						"y": 1657,
+						"w": 674,
+						"h": 346
+					}
+				}
+			]
+		},
+		{
+			"image": "assets/objects/holes/holes-4.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 2041,
+				"h": 2035
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "holes1_39",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -382,14 +719,56 @@
 						"h": 547
 					},
 					"frame": {
-						"x": 887,
+						"x": 1,
 						"y": 1,
 						"w": 865,
 						"h": 547
 					}
 				},
 				{
-					"filename": "holes40",
+					"filename": "holes1_26",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 546,
+						"y": 0,
+						"w": 733,
+						"h": 615
+					},
+					"frame": {
+						"x": 868,
+						"y": 1,
+						"w": 733,
+						"h": 615
+					}
+				},
+				{
+					"filename": "holes2_27",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 586,
+						"y": 0,
+						"w": 693,
+						"h": 616
+					},
+					"frame": {
+						"x": 1,
+						"y": 550,
+						"w": 693,
+						"h": 616
+					}
+				},
+				{
+					"filename": "holes1_40",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -404,13 +783,13 @@
 					},
 					"frame": {
 						"x": 1,
-						"y": 545,
+						"y": 1168,
 						"w": 857,
 						"h": 494
 					}
 				},
 				{
-					"filename": "holes28",
+					"filename": "holes2_38",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -418,20 +797,20 @@
 						"h": 745
 					},
 					"spriteSourceSize": {
-						"x": 431,
+						"x": 454,
 						"y": 0,
-						"w": 848,
-						"h": 669
+						"w": 825,
+						"h": 493
 					},
 					"frame": {
-						"x": 1,
-						"y": 1041,
-						"w": 848,
-						"h": 669
+						"x": 696,
+						"y": 618,
+						"w": 825,
+						"h": 493
 					}
 				},
 				{
-					"filename": "holes58",
+					"filename": "holes1_19",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -441,18 +820,18 @@
 					"spriteSourceSize": {
 						"x": 808,
 						"y": 0,
-						"w": 602,
-						"h": 332
+						"w": 505,
+						"h": 604
 					},
 					"frame": {
-						"x": 1,
-						"y": 1712,
-						"w": 602,
-						"h": 332
+						"x": 1523,
+						"y": 618,
+						"w": 505,
+						"h": 604
 					}
 				},
 				{
-					"filename": "holes7",
+					"filename": "holes3_21",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -460,367 +839,20 @@
 						"h": 745
 					},
 					"spriteSourceSize": {
-						"x": 808,
+						"x": 621,
 						"y": 0,
-						"w": 471,
-						"h": 331
-					},
-					"frame": {
-						"x": 605,
-						"y": 1712,
-						"w": 471,
-						"h": 331
-					}
-				},
-				{
-					"filename": "holes17",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 608,
-						"h": 601
-					},
-					"frame": {
-						"x": 851,
-						"y": 1041,
-						"w": 608,
-						"h": 601
-					}
-				},
-				{
-					"filename": "holes10",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 557,
-						"h": 403
-					},
-					"frame": {
-						"x": 1078,
-						"y": 1644,
-						"w": 557,
-						"h": 403
-					}
-				},
-				{
-					"filename": "holes13",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 683,
-						"h": 488
+						"w": 658,
+						"h": 623
 					},
 					"frame": {
 						"x": 860,
-						"y": 550,
-						"w": 683,
-						"h": 488
+						"y": 1113,
+						"w": 658,
+						"h": 623
 					}
 				},
 				{
-					"filename": "holes22",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 781,
-						"y": 0,
-						"w": 498,
-						"h": 547
-					},
-					"frame": {
-						"x": 1545,
-						"y": 550,
-						"w": 498,
-						"h": 547
-					}
-				},
-				{
-					"filename": "holes23",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 720,
-						"y": 0,
-						"w": 559,
-						"h": 534
-					},
-					"frame": {
-						"x": 1461,
-						"y": 1099,
-						"w": 559,
-						"h": 534
-					}
-				}
-			]
-		},
-		{
-			"image": "assets/objects/holes/holes-3.png",
-			"format": "RGBA8888",
-			"size": {
-				"w": 1957,
-				"h": 1942
-			},
-			"scale": 1,
-			"frames": [
-				{
-					"filename": "holes25",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 604,
-						"y": 0,
-						"w": 675,
-						"h": 588
-					},
-					"frame": {
-						"x": 1,
-						"y": 1,
-						"w": 675,
-						"h": 588
-					}
-				},
-				{
-					"filename": "holes41",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 474,
-						"y": 0,
-						"w": 805,
-						"h": 478
-					},
-					"frame": {
-						"x": 678,
-						"y": 1,
-						"w": 805,
-						"h": 478
-					}
-				},
-				{
-					"filename": "holes20",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 471,
-						"h": 583
-					},
-					"frame": {
-						"x": 1485,
-						"y": 1,
-						"w": 471,
-						"h": 583
-					}
-				},
-				{
-					"filename": "holes42",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 525,
-						"y": 0,
-						"w": 754,
-						"h": 440
-					},
-					"frame": {
-						"x": 678,
-						"y": 481,
-						"w": 754,
-						"h": 440
-					}
-				},
-				{
-					"filename": "holes9",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 506,
-						"h": 379
-					},
-					"frame": {
-						"x": 1434,
-						"y": 586,
-						"w": 506,
-						"h": 379
-					}
-				},
-				{
-					"filename": "holes57",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 648,
-						"h": 322
-					},
-					"frame": {
-						"x": 1,
-						"y": 591,
-						"w": 648,
-						"h": 322
-					}
-				},
-				{
-					"filename": "holes47",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 708,
-						"y": 0,
-						"w": 571,
-						"h": 361
-					},
-					"frame": {
-						"x": 1,
-						"y": 915,
-						"w": 571,
-						"h": 361
-					}
-				},
-				{
-					"filename": "holes43",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 551,
-						"y": 0,
-						"w": 728,
-						"h": 408
-					},
-					"frame": {
-						"x": 574,
-						"y": 923,
-						"w": 728,
-						"h": 408
-					}
-				},
-				{
-					"filename": "holes6",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 471,
-						"h": 307
-					},
-					"frame": {
-						"x": 1,
-						"y": 1278,
-						"w": 471,
-						"h": 307
-					}
-				},
-				{
-					"filename": "holes59",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 623,
-						"h": 261
-					},
-					"frame": {
-						"x": 1304,
-						"y": 967,
-						"w": 623,
-						"h": 261
-					}
-				},
-				{
-					"filename": "holes60",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 572,
-						"h": 236
-					},
-					"frame": {
-						"x": 1304,
-						"y": 1230,
-						"w": 572,
-						"h": 236
-					}
-				},
-				{
-					"filename": "holes44",
+					"filename": "holes1_44",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -834,14 +866,14 @@
 						"h": 370
 					},
 					"frame": {
-						"x": 474,
-						"y": 1333,
+						"x": 1,
+						"y": 1664,
 						"w": 725,
 						"h": 370
 					}
 				},
 				{
-					"filename": "holes5",
+					"filename": "holes2_24",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -849,83 +881,41 @@
 						"h": 745
 					},
 					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 471,
-						"h": 283
-					},
-					"frame": {
-						"x": 1,
-						"y": 1587,
-						"w": 471,
-						"h": 283
-					}
-				},
-				{
-					"filename": "holes4",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 471,
-						"h": 259
-					},
-					"frame": {
-						"x": 1201,
-						"y": 1468,
-						"w": 471,
-						"h": 259
-					}
-				},
-				{
-					"filename": "holes3",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 471,
-						"h": 235
-					},
-					"frame": {
-						"x": 474,
-						"y": 1705,
-						"w": 471,
-						"h": 235
-					}
-				},
-				{
-					"filename": "holes61",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
+						"x": 759,
 						"y": 0,
 						"w": 520,
-						"h": 212
+						"h": 535
 					},
 					"frame": {
-						"x": 947,
-						"y": 1729,
+						"x": 1520,
+						"y": 1224,
 						"w": 520,
-						"h": 212
+						"h": 535
 					}
 				},
 				{
-					"filename": "holes63",
+					"filename": "holes2_45",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 680,
+						"y": 0,
+						"w": 599,
+						"h": 290
+					},
+					"frame": {
+						"x": 728,
+						"y": 1738,
+						"w": 599,
+						"h": 290
+					}
+				},
+				{
+					"filename": "holes1_59",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -935,29 +925,29 @@
 					"spriteSourceSize": {
 						"x": 808,
 						"y": 0,
-						"w": 475,
-						"h": 179
+						"w": 623,
+						"h": 261
 					},
 					"frame": {
-						"x": 1469,
-						"y": 1729,
-						"w": 475,
-						"h": 179
+						"x": 1329,
+						"y": 1761,
+						"w": 623,
+						"h": 261
 					}
 				}
 			]
 		},
 		{
-			"image": "assets/objects/holes/holes-4.png",
+			"image": "assets/objects/holes/holes-5.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 1980,
-				"h": 2024
+				"w": 2019,
+				"h": 1896
 			},
 			"scale": 1,
 			"frames": [
 				{
-					"filename": "holes14",
+					"filename": "holes3_22",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -965,104 +955,1230 @@
 						"h": 745
 					},
 					"spriteSourceSize": {
-						"x": 808,
+						"x": 608,
 						"y": 0,
-						"w": 683,
-						"h": 512
+						"w": 671,
+						"h": 630
 					},
 					"frame": {
 						"x": 1,
 						"y": 1,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_23",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_24",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 674,
+						"y": 1,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_25",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1347,
+						"y": 1,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_26",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1,
+						"y": 633,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_27",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1,
+						"y": 1265,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_28",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 674,
+						"y": 633,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_29",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1347,
+						"y": 633,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_30",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 674,
+						"y": 1265,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_31",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1347,
+						"y": 1265,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_46",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1347,
+						"y": 1265,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_48",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1347,
+						"y": 1265,
+						"w": 671,
+						"h": 630
+					}
+				}
+			]
+		},
+		{
+			"image": "assets/objects/holes/holes-6.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 2019,
+				"h": 1896
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "holes3_32",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_33",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 674,
+						"y": 1,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_34",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1347,
+						"y": 1,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_35",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1,
+						"y": 633,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_36",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1,
+						"y": 1265,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_37",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 674,
+						"y": 633,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_38",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1347,
+						"y": 633,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_39",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 674,
+						"y": 1265,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_40",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1347,
+						"y": 1265,
+						"w": 671,
+						"h": 630
+					}
+				}
+			]
+		},
+		{
+			"image": "assets/objects/holes/holes-7.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 2019,
+				"h": 1896
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "holes3_41",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_42",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 674,
+						"y": 1,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_43",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1347,
+						"y": 1,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_44",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1,
+						"y": 633,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_45",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1,
+						"y": 1265,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_47",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 674,
+						"y": 633,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_49",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1347,
+						"y": 633,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_50",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 674,
+						"y": 1265,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_51",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1347,
+						"y": 1265,
+						"w": 671,
+						"h": 630
+					}
+				}
+			]
+		},
+		{
+			"image": "assets/objects/holes/holes-8.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 2023,
+				"h": 2036
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "holes3_52",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_53",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1,
+						"y": 633,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_54",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 674,
+						"y": 1,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_55",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 1,
+						"y": 1265,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_56",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 608,
+						"y": 0,
+						"w": 671,
+						"h": 630
+					},
+					"frame": {
+						"x": 674,
+						"y": 633,
+						"w": 671,
+						"h": 630
+					}
+				},
+				{
+					"filename": "holes3_57",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 624,
+						"y": 0,
+						"w": 655,
+						"h": 622
+					},
+					"frame": {
+						"x": 1347,
+						"y": 1,
+						"w": 655,
+						"h": 622
+					}
+				},
+				{
+					"filename": "holes3_20",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 635,
+						"y": 0,
+						"w": 644,
+						"h": 617
+					},
+					"frame": {
+						"x": 674,
+						"y": 1265,
+						"w": 644,
+						"h": 617
+					}
+				},
+				{
+					"filename": "holes3_58",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 640,
+						"y": 0,
+						"w": 639,
+						"h": 614
+					},
+					"frame": {
+						"x": 1347,
+						"y": 625,
+						"w": 639,
+						"h": 614
+					}
+				},
+				{
+					"filename": "holes1_25",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 604,
+						"y": 0,
+						"w": 675,
+						"h": 588
+					},
+					"frame": {
+						"x": 1347,
+						"y": 1241,
+						"w": 675,
+						"h": 588
+					}
+				},
+				{
+					"filename": "holes2_59",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 520,
+						"h": 204
+					},
+					"frame": {
+						"x": 1320,
+						"y": 1831,
+						"w": 520,
+						"h": 204
+					}
+				}
+			]
+		},
+		{
+			"image": "assets/objects/holes/holes-9.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1904,
+				"h": 2046
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "holes3_19",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 649,
+						"y": 0,
+						"w": 630,
+						"h": 610
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 630,
+						"h": 610
+					}
+				},
+				{
+					"filename": "holes3_59",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 657,
+						"y": 0,
+						"w": 622,
+						"h": 606
+					},
+					"frame": {
+						"x": 633,
+						"y": 1,
+						"w": 622,
+						"h": 606
+					}
+				},
+				{
+					"filename": "holes2_26",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 643,
+						"y": 0,
+						"w": 636,
+						"h": 589
+					},
+					"frame": {
+						"x": 1257,
+						"y": 1,
+						"w": 636,
+						"h": 589
+					}
+				},
+				{
+					"filename": "holes3_18",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 662,
+						"y": 0,
+						"w": 617,
+						"h": 604
+					},
+					"frame": {
+						"x": 1257,
+						"y": 592,
+						"w": 617,
+						"h": 604
+					}
+				},
+				{
+					"filename": "holes1_17",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 608,
+						"h": 601
+					},
+					"frame": {
+						"x": 633,
+						"y": 609,
+						"w": 608,
+						"h": 601
+					}
+				},
+				{
+					"filename": "holes1_16",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 660,
+						"h": 555
+					},
+					"frame": {
+						"x": 1243,
+						"y": 1198,
+						"w": 660,
+						"h": 555
+					}
+				},
+				{
+					"filename": "holes2_56",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 572,
+						"h": 290
+					},
+					"frame": {
+						"x": 1,
+						"y": 1755,
+						"w": 572,
+						"h": 290
+					}
+				},
+				{
+					"filename": "holes3_60",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 673,
+						"y": 0,
+						"w": 606,
+						"h": 599
+					},
+					"frame": {
+						"x": 575,
+						"y": 1212,
+						"w": 606,
+						"h": 599
+					}
+				},
+				{
+					"filename": "holes3_17",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 676,
+						"y": 0,
+						"w": 603,
+						"h": 597
+					},
+					"frame": {
+						"x": 1,
+						"y": 613,
+						"w": 603,
+						"h": 597
+					}
+				},
+				{
+					"filename": "holes1_23",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 720,
+						"y": 0,
+						"w": 559,
+						"h": 534
+					},
+					"frame": {
+						"x": 1,
+						"y": 1212,
+						"w": 559,
+						"h": 534
+					}
+				},
+				{
+					"filename": "holes2_57",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 572,
+						"h": 266
+					},
+					"frame": {
+						"x": 1183,
+						"y": 1755,
+						"w": 572,
+						"h": 266
+					}
+				},
+				{
+					"filename": "holes2_58",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 572,
+						"h": 228
+					},
+					"frame": {
+						"x": 575,
+						"y": 1813,
+						"w": 572,
+						"h": 228
+					}
+				}
+			]
+		},
+		{
+			"image": "assets/objects/holes/holes-10.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 2016,
+				"h": 2048
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "holes1_15",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 667,
+						"h": 536
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 667,
+						"h": 536
+					}
+				},
+				{
+					"filename": "holes2_39",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 512,
+						"y": 0,
+						"w": 767,
+						"h": 466
+					},
+					"frame": {
+						"x": 670,
+						"y": 1,
+						"w": 767,
+						"h": 466
+					}
+				},
+				{
+					"filename": "holes1_18",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 557,
+						"h": 631
+					},
+					"frame": {
+						"x": 1439,
+						"y": 1,
+						"w": 557,
+						"h": 631
+					}
+				},
+				{
+					"filename": "holes1_14",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 683,
+						"h": 512
+					},
+					"frame": {
+						"x": 670,
+						"y": 469,
 						"w": 683,
 						"h": 512
 					}
 				},
 				{
-					"filename": "holes12",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 683,
-						"h": 464
-					},
-					"frame": {
-						"x": 686,
-						"y": 1,
-						"w": 683,
-						"h": 464
-					}
-				},
-				{
-					"filename": "holes56",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 602,
-						"h": 346
-					},
-					"frame": {
-						"x": 1371,
-						"y": 1,
-						"w": 602,
-						"h": 346
-					}
-				},
-				{
-					"filename": "holes55",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 565,
-						"h": 370
-					},
-					"frame": {
-						"x": 1371,
-						"y": 349,
-						"w": 565,
-						"h": 370
-					}
-				},
-				{
-					"filename": "holes45",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 605,
-						"y": 0,
-						"w": 674,
-						"h": 346
-					},
-					"frame": {
-						"x": 686,
-						"y": 467,
-						"w": 674,
-						"h": 346
-					}
-				},
-				{
-					"filename": "holes24",
+					"filename": "holes1_24",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1076,14 +2192,14 @@
 						"h": 561
 					},
 					"frame": {
-						"x": 1362,
-						"y": 721,
+						"x": 1355,
+						"y": 634,
 						"w": 617,
 						"h": 561
 					}
 				},
 				{
-					"filename": "holes15",
+					"filename": "holes2_17",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1093,18 +2209,260 @@
 					"spriteSourceSize": {
 						"x": 808,
 						"y": 0,
-						"w": 667,
-						"h": 536
+						"w": 628,
+						"h": 549
 					},
 					"frame": {
 						"x": 1,
-						"y": 515,
-						"w": 667,
-						"h": 536
+						"y": 539,
+						"w": 628,
+						"h": 549
 					}
 				},
 				{
-					"filename": "holes11",
+					"filename": "holes2_16",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 628,
+						"h": 523
+					},
+					"frame": {
+						"x": 631,
+						"y": 983,
+						"w": 628,
+						"h": 523
+					}
+				},
+				{
+					"filename": "holes2_18",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 594,
+						"h": 549
+					},
+					"frame": {
+						"x": 1,
+						"y": 1090,
+						"w": 594,
+						"h": 549
+					}
+				},
+				{
+					"filename": "holes1_42",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 525,
+						"y": 0,
+						"w": 754,
+						"h": 440
+					},
+					"frame": {
+						"x": 1261,
+						"y": 1197,
+						"w": 754,
+						"h": 440
+					}
+				},
+				{
+					"filename": "holes2_15",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 628,
+						"h": 496
+					},
+					"frame": {
+						"x": 597,
+						"y": 1508,
+						"w": 628,
+						"h": 496
+					}
+				},
+				{
+					"filename": "holes2_12",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 571,
+						"h": 402
+					},
+					"frame": {
+						"x": 1,
+						"y": 1641,
+						"w": 571,
+						"h": 402
+					}
+				},
+				{
+					"filename": "holes1_43",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 551,
+						"y": 0,
+						"w": 728,
+						"h": 408
+					},
+					"frame": {
+						"x": 1227,
+						"y": 1639,
+						"w": 728,
+						"h": 408
+					}
+				}
+			]
+		},
+		{
+			"image": "assets/objects/holes/holes-11.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1977,
+				"h": 2007
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "holes2_40",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 569,
+						"y": 0,
+						"w": 710,
+						"h": 439
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 710,
+						"h": 439
+					}
+				},
+				{
+					"filename": "holes2_41",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 569,
+						"y": 0,
+						"w": 710,
+						"h": 405
+					},
+					"frame": {
+						"x": 713,
+						"y": 1,
+						"w": 710,
+						"h": 405
+					}
+				},
+				{
+					"filename": "holes2_19",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 536,
+						"h": 549
+					},
+					"frame": {
+						"x": 1425,
+						"y": 1,
+						"w": 536,
+						"h": 549
+					}
+				},
+				{
+					"filename": "holes1_12",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 683,
+						"h": 464
+					},
+					"frame": {
+						"x": 713,
+						"y": 408,
+						"w": 683,
+						"h": 464
+					}
+				},
+				{
+					"filename": "holes2_25",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 701,
+						"y": 0,
+						"w": 578,
+						"h": 562
+					},
+					"frame": {
+						"x": 1398,
+						"y": 552,
+						"w": 578,
+						"h": 562
+					}
+				},
+				{
+					"filename": "holes1_11",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1118,14 +2476,14 @@
 						"h": 429
 					},
 					"frame": {
-						"x": 670,
-						"y": 815,
+						"x": 1,
+						"y": 442,
 						"w": 666,
 						"h": 429
 					}
 				},
 				{
-					"filename": "holes16",
+					"filename": "holes2_14",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1135,18 +2493,302 @@
 					"spriteSourceSize": {
 						"x": 808,
 						"y": 0,
-						"w": 660,
-						"h": 555
+						"w": 628,
+						"h": 469
 					},
 					"frame": {
 						"x": 1,
-						"y": 1053,
-						"w": 660,
-						"h": 555
+						"y": 873,
+						"w": 628,
+						"h": 469
 					}
 				},
 				{
-					"filename": "holes50",
+					"filename": "holes1_21",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 571
+					},
+					"frame": {
+						"x": 1,
+						"y": 1344,
+						"w": 471,
+						"h": 571
+					}
+				},
+				{
+					"filename": "holes2_13",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 628,
+						"h": 430
+					},
+					"frame": {
+						"x": 631,
+						"y": 874,
+						"w": 628,
+						"h": 430
+					}
+				},
+				{
+					"filename": "holes2_20",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 479,
+						"h": 549
+					},
+					"frame": {
+						"x": 474,
+						"y": 1344,
+						"w": 479,
+						"h": 549
+					}
+				},
+				{
+					"filename": "holes1_60",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 572,
+						"h": 236
+					},
+					"frame": {
+						"x": 1261,
+						"y": 1116,
+						"w": 572,
+						"h": 236
+					}
+				},
+				{
+					"filename": "holes2_21",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 549
+					},
+					"frame": {
+						"x": 955,
+						"y": 1354,
+						"w": 471,
+						"h": 549
+					}
+				},
+				{
+					"filename": "holes2_48",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 356
+					},
+					"frame": {
+						"x": 1428,
+						"y": 1354,
+						"w": 471,
+						"h": 356
+					}
+				},
+				{
+					"filename": "holes2_08",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 294
+					},
+					"frame": {
+						"x": 1428,
+						"y": 1712,
+						"w": 471,
+						"h": 294
+					}
+				}
+			]
+		},
+		{
+			"image": "assets/objects/holes/holes-12.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 2028,
+				"h": 1976
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "holes2_42",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 569,
+						"y": 0,
+						"w": 710,
+						"h": 376
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 710,
+						"h": 376
+					}
+				},
+				{
+					"filename": "holes2_22",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 544
+					},
+					"frame": {
+						"x": 1,
+						"y": 379,
+						"w": 471,
+						"h": 544
+					}
+				},
+				{
+					"filename": "holes2_23",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 517
+					},
+					"frame": {
+						"x": 1,
+						"y": 925,
+						"w": 471,
+						"h": 517
+					}
+				},
+				{
+					"filename": "holes1_57",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 648,
+						"h": 322
+					},
+					"frame": {
+						"x": 713,
+						"y": 1,
+						"w": 648,
+						"h": 322
+					}
+				},
+				{
+					"filename": "holes1_56",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 602,
+						"h": 346
+					},
+					"frame": {
+						"x": 1363,
+						"y": 1,
+						"w": 602,
+						"h": 346
+					}
+				},
+				{
+					"filename": "holes1_52",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 431
+					},
+					"frame": {
+						"x": 1,
+						"y": 1444,
+						"w": 471,
+						"h": 431
+					}
+				},
+				{
+					"filename": "holes1_50",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1160,14 +2802,14 @@
 						"h": 413
 					},
 					"frame": {
-						"x": 1,
-						"y": 1610,
+						"x": 474,
+						"y": 379,
 						"w": 471,
 						"h": 413
 					}
 				},
 				{
-					"filename": "holes49",
+					"filename": "holes1_49",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1182,34 +2824,13 @@
 					},
 					"frame": {
 						"x": 474,
-						"y": 1610,
+						"y": 794,
 						"w": 471,
 						"h": 409
 					}
 				},
 				{
-					"filename": "holes46",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 657,
-						"y": 0,
-						"w": 622,
-						"h": 337
-					},
-					"frame": {
-						"x": 663,
-						"y": 1246,
-						"w": 622,
-						"h": 337
-					}
-				},
-				{
-					"filename": "holes52",
+					"filename": "holes1_53",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1219,18 +2840,81 @@
 					"spriteSourceSize": {
 						"x": 808,
 						"y": 0,
-						"w": 471,
-						"h": 431
+						"w": 493,
+						"h": 407
+					},
+					"frame": {
+						"x": 474,
+						"y": 1205,
+						"w": 493,
+						"h": 407
+					}
+				},
+				{
+					"filename": "holes1_47",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 708,
+						"y": 0,
+						"w": 571,
+						"h": 361
+					},
+					"frame": {
+						"x": 474,
+						"y": 1614,
+						"w": 571,
+						"h": 361
+					}
+				},
+				{
+					"filename": "holes1_10",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 557,
+						"h": 403
 					},
 					"frame": {
 						"x": 947,
-						"y": 1585,
-						"w": 471,
-						"h": 431
+						"y": 349,
+						"w": 557,
+						"h": 403
 					}
 				},
 				{
-					"filename": "holes21",
+					"filename": "holes1_54",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 544,
+						"h": 392
+					},
+					"frame": {
+						"x": 947,
+						"y": 754,
+						"w": 544,
+						"h": 392
+					}
+				},
+				{
+					"filename": "holes1_51",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1241,28 +2925,154 @@
 						"x": 808,
 						"y": 0,
 						"w": 471,
-						"h": 571
+						"h": 401
 					},
 					"frame": {
-						"x": 1420,
-						"y": 1284,
+						"x": 1506,
+						"y": 349,
 						"w": 471,
-						"h": 571
+						"h": 401
+					}
+				},
+				{
+					"filename": "holes1_48",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 761,
+						"y": 0,
+						"w": 518,
+						"h": 385
+					},
+					"frame": {
+						"x": 969,
+						"y": 1148,
+						"w": 518,
+						"h": 385
+					}
+				},
+				{
+					"filename": "holes1_55",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 565,
+						"h": 370
+					},
+					"frame": {
+						"x": 1047,
+						"y": 1535,
+						"w": 565,
+						"h": 370
+					}
+				},
+				{
+					"filename": "holes1_05",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 283
+					},
+					"frame": {
+						"x": 1506,
+						"y": 752,
+						"w": 471,
+						"h": 283
+					}
+				},
+				{
+					"filename": "holes2_07",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 267
+					},
+					"frame": {
+						"x": 1493,
+						"y": 1037,
+						"w": 471,
+						"h": 267
+					}
+				},
+				{
+					"filename": "holes1_62",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 538,
+						"h": 188
+					},
+					"frame": {
+						"x": 1489,
+						"y": 1306,
+						"w": 538,
+						"h": 188
 					}
 				}
 			]
 		},
 		{
-			"image": "assets/objects/holes/holes-5.png",
+			"image": "assets/objects/holes/holes-13.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 1019,
-				"h": 1130
+				"w": 1950,
+				"h": 2035
 			},
 			"scale": 1,
 			"frames": [
 				{
-					"filename": "holes54",
+					"filename": "holes2_44",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 629,
+						"y": 0,
+						"w": 650,
+						"h": 314
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 650,
+						"h": 314
+					}
+				},
+				{
+					"filename": "holes1_58",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1272,18 +3082,186 @@
 					"spriteSourceSize": {
 						"x": 808,
 						"y": 0,
-						"w": 544,
-						"h": 392
+						"w": 602,
+						"h": 332
 					},
 					"frame": {
-						"x": 1,
+						"x": 653,
 						"y": 1,
-						"w": 544,
-						"h": 392
+						"w": 602,
+						"h": 332
 					}
 				},
 				{
-					"filename": "holes51",
+					"filename": "holes2_54",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 572,
+						"h": 338
+					},
+					"frame": {
+						"x": 1,
+						"y": 317,
+						"w": 572,
+						"h": 338
+					}
+				},
+				{
+					"filename": "holes2_55",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 572,
+						"h": 314
+					},
+					"frame": {
+						"x": 1257,
+						"y": 1,
+						"w": 572,
+						"h": 314
+					}
+				},
+				{
+					"filename": "holes2_53",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 556,
+						"h": 360
+					},
+					"frame": {
+						"x": 1257,
+						"y": 317,
+						"w": 556,
+						"h": 360
+					}
+				},
+				{
+					"filename": "holes2_46",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 732,
+						"y": 0,
+						"w": 547,
+						"h": 308
+					},
+					"frame": {
+						"x": 575,
+						"y": 335,
+						"w": 547,
+						"h": 308
+					}
+				},
+				{
+					"filename": "holes2_11",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 513,
+						"h": 375
+					},
+					"frame": {
+						"x": 575,
+						"y": 645,
+						"w": 513,
+						"h": 375
+					}
+				},
+				{
+					"filename": "holes1_09",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 506,
+						"h": 379
+					},
+					"frame": {
+						"x": 1,
+						"y": 657,
+						"w": 506,
+						"h": 379
+					}
+				},
+				{
+					"filename": "holes2_52",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 505,
+						"h": 360
+					},
+					"frame": {
+						"x": 1090,
+						"y": 679,
+						"w": 505,
+						"h": 360
+					}
+				},
+				{
+					"filename": "holes2_47",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 785,
+						"y": 0,
+						"w": 494,
+						"h": 332
+					},
+					"frame": {
+						"x": 509,
+						"y": 1022,
+						"w": 494,
+						"h": 332
+					}
+				},
+				{
+					"filename": "holes2_49",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1294,17 +3272,17 @@
 						"x": 808,
 						"y": 0,
 						"w": 471,
-						"h": 401
+						"h": 360
 					},
 					"frame": {
-						"x": 547,
-						"y": 1,
+						"x": 1,
+						"y": 1038,
 						"w": 471,
-						"h": 401
+						"h": 360
 					}
 				},
 				{
-					"filename": "holes62",
+					"filename": "holes2_50",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1314,18 +3292,81 @@
 					"spriteSourceSize": {
 						"x": 808,
 						"y": 0,
-						"w": 538,
-						"h": 188
+						"w": 471,
+						"h": 360
 					},
 					"frame": {
 						"x": 1,
-						"y": 395,
-						"w": 538,
-						"h": 188
+						"y": 1400,
+						"w": 471,
+						"h": 360
 					}
 				},
 				{
-					"filename": "holes8",
+					"filename": "holes3_06",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 261
+					},
+					"frame": {
+						"x": 1,
+						"y": 1762,
+						"w": 471,
+						"h": 261
+					}
+				},
+				{
+					"filename": "holes2_51",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 360
+					},
+					"frame": {
+						"x": 474,
+						"y": 1356,
+						"w": 471,
+						"h": 360
+					}
+				},
+				{
+					"filename": "holes1_06",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 307
+					},
+					"frame": {
+						"x": 474,
+						"y": 1718,
+						"w": 471,
+						"h": 307
+					}
+				},
+				{
+					"filename": "holes1_08",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1339,14 +3380,14 @@
 						"h": 355
 					},
 					"frame": {
-						"x": 541,
-						"y": 404,
+						"x": 947,
+						"y": 1356,
 						"w": 471,
 						"h": 355
 					}
 				},
 				{
-					"filename": "holes53",
+					"filename": "holes2_09",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1356,18 +3397,470 @@
 					"spriteSourceSize": {
 						"x": 808,
 						"y": 0,
-						"w": 493,
-						"h": 407
+						"w": 471,
+						"h": 321
+					},
+					"frame": {
+						"x": 947,
+						"y": 1713,
+						"w": 471,
+						"h": 321
+					}
+				},
+				{
+					"filename": "holes3_07",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 261
+					},
+					"frame": {
+						"x": 1005,
+						"y": 1041,
+						"w": 471,
+						"h": 261
+					}
+				},
+				{
+					"filename": "holes2_10",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 348
+					},
+					"frame": {
+						"x": 1478,
+						"y": 1041,
+						"w": 471,
+						"h": 348
+					}
+				},
+				{
+					"filename": "holes1_07",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 331
+					},
+					"frame": {
+						"x": 1420,
+						"y": 1391,
+						"w": 471,
+						"h": 331
+					}
+				},
+				{
+					"filename": "holes3_08",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 261
+					},
+					"frame": {
+						"x": 1420,
+						"y": 1724,
+						"w": 471,
+						"h": 261
+					}
+				}
+			]
+		},
+		{
+			"image": "assets/objects/holes/holes-14.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1896,
+				"h": 1595
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "holes3_09",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 261
 					},
 					"frame": {
 						"x": 1,
-						"y": 585,
-						"w": 493,
-						"h": 407
+						"y": 1,
+						"w": 471,
+						"h": 261
 					}
 				},
 				{
-					"filename": "holes1",
+					"filename": "holes3_10",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 261
+					},
+					"frame": {
+						"x": 474,
+						"y": 1,
+						"w": 471,
+						"h": 261
+					}
+				},
+				{
+					"filename": "holes3_11",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 261
+					},
+					"frame": {
+						"x": 947,
+						"y": 1,
+						"w": 471,
+						"h": 261
+					}
+				},
+				{
+					"filename": "holes3_12",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 261
+					},
+					"frame": {
+						"x": 1420,
+						"y": 1,
+						"w": 471,
+						"h": 261
+					}
+				},
+				{
+					"filename": "holes3_13",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 261
+					},
+					"frame": {
+						"x": 1,
+						"y": 264,
+						"w": 471,
+						"h": 261
+					}
+				},
+				{
+					"filename": "holes3_14",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 261
+					},
+					"frame": {
+						"x": 474,
+						"y": 264,
+						"w": 471,
+						"h": 261
+					}
+				},
+				{
+					"filename": "holes3_15",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 261
+					},
+					"frame": {
+						"x": 947,
+						"y": 264,
+						"w": 471,
+						"h": 261
+					}
+				},
+				{
+					"filename": "holes3_16",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 261
+					},
+					"frame": {
+						"x": 1420,
+						"y": 264,
+						"w": 471,
+						"h": 261
+					}
+				},
+				{
+					"filename": "holes1_04",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 259
+					},
+					"frame": {
+						"x": 1,
+						"y": 527,
+						"w": 471,
+						"h": 259
+					}
+				},
+				{
+					"filename": "holes3_05",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 254
+					},
+					"frame": {
+						"x": 474,
+						"y": 527,
+						"w": 471,
+						"h": 254
+					}
+				},
+				{
+					"filename": "holes3_04",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 248
+					},
+					"frame": {
+						"x": 947,
+						"y": 527,
+						"w": 471,
+						"h": 248
+					}
+				},
+				{
+					"filename": "holes3_03",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 241
+					},
+					"frame": {
+						"x": 1420,
+						"y": 527,
+						"w": 471,
+						"h": 241
+					}
+				},
+				{
+					"filename": "holes2_06",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 240
+					},
+					"frame": {
+						"x": 1420,
+						"y": 770,
+						"w": 471,
+						"h": 240
+					}
+				},
+				{
+					"filename": "holes1_03",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 235
+					},
+					"frame": {
+						"x": 947,
+						"y": 777,
+						"w": 471,
+						"h": 235
+					}
+				},
+				{
+					"filename": "holes3_02",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 235
+					},
+					"frame": {
+						"x": 474,
+						"y": 783,
+						"w": 471,
+						"h": 235
+					}
+				},
+				{
+					"filename": "holes3_01",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 229
+					},
+					"frame": {
+						"x": 1,
+						"y": 788,
+						"w": 471,
+						"h": 229
+					}
+				},
+				{
+					"filename": "holes2_05",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 213
+					},
+					"frame": {
+						"x": 1,
+						"y": 1019,
+						"w": 471,
+						"h": 213
+					}
+				},
+				{
+					"filename": "holes1_01",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1381,14 +3874,77 @@
 						"h": 187
 					},
 					"frame": {
-						"x": 496,
-						"y": 761,
+						"x": 1420,
+						"y": 1012,
 						"w": 471,
 						"h": 187
 					}
 				},
 				{
-					"filename": "holes0",
+					"filename": "holes2_04",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 186
+					},
+					"frame": {
+						"x": 947,
+						"y": 1014,
+						"w": 471,
+						"h": 186
+					}
+				},
+				{
+					"filename": "holes2_60",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 471,
+						"h": 180
+					},
+					"frame": {
+						"x": 474,
+						"y": 1020,
+						"w": 471,
+						"h": 180
+					}
+				},
+				{
+					"filename": "holes1_63",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 1491,
+						"h": 745
+					},
+					"spriteSourceSize": {
+						"x": 808,
+						"y": 0,
+						"w": 475,
+						"h": 179
+					},
+					"frame": {
+						"x": 1420,
+						"y": 1201,
+						"w": 475,
+						"h": 179
+					}
+				},
+				{
+					"filename": "holes1_00",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1402,14 +3958,14 @@
 						"h": 179
 					},
 					"frame": {
-						"x": 496,
-						"y": 950,
+						"x": 474,
+						"y": 1202,
 						"w": 471,
 						"h": 179
 					}
 				},
 				{
-					"filename": "holes64",
+					"filename": "holes1_64",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1423,14 +3979,14 @@
 						"h": 179
 					},
 					"frame": {
-						"x": 496,
-						"y": 950,
+						"x": 474,
+						"y": 1202,
 						"w": 471,
 						"h": 179
 					}
 				},
 				{
-					"filename": "holes65",
+					"filename": "holes2_00",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1444,14 +4000,14 @@
 						"h": 179
 					},
 					"frame": {
-						"x": 496,
-						"y": 950,
+						"x": 474,
+						"y": 1202,
 						"w": 471,
 						"h": 179
 					}
 				},
 				{
-					"filename": "holes66",
+					"filename": "holes2_65",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1465,14 +4021,14 @@
 						"h": 179
 					},
 					"frame": {
-						"x": 496,
-						"y": 950,
+						"x": 474,
+						"y": 1202,
 						"w": 471,
 						"h": 179
 					}
 				},
 				{
-					"filename": "holes67",
+					"filename": "holes3_00",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1486,14 +4042,14 @@
 						"h": 179
 					},
 					"frame": {
-						"x": 496,
-						"y": 950,
+						"x": 474,
+						"y": 1202,
 						"w": 471,
 						"h": 179
 					}
 				},
 				{
-					"filename": "holes68",
+					"filename": "holes3_61",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1507,14 +4063,14 @@
 						"h": 179
 					},
 					"frame": {
-						"x": 496,
-						"y": 950,
+						"x": 474,
+						"y": 1202,
 						"w": 471,
 						"h": 179
 					}
 				},
 				{
-					"filename": "holes69",
+					"filename": "holes2_01",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1528,14 +4084,14 @@
 						"h": 179
 					},
 					"frame": {
-						"x": 496,
-						"y": 950,
+						"x": 1,
+						"y": 1234,
 						"w": 471,
 						"h": 179
 					}
 				},
 				{
-					"filename": "holes70",
+					"filename": "holes2_02",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1549,14 +4105,14 @@
 						"h": 179
 					},
 					"frame": {
-						"x": 496,
-						"y": 950,
+						"x": 947,
+						"y": 1202,
 						"w": 471,
 						"h": 179
 					}
 				},
 				{
-					"filename": "holes71",
+					"filename": "holes2_03",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1570,14 +4126,14 @@
 						"h": 179
 					},
 					"frame": {
-						"x": 496,
-						"y": 950,
+						"x": 1420,
+						"y": 1382,
 						"w": 471,
 						"h": 179
 					}
 				},
 				{
-					"filename": "holes72",
+					"filename": "holes2_61",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1591,14 +4147,14 @@
 						"h": 179
 					},
 					"frame": {
-						"x": 496,
-						"y": 950,
+						"x": 474,
+						"y": 1383,
 						"w": 471,
 						"h": 179
 					}
 				},
 				{
-					"filename": "holes73",
+					"filename": "holes2_62",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1612,14 +4168,14 @@
 						"h": 179
 					},
 					"frame": {
-						"x": 496,
-						"y": 950,
+						"x": 1,
+						"y": 1415,
 						"w": 471,
 						"h": 179
 					}
 				},
 				{
-					"filename": "holes74",
+					"filename": "holes2_63",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1633,14 +4189,14 @@
 						"h": 179
 					},
 					"frame": {
-						"x": 496,
-						"y": 950,
+						"x": 947,
+						"y": 1383,
 						"w": 471,
 						"h": 179
 					}
 				},
 				{
-					"filename": "holes75",
+					"filename": "holes2_64",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -1654,302 +4210,8 @@
 						"h": 179
 					},
 					"frame": {
-						"x": 496,
-						"y": 950,
-						"w": 471,
-						"h": 179
-					}
-				},
-				{
-					"filename": "holes76",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 471,
-						"h": 179
-					},
-					"frame": {
-						"x": 496,
-						"y": 950,
-						"w": 471,
-						"h": 179
-					}
-				},
-				{
-					"filename": "holes77",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 471,
-						"h": 179
-					},
-					"frame": {
-						"x": 496,
-						"y": 950,
-						"w": 471,
-						"h": 179
-					}
-				},
-				{
-					"filename": "holes78",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 471,
-						"h": 179
-					},
-					"frame": {
-						"x": 496,
-						"y": 950,
-						"w": 471,
-						"h": 179
-					}
-				},
-				{
-					"filename": "holes79",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 471,
-						"h": 179
-					},
-					"frame": {
-						"x": 496,
-						"y": 950,
-						"w": 471,
-						"h": 179
-					}
-				},
-				{
-					"filename": "holes80",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 471,
-						"h": 179
-					},
-					"frame": {
-						"x": 496,
-						"y": 950,
-						"w": 471,
-						"h": 179
-					}
-				},
-				{
-					"filename": "holes81",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 471,
-						"h": 179
-					},
-					"frame": {
-						"x": 496,
-						"y": 950,
-						"w": 471,
-						"h": 179
-					}
-				},
-				{
-					"filename": "holes82",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 471,
-						"h": 179
-					},
-					"frame": {
-						"x": 496,
-						"y": 950,
-						"w": 471,
-						"h": 179
-					}
-				},
-				{
-					"filename": "holes83",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 471,
-						"h": 179
-					},
-					"frame": {
-						"x": 496,
-						"y": 950,
-						"w": 471,
-						"h": 179
-					}
-				},
-				{
-					"filename": "holes84",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 471,
-						"h": 179
-					},
-					"frame": {
-						"x": 496,
-						"y": 950,
-						"w": 471,
-						"h": 179
-					}
-				},
-				{
-					"filename": "holes85",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 471,
-						"h": 179
-					},
-					"frame": {
-						"x": 496,
-						"y": 950,
-						"w": 471,
-						"h": 179
-					}
-				},
-				{
-					"filename": "holes86",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 471,
-						"h": 179
-					},
-					"frame": {
-						"x": 496,
-						"y": 950,
-						"w": 471,
-						"h": 179
-					}
-				},
-				{
-					"filename": "holes87",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 471,
-						"h": 179
-					},
-					"frame": {
-						"x": 496,
-						"y": 950,
-						"w": 471,
-						"h": 179
-					}
-				},
-				{
-					"filename": "holes88",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 471,
-						"h": 179
-					},
-					"frame": {
-						"x": 496,
-						"y": 950,
-						"w": 471,
-						"h": 179
-					}
-				},
-				{
-					"filename": "holes89",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 1491,
-						"h": 745
-					},
-					"spriteSourceSize": {
-						"x": 808,
-						"y": 0,
-						"w": 471,
-						"h": 179
-					},
-					"frame": {
-						"x": 496,
-						"y": 950,
+						"x": 947,
+						"y": 1383,
 						"w": 471,
 						"h": 179
 					}
@@ -1960,6 +4222,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:94014a3f954bc25353727ff5c26be8f7:5eefa567e8e89d4fd7dc81641bbef8ee:49ee09bea213e1315ad99fdcf99dd9dd$"
+		"smartupdate": "$TexturePacker:SmartUpdate:564e10bd6a3587b79e30dc9b523ac9f4:f082fc27b69620c7bb2ca0e1c9cd8281:18ecaf821cca1e9ccd623dad9bb707f8$"
 	}
 }

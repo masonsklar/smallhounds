@@ -1,41 +1,129 @@
-var context;
-	var resizeApp = function()
-{
-	// Width-height-ratio of game resolution
-    // Replace 360 with your game width, and replace 640 with your game height
-	
-	// Make div full height of browser and keep the ratio of game resolution
-	let div			= document.getElementById('gameframe');
-	div.style.width		= window.innerHeight + 'px';
-	div.style.height	= window.innerHeight + 'px';
-	
-	// Check if device DPI messes up the width-height-ratio
-	let canvas			= document.getElementsByTagName('canvas')[0];
-	
-	let dpi_w	= parseInt(div.style.width) / canvas.width;
-	let dpi_h	= parseInt(div.style.height) / canvas.height;		
-	
-	if (window.innerHeight <= window.innerWidth){
-	var height	= window.innerHeight * (dpi_w / dpi_h);
-	var width	= window.innerHeight * (dpi_w / dpi_h);
-	
-	} else if (window.innerHeight > window.innerWidth){
-	var height	= window.innerWidth * (dpi_w / dpi_h);
-	var width	= window.innerWidth * (dpi_w / dpi_h);
+/* !outside the game */
+var game;
+var idleData;
+var loadAnim;
+var resizeFrame = function() {
+		if (game == undefined) {
+			// Width-height-ratio of game resolution
+			// Replace 360 with your game width, and replace 640 with your game height
+			// Make div full height of browser and keep the ratio of game resolution
+			let div = document.getElementById('gameframe');
+			div.style.width = window.innerHeight + 'px';
+			div.style.height = window.innerHeight + 'px';
+
+			// Check if device DPI messes up the width-height-ratio
+			//let canvas			= document.getElementsByTagName('canvas')[0];
+			let dpi_w = parseInt(div.style.width) / div.width;
+			let dpi_h = parseInt(div.style.height) / div.height;
+
+			if (window.innerHeight <= window.innerWidth) {
+				var height = window.innerHeight;
+				var width = window.innerHeight;
+
+			} else if (window.innerHeight > window.innerWidth) {
+				var width = window.innerWidth;
+				var height = window.innerWidth;
+			}
+			// Scale canvas	
+			div.style.width = width + 'px';
+			div.style.height = height + 'px';
+		}
 	}
-	// Scale canvas	
-	canvas.style.width	= width + 'px';
-	canvas.style.height	= height + 'px';
+
+function generateRandomNumber(x, y) {
+	return Math.random() * (y - x) + x;
+};
+
+window.onload = function() {
+	window.addEventListener('resize', resizeFrame);
+	resizeFrame();
+	idleData = {
+		wrapper: document.getElementById('gameframe'),
+		animType: 'svg',
+		name: 'idle',
+		loop: true,
+		prerender: true,
+		autoplay: true,
+		path: 'loadlogo.json',
+	};
+
+	loadAnim = bodymovin.loadAnimation(idleData);
+	var movers = ["#rod1", "#rod2", "#rod3", "#ucones", "#dcones", "#trings"];
+	$('#startbutton').click(function() {
+		clearInterval(floatInterval);
+		movers.forEach(function(e) {
+			newX = generateRandomNumber(-800, 800);
+			newY = generateRandomNumber(-800, 800);
+			$(e).css({
+				'transition': 'all 0.5s',
+				'transform': 'translate(' + newX + 'px,' + newY + 'px)',
+				'opacity': '0'
+			})
+		});
+		setTimeout(function() {
+			movers.forEach(function(e) {
+				$(e).css({
+					'transform': 'translate(0px,0px)',
+					'opacity': '1'
+				})
+			});
+		}, 500)
+		setTimeout(function() {
+			if (game == undefined) {
+				loadAnim.destroy();
+				$('#gameframe').html('');
+				game = new Phaser.Game(config);
+			}
+		}, 1500)
+
+	});
+	var floatInterval = setInterval(function() {
+		movers.forEach(function(e) {
+			newX = generateRandomNumber(-150, 150);
+			newY = generateRandomNumber(-150, 150);
+			$(e).css({
+				'transform': 'translate(' + newX + 'px,' + newY + 'px)'
+			})
+		})
+
+	}, 1200)
+
 }
+var resizeApp = function() {
+		let div = document.getElementById('gameframe');
+		div.style.width = window.innerHeight + 'px';
+		div.style.height = window.innerHeight + 'px';
+
+		// Check if device DPI messes up the width-height-ratio
+		let canvas = document.getElementsByTagName('canvas')[0];
+
+		let dpi_w = parseInt(div.style.width) / canvas.width;
+		let dpi_h = parseInt(div.style.height) / canvas.height;
+
+		if (window.innerHeight <= window.innerWidth) {
+			height = window.innerHeight * (dpi_w / dpi_h);
+			width = window.innerHeight * (dpi_w / dpi_h);
+
+		} else if (window.innerHeight > window.innerWidth) {
+			height = window.innerWidth * (dpi_w / dpi_h);
+			width = window.innerWidth * (dpi_w / dpi_h);
+		}
+		// Scale canvas	
+		canvas.style.width = width + 'px';
+		canvas.style.height = height + 'px';
+	}; /* !inside the game */
 var _anims;
-var widedowFrames;
-var booksContainer;
-var chooseContainer;
-var book1tween;
-var sequence;
-var chooserTween;
+var windowMask;
+var floaters;
+var floater1;
+var floater2;
+var floater3;
+var floater4;
+var floater5;
+var floater6;
+var floater7;
+var floaterFrames;
 var prevTone = 1;
-var cardContainer;
 var firstCard;
 var secondCard;
 var firstFlip;
@@ -43,68 +131,50 @@ var totalFlipped = 0;
 var flipOrder;
 var currentRoom = 1;
 var currentPlant = 0;
-var p1Frames;
-var obstacles;
-var frontPlant;
-var plantCycle1Frames;
-var keyGetframes;
-var holesFrames;
-var controlStrip;
-var shootSong;
-var shipActive;
 var shooterTick = 0;
 var dodgeCounter = 0;
+var currentHoles = 0;
 var keyGetTween;
-var p1;
-var flip6;
-var pane1;
-var pane2;
-var pane3;
 var openExternalLink;
-var chooserTweenUp;
-var chooserTweenDownPrep;
-var greenText;
-var chooserBg;
-var bookCircFrames;
 var nextSize = 1;
 var cropGrid = {
 	p1: {
-		x: 378,
-		y: 505.5
+		x: 756,
+		y: 1011
 	},
 	p2: {
-		x: 446,
-		y: 473.7
+		x: 892,
+		y: 947.4
 	},
 	p3: {
-		x: 514,
-		y: 442
+		x: 1028,
+		y: 884
 	},
 	p4: {
-		x: 378,
-		y: 623.7
+		x: 756,
+		y: 1247.4
 	},
 	p5: {
-		x: 446,
-		y: 592
+		x: 892,
+		y: 1184
 	},
 	p6: {
-		x: 514,
-		y: 560.3
+		x: 1028,
+		y: 1120.6
 	},
 	p7: {
-		x: 378,
-		y: 742
+		x: 756,
+		y: 1484
 	},
 	p8: {
-		x: 446,
-		y: 710.3
+		x: 892,
+		y: 1420.6
 	},
 	p9: {
-		x: 514,
-		y: 678.5
+		x: 1028,
+		y: 1357
 	},
-}
+};
 var cropQuad = {
 	topLeftX: cropGrid.p1.x,
 	topLeftY: cropGrid.p1.y,
@@ -115,50 +185,7 @@ var cropQuad = {
 	bottomRightX: cropGrid.p5.x,
 	bottomRightY: cropGrid.p5.y
 };
-
-var door;
 var doorClicks = 0;
-var doorText;
-var chooserStats = {
-	up: false,
-	currentPage: 0,
-	page: [{
-		index: '0',
-		optA: 'the park',
-		optB: 'assets',
-		linkA: 1,
-		linkB: 2,
-		caption: ['Wow, its beautiful outside!', 'Where are we going?']
-	}, {
-		index: '1',
-		optA: 'home',
-		optB: 'assets',
-		linkA: 0,
-		linkB: 2,
-		caption: ['We are at the park!', 'Check out the swing!']
-	}, {
-		index: '2',
-		optA: 'hmm?',
-		optB: 'dark',
-		linkA: 3,
-		linkB: 4,
-		caption: ['Looks like some assets.', 'Probably for cards or a', 'water wheel. Hmm.', 'It is getting dark.']
-	}, {
-		index: '3',
-		optA: 'assets',
-		optB: 'dark',
-		linkA: 2,
-		linkB: 4,
-		caption: ['It looks like a hole.', 'Just a dark hole.', 'A hole in the ground,', 'where we put our sound.']
-	}, {
-		index: '4',
-		optA: 'hole',
-		optB: 'home',
-		linkA: 3,
-		linkB: 0,
-		caption: ['You have been outside a', 'while now!', 'It might be bedtime.', 'have a lullaby. Goodnight.']
-	}, ]
-};
 var collisionZone = {
 	a: false,
 	b: false,
@@ -170,39 +197,35 @@ var keyGot = false;
 var shipPos = 1;
 var shipRespawning = false;
 var startY = null;
-var flyFrames;
-var couchFrames;
-var lamp;
 var faces = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6];
-var centers = {
-	l: [400, 850],
-	m: [1200, 623],
-	r: [2000, 400],
-};
 var scene = {
 	key: 'room',
 	preload: preload,
 	create: create,
 	pack: {
-        files: [
-            { type: 'image', key: 'logo', url: 'assets/ui/logo.png' }
-        ]
-    },
-	update: update,
-	
+		files: [{
+			type: 'image',
+			key: 'logo',
+			url: 'assets/ui/logo2.png'
+		}, {
+			type: 'image',
+			key: 'textboxbg',
+			url: 'assets/chooser/chooser.png'
+		}, {
+			type: 'image',
+			key: 'downprompt',
+			url: 'assets/ui/downprompt.png'
+		}, ]
+	},
+	update: update
 };
-
 var config = {
 	type: Phaser.AUTO,
 	parent: 'gameframe',
-	width: 800,
-	height: 800,
+	width: 1600,
+	height: 1600,
 	backgroundColor: '#ffca4d',
 	scene: [scene],
-	audio: {
-        context: context
-    },
-    
 };
 //var game = new Phaser.Game(config);
 
@@ -210,87 +233,118 @@ function preload() {
 	resizeApp();
 	$('#gameframe').css({
 		"background": "#ffca4d"
-	})
-	this.add.image(400, 400, 'logo').setScale(0.5);
+	});
+	var preLogo = this.add.image(800, 800, 'logo');
 	var width = this.cameras.main.width;
 	var height = this.cameras.main.height;
-	var loadingText = this.make.text({
-		x: width / 2,
-		y: 0,
-		text: 'loading...',
-		style: {
-			font: '36pt magistral',
-			fill: '#ffca4d'
-		}
-	});
-	loadingText.setOrigin(0.5, 0.5);
 	var progressBar = this.add.graphics();
 	var progressBox = this.add.graphics();
 	var percentText = this.make.text({
 		x: width / 2,
-		y: 500 ,
+		y: 1000,
 		text: '0%',
 		style: {
-			font: '36pt magistral',
+			font: '72pt magistral',
 			fill: '#ffffff'
 		}
 	});
 	progressBox.fillStyle(0xffffff, 0);
-	progressBox.fillRect(200, 465, 300, 600);
+	progressBox.fillRect(400, 930, 600, 1200);
 	percentText.setOrigin(0.5, 0.5);
+	var preTextBox = this.add.image(200, 1310, 'textboxbg').setOrigin(0);
+	var preTextBoxText = this.add.text(240, 1340, ['Hey! You are in a room!', 'Where are we going?', 'Wow, its beautiful outside!', 'Where are we going? : - )'], {
+		fontFamily: 'Arial',
+		fontSize: 54,
+		color: '#225a89'
+	}).setOrigin(0);
+	var predDownPrompt = this.add.image(1280, 2760, 'downprompt').setOrigin(0);
 	this.load.on('progress', function(value) {
 		progressBar.clear();
-		progressBar.fillStyle(0x225a89, 1);
-		progressBar.fillRect(150, 465, 500 * value, 70);
-		percentText.setText(parseInt(value * 100) + '%');
+		progressBar.fillStyle(0x225a89, 2);
+		progressBar.fillRect(300, 930, 1000 * value, 140);
+		percentText.setText(parseInt(value * 100) + '% ');
 	});
-
-	this.load.on('fileprogress', function(file) {});
-
+	this.load.on('fileprogress', function(file) {
+		//percentText.setText(file.key);
+		//console.log(file.key+file.percentComplete);
+	});
 	this.load.on('complete', function() {
+		preLogo.destroy();
 		progressBar.destroy();
 		progressBox.destroy();
-		loadingText.destroy();
 		percentText.destroy();
+		preTextBoxText.destroy();
+		preTextBox.destroy();
 	});
+	// !load audio
+	this.load.audio('wobblesound', 'assets/objects/lamp/audio/i.mp3');
+	//universal
+	this.load.audio('mugsound', 'assets/objects/mug/mug.mp3');
+	//left room
+	this.load.audio('scratch', 'assets/objects/rugbump/scratch.wav');
+	this.load.audio('oww', 'assets/objects/rugbump/oww.wav');
+	this.load.audio('sizeposter1', 'assets/objects/sizeposter/sizeposter1.wav');
+	this.load.audio('sizeposter1', 'assets/objects/sizeposter/sizeposter1.wav');
+	this.load.audio('sizeposter2', 'assets/objects/sizeposter/sizeposter2.wav');
+	this.load.audio('sizeposter3', 'assets/objects/sizeposter/sizeposter3.wav');
+	this.load.audio('sizeposter4', 'assets/objects/sizeposter/sizeposter4.wav');
+	this.load.audio('sizeposter5', 'assets/objects/sizeposter/sizeposter5.wav');
+	this.load.audio('sizeposter6', 'assets/objects/sizeposter/sizeposter6.wav');
+	this.load.audio('sizeposter7', 'assets/objects/sizeposter/sizeposter7.wav');
+	this.load.audio('sizeposter8', 'assets/objects/sizeposter/sizeposter8.wav');
+	this.load.audio('sizeposter9', 'assets/objects/sizeposter/sizeposter9.wav');
+	this.load.audio('sizeposter10', 'assets/objects/sizeposter/sizeposter10.wav');
+	//middle room
+	this.load.audio('sq', 'assets/objects/couch/sq.wav');
+	this.load.audio('cardflipsound', 'assets/objects/card/cardflip.wav');
+	this.load.audio('flipbacksound', 'assets/objects/card/flipback.wav');
+	this.load.audio('cardwinsound', 'assets/objects/card/win.wav');
+	this.load.audio('shootloop', 'assets/objects/shooter/shootloop.wav');
+	this.load.audio('die', 'assets/objects/shooter/die.wav');
+	//right room
+	this.load.audio('chime1', 'assets/objects/books/audio/1.wav');
+	this.load.audio('chime2', 'assets/objects/books/audio/2.wav');
+	this.load.audio('chime3', 'assets/objects/books/audio/3.wav');
+	this.load.audio('chime4', 'assets/objects/books/audio/4.wav');
+	this.load.audio('chime5', 'assets/objects/books/audio/5.wav');
+	this.load.audio('chime6', 'assets/objects/books/audio/6.wav');
+	this.load.audio('chime7', 'assets/objects/books/audio/7.wav');
+	this.load.audio('chime8', 'assets/objects/books/audio/8.wav');
+	this.load.audio('chime0', 'assets/objects/books/audio/no.wav');
 	// !load images
 	// universal 
 	//this.load.image('room', 'assets/bg/room.png');
-	this.load.image('roomL', 'assets/bg/roomL.png');
-	this.load.image('roomM', 'assets/bg/roomM.png');
-	this.load.image('roomR', 'assets/bg/roomR.png');
-	//this.load.image('logo', 'assets/ui/logo.png');
+	//this.load.image('logo', 'assets/ui/logo2.png');
 	this.load.image('left', 'assets/ui/left.png');
 	this.load.image('right', 'assets/ui/right.png');
+	this.load.image('windowmask', 'assets/objects/window/windowmask.png');
 	// left room
-	this.load.image('chooser', 'assets/chooser/chooser.png');
-	this.load.image('redbutton', 'assets/chooser/rbut.png');
-	this.load.image('greenbutton', 'assets/chooser/gbut.png');
+	this.load.image('textboxbg', 'assets/chooser/chooser.png');
+	this.load.image('wallposter', 'assets/objects/wallposter.png');
+	this.load.image('rugbump', 'assets/objects/rugbump/rugbump.png');
+	this.load.image('vase', 'assets/objects/vase.png');
+	this.load.image('fronttable', 'assets/objects/fronttable.png');
 	// middle room 
-	this.load.image('coftable', 'assets/objects/coftable/coftable.png');
-	this.load.image('card', 'assets/objects/card/cardback.png');
+	this.load.image('wideplant', 'assets/objects/wideplant.png');
 	this.load.image('bgcouch', 'assets/objects/couch/sq/bgcouch.png');
 	this.load.image('arm', 'assets/objects/couch/sq/arm.png');
 	this.load.image('side', 'assets/objects/couch/sq/side.png');
-
+	this.load.image('coftable', 'assets/objects/coftable.png');
 	// right room
-	this.load.image('shelfimg', 'assets/objects/books/shelf.png');
-	this.load.image('shelfplantimg', 'assets/objects/books/shelfplant.png');
+	this.load.image('clock', 'assets/objects/clock.png');
 	this.load.image('tablelegs', 'assets/objects/table/legs.png');
 	this.load.image('topleg', 'assets/objects/table/topleg.png');
 	this.load.image('tabletop', 'assets/objects/table/top.png');
 	// !load atlasses
-	// left room
+	// universal
+	this.load.atlas('menubaratlas', 'assets/ui/menubar.png', 'assets/ui/menubar.json');
+	this.load.atlas('windowatlas', 'assets/objects/window/window.png', 'assets/objects/window/window.json');
+	// !left room
 	this.load.atlas('sizeposteratlas', 'assets/objects/sizeposter/sizeposter.png', 'assets/objects/sizeposter/sizeposter.json');
 	this.load.atlas('dooratlas', 'assets/objects/door/door.png', 'assets/objects/door/door.json');
 	this.load.multiatlas('plantcycleatlas', 'assets/objects/plantcycle/plantcycle.json');
-	this.load.multiatlas('leftwindowatlas', 'assets/objects/leftwindow/leftwindow.json');
-	this.load.multiatlas('widedowatlas', 'assets/objects/widedow/widedow.json');
-	this.load.multiatlas('rightwindowatlas', 'assets/objects/rightwindow/rightwindow.json');
-	this.load.multiatlas('pages', 'assets/chooser/pages/pages.json');
 	this.load.atlas('mugatlas', 'assets/objects/mug/mug.png', 'assets/objects/mug/mug.json');
-	//this.load.atlas('pages', 'assets/chooser/pages.png', 'assets/chooser/pages.json');
-	// middle room
+	// !middle room
 	this.load.atlas('cardatlas', 'assets/objects/card/card.png', 'assets/objects/card/card.json');
 	this.load.multiatlas('flyatlas', 'assets/objects/shooter/fly/fly.json');
 	this.load.multiatlas('couchatlas', 'assets/objects/couch/couch.json');
@@ -299,75 +353,26 @@ function preload() {
 	this.load.atlas('obstacleatlas', 'assets/objects/shooter/obstacle/obstacle.png', 'assets/objects/shooter/obstacle/obstacle.json');
 	this.load.atlas('shooteratlas', 'assets/objects/shooter/p1.png', 'assets/objects/shooter/p1.json');
 	this.load.atlas('shooterrespawn', 'assets/objects/shooter/respawn.png', 'assets/objects/shooter/respawn.json');
-	// right room
-	this.load.atlas('wobble', 'assets/objects/lamp/anim/wobble.png', 'assets/objects/lamp/anim/wobble.json');
+	// !right room
+	this.load.multiatlas('lampatlas', 'assets/objects/lamp/lamp.json');
 	this.load.atlas('bookatlas', 'assets/objects/books/books.png', 'assets/objects/books/books.json');
 	this.load.multiatlas('holesatlas', 'assets/objects/holes/holes.json');
-	// !load audio
-	this.load.audio('wobblesound', 'assets/objects/lamp/audio/i.mp3');
-	//universal
-	this.load.audio('mugsound', 'assets/objects/mug/mug.mp3');
-	//left room
-	//middle room
-	this.load.audio('cardflipsound', 'assets/objects/card/cardflip.mp3');
-	this.load.audio('flipbacksound', 'assets/objects/card/flipback.mp3');
-	this.load.audio('cardwinsound', 'assets/objects/card/win.mp3');
-	this.load.audio('shootloop', 'assets/objects/shooter/shootloop.mp3');
-	//right room
-	this.load.audio('chime1', 'assets/objects/books/audio/1.mp3');
-	this.load.audio('chime2', 'assets/objects/books/audio/2.mp3');
-	this.load.audio('chime3', 'assets/objects/books/audio/3.mp3');
-	this.load.audio('chime4', 'assets/objects/books/audio/4.mp3');
-	this.load.audio('chime5', 'assets/objects/books/audio/5.mp3');
-	this.load.audio('chime6', 'assets/objects/books/audio/6.mp3');
-	this.load.audio('chime7', 'assets/objects/books/audio/7.mp3');
-	this.load.audio('chime8', 'assets/objects/books/audio/8.mp3');
-	this.load.audio('chime0', 'assets/objects/books/audio/no.mp3');
+
 }
 
 function create() {
-	
-	/*function resizeApp ()
-{
-	// Width-height-ratio of game resolution
-    // Replace 360 with your game width, and replace 640 with your game height
-	let game_ratio		= 800 / 800;
-	
-	// Make div full height of browser and keep the ratio of game resolution
-	let div			= document.getElementById('gameframe');
-	div.style.width		= (window.innerHeight * game_ratio) + 'px';
-	div.style.height	= window.innerHeight + 'px';
-	
-	// Check if device DPI messes up the width-height-ratio
-	let canvas			= document.getElementsByTagName('canvas')[0];
-	
-	let dpi_w	= parseInt(div.style.width) / canvas.width;
-	let dpi_h	= parseInt(div.style.height) / canvas.height;		
-	
-	let height	= window.innerHeight * (dpi_w / dpi_h);
-	let width	= height * game_ratio;
-	
-	// Scale canvas	
-	canvas.style.width	= width + 'px';
-	canvas.style.height	= height + 'px';
-}*/
-
-
-
-
-window.addEventListener('resize', resizeApp);
-	
+	window.addEventListener('resize', resizeApp);
 	// !create frames
 	// !left room
-	sizePosterPolygon = new Phaser.Geom.Polygon([273, 472, 0, 600, 0, 126, 273, 0]);
-	doorKnobPolygon = new Phaser.Geom.Polygon([255, 429, 327, 395, 330, 518, 254, 560]);
-	frontPlantPolygon = new Phaser.Geom.Polygon([222, 74, 292, 68, 331, 292, 274, 443, 194, 469, 128, 441, 70, 271]);
+	var sizePosterPolygon = new Phaser.Geom.Polygon([273, 472, 0, 600, 0, 126, 273, 0]);
+	var doorKnobPolygon = new Phaser.Geom.Polygon([255, 429, 327, 395, 330, 518, 254, 560]);
+	var frontPlantPolygon = new Phaser.Geom.Polygon([222, 74, 292, 68, 331, 292, 274, 443, 194, 469, 128, 441, 70, 271]);
 	var sizePosterFrames = this.anims.generateFrameNames('sizeposteratlas', {
 		prefix: 'sizeposter',
 		start: 0,
 		end: 3
 	});
-	doorOpenFrames = this.anims.generateFrameNames('dooratlas', {
+	var doorOpenFrames = this.anims.generateFrameNames('dooratlas', {
 		start: 0,
 		end: 2
 	});
@@ -375,37 +380,23 @@ window.addEventListener('resize', resizeApp);
 		start: 2,
 		end: 4
 	});
-	var leftWindowFrames = this.anims.generateFrameNames('leftwindowatlas', {
-		prefix: 'leftwindow',
-		start: 0,
-		end: 359,
-		zeroPad: 3
-	});
-	widedowFrames = this.anims.generateFrameNames('widedowatlas', {
-		prefix: 'widedow',
-		start: 0,
-		end: 359,
-		zeroPad: 3
-	});
-	var rightWindowFrames = this.anims.generateFrameNames('rightwindowatlas', {
-		prefix: 'rightwindow',
-		start: 0,
-		end: 269,
-		zeroPad: 3
-	});
-	plantCycle1Frames = this.anims.generateFrameNames('plantcycleatlas', {
+	var plantCycle1Frames = this.anims.generateFrameNames('plantcycleatlas', {
+		prefix: 'plantcycle',
 		start: 0,
 		end: 30,
 	});
-	plantCycle2Frames = this.anims.generateFrameNames('plantcycleatlas', {
+	var plantCycle2Frames = this.anims.generateFrameNames('plantcycleatlas', {
+		prefix: 'plantcycle',
 		start: 30,
 		end: 60,
 	});
-	plantCycle3Frames = this.anims.generateFrameNames('plantcycleatlas', {
+	var plantCycle3Frames = this.anims.generateFrameNames('plantcycleatlas', {
+		prefix: 'plantcycle',
 		start: 60,
 		end: 89,
 	});
-	plantCycle4Frames = this.anims.generateFrameNames('plantcycleatlas', {
+	var plantCycle4Frames = this.anims.generateFrameNames('plantcycleatlas', {
+		prefix: 'plantcycle',
 		start: 90,
 		end: 119,
 	});
@@ -414,110 +405,109 @@ window.addEventListener('resize', resizeApp);
 		prefix: 'page',
 		start: 0,
 		end: 4
-	})
+	});
 	// !middle room
-	csFrames = this.anims.generateFrameNames('shooteratlas', {
+	var csFrames = this.anims.generateFrameNames('shooteratlas', {
 		prefix: 'cs',
 		start: 0,
 		end: 1,
 		zeropad: 2
 	});
-	flyFrames = this.anims.generateFrameNames('flyatlas', {
+	var flyFrames = this.anims.generateFrameNames('flyatlas', {
 		start: 0,
 		end: 118,
 	});
-	p1Frames = this.anims.generateFrameNames('shooteratlas', {
+	var p1Frames = this.anims.generateFrameNames('shooteratlas', {
 		start: 0,
 		end: 4,
 		zeroPad: 2
 	});
-	d1Frames = this.anims.generateFrameNames('shooteratlas', {
+	var d1Frames = this.anims.generateFrameNames('shooteratlas', {
 		start: 0,
 		end: 2,
 		zeroPad: 2
 	});
-	d2Frames = this.anims.generateFrameNames('shooteratlas', {
+	var d2Frames = this.anims.generateFrameNames('shooteratlas', {
 		start: 2,
 		end: 4,
 		zeroPad: 2
 	});
-	u1Frames = this.anims.generateFrameNames('shooteratlas', {
+	var u1Frames = this.anims.generateFrameNames('shooteratlas', {
 		start: 4,
 		end: 6,
 		zeroPad: 2
 	});
-	u2Frames = this.anims.generateFrameNames('shooteratlas', {
+	var u2Frames = this.anims.generateFrameNames('shooteratlas', {
 		start: 6,
 		end: 8,
 		zeroPad: 2
 	});
-	obstacleFrames = this.anims.generateFrameNames('obstacleatlas', {
+	var obstacleFrames = this.anims.generateFrameNames('obstacleatlas', {
 		start: 0,
 		end: 12,
 	});
-	obstacle0Frames = this.anims.generateFrameNames('obstacleatlas', {
+	var obstacle0Frames = this.anims.generateFrameNames('obstacleatlas', {
 		start: 0,
 		end: 12,
 	});
-	obstacleAframes = this.anims.generateFrameNames('obstacleatlas', {
+	var obstacleAframes = this.anims.generateFrameNames('obstacleatlas', {
 		start: 1,
 		end: 2,
 	});
-	obstacleBframes = this.anims.generateFrameNames('obstacleatlas', {
+	var obstacleBframes = this.anims.generateFrameNames('obstacleatlas', {
 		start: 3,
 		end: 4,
 	});
-	obstacleCframes = this.anims.generateFrameNames('obstacleatlas', {
+	var obstacleCframes = this.anims.generateFrameNames('obstacleatlas', {
 		start: 5,
 		end: 6,
 	});
-	obstacleDframes = this.anims.generateFrameNames('obstacleatlas', {
+	var obstacleDframes = this.anims.generateFrameNames('obstacleatlas', {
 		start: 7,
 		end: 8,
 	});
-	obstacleEframes = this.anims.generateFrameNames('obstacleatlas', {
+	var obstacleEframes = this.anims.generateFrameNames('obstacleatlas', {
 		start: 9,
 		end: 10,
 	});
-	obstacleFframes = this.anims.generateFrameNames('obstacleatlas', {
+	var obstacleFframes = this.anims.generateFrameNames('obstacleatlas', {
 		start: 11,
 		end: 12,
 	});
-	keyGetframes = this.anims.generateFrameNames('obstacleatlas', {
+	var keyGetframes = this.anims.generateFrameNames('obstacleatlas', {
 		prefix: 'key',
 		start: 1,
 		end: 1
 	});
-	respawnFrames = this.anims.generateFrameNames('shooterrespawn', {
+	var respawnFrames = this.anims.generateFrameNames('shooterrespawn', {
 		prefix: 'rsp',
 		start: 0,
 		end: 29
 	});
-	crash1frames = this.anims.generateFrameNames('shooteratlas', {
+	var crash1frames = this.anims.generateFrameNames('shooteratlas', {
 		prefix: 'a',
 		start: 0,
 		end: 1
 	});
-	crash2frames = this.anims.generateFrameNames('shooteratlas', {
+	var crash2frames = this.anims.generateFrameNames('shooteratlas', {
 		prefix: 'b',
 		start: 0,
 		end: 1
 	});
-	crash3frames = this.anims.generateFrameNames('shooteratlas', {
+	var crash3frames = this.anims.generateFrameNames('shooteratlas', {
 		prefix: 'c',
 		start: 0,
 		end: 1
 	});
-	csPolygon = new Phaser.Geom.Polygon([3, 375, 53, 351, 28, 397, 35.78947448730469, 31, 28, 2, 53, 23, 35.78947448730469, 31, 3, 47, 28, 2, 36, 359, 20, 366, 19.157894134521484, 39.210540771484375, 35.78947448730469, 31, 36, 359, 3, 375, 20, 366]);
+	var csPolygon = new Phaser.Geom.Polygon([3, 375, 53, 351, 28, 397, 35.78947448730469, 31, 28, 2, 53, 23, 35.78947448730469, 31, 3, 47, 28, 2, 36, 359, 20, 366, 19.157894134521484, 39.210540771484375, 35.78947448730469, 31, 36, 359, 3, 375, 20, 366]);
 	var sqPolygon = new Phaser.Geom.Polygon([242, 1, 448, 98, 207, 211, 3, 114]);
 
-	couchFrames = this.anims.generateFrameNames('couchatlas', {
+	var couchFrames = this.anims.generateFrameNames('couchatlas', {
 		prefix: 'couch',
 		start: 0,
 		end: 119,
 		zeroPad: 3
 	});
-
 	var flipStartFrames = this.anims.generateFrameNames('cardatlas', {
 		prefix: 'flipstart',
 		start: 0,
@@ -560,89 +550,162 @@ window.addEventListener('resize', resizeApp);
 		end: 43,
 		zeroPad: 2
 	});
-	flip6 = this.anims.generateFrameNames('cardatlas', {
+	var flip6 = this.anims.generateFrameNames('cardatlas', {
 		prefix: 'flip6_',
 		start: 0,
 		end: 43,
 		zeroPad: 2
 	});
-	bookCircFrames = this.anims.generateFrameNames('bookstackatlas',{
+	var bookCircFrames = this.anims.generateFrameNames('bookstackatlas', {
 		prefix: 'bookstack',
 		start: 0,
 		end: 47,
 		zeroPad: 2
-	})
-
-
-	var bookStackPoly = new Phaser.Geom.Polygon([ 279,248, 193,287, 88,240, 72,200, 90,113, 175,71, 278,122 ]);
+	});
+	var bookStackPoly = new Phaser.Geom.Polygon([279, 248, 193, 287, 88, 240, 72, 200, 90, 113, 175, 71, 278, 122]);
 	var cardPolygon = new Phaser.Geom.Polygon([46, 95, 120, 130, 73, 150, 1, 117]);
 	var flipArray = [0, flip1, flip2, flip3, flip4, flip5, flip6];
 	// !right room
-	lampFrames = this.anims.generateFrameNames('wobble', {
+	var lampFrames = this.anims.generateFrameNames('lampatlas', {
+		prefix: 'lamp',
 		start: 0,
 		end: 59,
 		zeroPad: 2
 	});
-	lampPolygon = new Phaser.Geom.Polygon([68, 126, 49, 105, 69, 19, 109, 0, 150, 19, 170, 106, 150, 127, 143, 207, 109, 220, 79, 207, 68, 126]);
-	holesPolygon = new Phaser.Geom.Polygon([814, 174, 812, 112, 845, 72, 875, 80, 877, 143, 1210, 78, 1210, 16, 1231, 3, 1272, 40, 1273, 108, 1210, 78, 877, 143, 814, 174]);
-	holesFrames = this.anims.generateFrameNames('holesatlas', {
-		prefix: 'holes',
+	var lampPolygon = new Phaser.Geom.Polygon([136, 252, 98, 210, 138, 38, 218, 0, 300, 38, 340, 212, 300, 254, 286, 414, 218, 440, 158, 414, 136, 252]);
+	var holesPolygon = new Phaser.Geom.Polygon([814, 174, 812, 112, 845, 72, 875, 80, 877, 143, 1210, 78, 1210, 16, 1231, 3, 1272, 40, 1273, 108, 1210, 78, 877, 143, 814, 174]);
+	var holes1Frames = this.anims.generateFrameNames('holesatlas', {
+		prefix: 'holes1_',
 		start: 0,
-		end: 89,
-
+		end: 64,
+		zeroPad: 2
+	});
+	var holes2Frames = this.anims.generateFrameNames('holesatlas', {
+		prefix: 'holes2_',
+		start: 0,
+		end: 65,
+		zeroPad: 2
+	});
+	var holes3Frames = this.anims.generateFrameNames('holesatlas', {
+		prefix: 'holes3_',
+		start: 0,
+		end: 61,
+		zeroPad: 2
 	});
 	// !create sprites
 	// !universal
-	//var bg = this.add.sprite(0, 0, 'room').setOrigin(0).setScale(0.5);
-	
-	var bgL = this.add.sprite(0, 0, 'roomL').setOrigin(0).setScale(0.5).setInteractive();
-	var bgM = this.add.sprite(800, 0, 'roomM').setOrigin(0).setScale(0.5).setAlpha(0);
-	var bgR = this.add.sprite(1600, 0, 'roomR').setOrigin(0).setScale(0.5);
-	var polygon = new Phaser.Geom.Polygon([
-        0, 1062.5,
-        537, 810,
-        537,0,
-        537, 810,
-        800, 933,
-        1353, 677.5,
-        1353, 0,
-        1353, 677.5,
-        1600, 792.5,
-        2182, 521,
-        2182, 0,
-        2182, 521,
-        2400, 622.5
-    ]);
+	var bgPolygon = new Phaser.Geom.Polygon([
+	0, 2125, 1074, 1620, 1074, 0, 1074, 1620, 1600, 1866, 2706, 1355, 2706, 0, 2706, 1355, 3200, 1585, 4364, 1042, 4364, 0, 4364, 1042, 4800, 1245]);
+	var frontRugPolygon = new Phaser.Geom.Polygon([
+	120, 2106, 1012, 1689, 1480, 1906, 588, 2324,
 
-    var graphics = this.add.graphics({ x: 0, y: 0 });
+	]);
+	var frontRugBumpPolygon = new Phaser.Geom.Polygon([
+	120 + 75, 2106, 1012, 1689 + 50, 1480 - 75, 1906, 588, 2324 - 50, ]);
 
-    graphics.lineStyle(1, 0xffffff);
+	var graphics = this.add.graphics({
+		x: 0,
+		y: 0
+	});
+	graphics.lineStyle(2, 0xffffff);
+	graphics.beginPath();
+	graphics.moveTo(bgPolygon.points[0].x, bgPolygon.points[0].y);
 
-    graphics.beginPath();
+	for (var i = 1; i < bgPolygon.points.length; i++) {
+		graphics.lineTo(bgPolygon.points[i].x, bgPolygon.points[i].y);
+	}
+	//graphics.closePath();
+	graphics.strokePath();
 
-    graphics.moveTo(polygon.points[0].x, polygon.points[0].y);
+	var graphicsL = this.add.graphics({
+		x: 0,
+		y: 0
+	});
+	var graphicsM = this.add.graphics({
+		x: 1796,
+		y: -28
+	});
+	var graphicsR = this.add.graphics({
+		x: 3264,
+		y: -577
+	});
+	var graphicsDB = this.add.graphics({
+		x: 1200,
+		y: 900
+	});
+	var makeRug = function(x, y) {
+			x.lineStyle(2, 0xffffff);
+			x.fillStyle(y, 2);
+			x.beginPath();
+			x.moveTo(frontRugPolygon.points[0].x, frontRugPolygon.points[0].y);
 
-    for (var i = 1; i < polygon.points.length; i++)
-    {
-        graphics.lineTo(polygon.points[i].x, polygon.points[i].y);
-    }
+			for (var i = 1; i < frontRugPolygon.points.length; i++) {
+				x.lineTo(frontRugPolygon.points[i].x, frontRugPolygon.points[i].y);
+			}
+			x.closePath();
+			x.fillPath();
+			x.strokePath();
+		}
+	var makeBug = function(x, y, z) {
+			x.lineStyle(2, 0xffffff);
+			x.fillStyle(y, 2);
+			x.beginPath();
+			x.moveTo(z.points[0].x, z.points[0].y);
 
-    //graphics.closePath();
-    graphics.strokePath();
-	
-	
-	
-	//var logo = this.add.sprite(860, -130, 'logo').setOrigin(0).setScale(0.5);
-	var leftWindow = this.add.sprite(605, 396, 'leftwindowatlas', 'leftwindow000').setOrigin(0).setScale(0.5);
-	var widedow = this.add.sprite(833, 298, 'widedowatlas', 'widedow000').setOrigin(0).setScale(0.5);
-	var rightWindow = this.add.sprite(1791, 20, 'rightwindowatlas', 'rightwindow000').setOrigin(0).setScale(0.5);
-	var cursor = this.add.sprite(1200, -170, 'logo').setScale(0.5).setInteractive();
-	var leftButton = this.add.sprite(10, 382, 'left').setOrigin(0).setInteractive();
-	var rightButton = this.add.sprite(754, 382, 'right').setOrigin(0).setInteractive();
-	var invKey = this.add.sprite(10, -80, 'obstacleatlas', 'key1').setOrigin(0).setScale(0.5).setInteractive();
-	invKey.alpha = 0;
+			for (var i = 1; i < z.points.length; i++) {
+				x.lineTo(z.points[i].x, z.points[i].y);
+			}
+
+			x.closePath();
+			x.fillPath();
+			x.strokePath();
+		};
+	makeRug(graphicsL, '0x225a89');
+	makeRug(graphicsM, '0x94da90');
+	makeRug(graphicsR, '0x94da90');
+	//var logo = this.add.sprite(860, -130, 'logo').setOrigin(0);
+	var menuBar = this.add.sprite(0, -196, 'menubaratlas', 'barbg').setOrigin(0).setAlpha(0);
+	var barTitle = this.add.sprite(0, -196, 'menubaratlas', 'title').setOrigin(0).setInteractive().setAlpha(0);
+	var barSocial = this.add.sprite(408, -196, 'menubaratlas', 'social').setOrigin(0).setInteractive().setAlpha(0);
+	var barHelp = this.add.sprite(604, -196, 'menubaratlas', 'help').setOrigin(0).setInteractive().setAlpha(0);
+	var barKey = this.add.sprite(754, -196, 'menubaratlas', 'key').setOrigin(0).setInteractive().setAlpha(0);
+
+	windowMask = this.add.sprite(1259, 95, 'windowmask').setOrigin(0);
+	windowMask.add = false;
+	var leftWindow = this.add.sprite(1210, 792, 'windowatlas', 'leftwindow').setOrigin(0);
+	var widedow = this.add.sprite(1666, 596, 'windowatlas', 'widedow').setOrigin(0);
+	var rightWindow = this.add.sprite(3582, 40, 'windowatlas', 'rightwindow').setOrigin(0);
+	floaterFrames = ['brod', 'wrod', 'bsphere', 'wsphere'];
+	floater1 = this.add.sprite(880, (Math.floor(Math.random() * 956) + 1100), 'windowatlas', floaterFrames[Math.floor(Math.random() * 4)]);
+	floater1.mask = new Phaser.Display.Masks.BitmapMask(this, windowMask);
+	floater2 = this.add.sprite(930, (Math.floor(Math.random() * 956) + 1100), 'windowatlas', floaterFrames[Math.floor(Math.random() * 4)]);
+	floater2.mask = new Phaser.Display.Masks.BitmapMask(this, windowMask);
+	floater3 = this.add.sprite(800, (Math.floor(Math.random() * 956) + 1100), 'windowatlas', floaterFrames[Math.floor(Math.random() * 4)]);
+	floater3.mask = new Phaser.Display.Masks.BitmapMask(this, windowMask);
+	floater4 = this.add.sprite(900, (Math.floor(Math.random() * 956) + 1100), 'windowatlas', floaterFrames[Math.floor(Math.random() * 4)]);
+	floater4.mask = new Phaser.Display.Masks.BitmapMask(this, windowMask);
+	floater5 = this.add.sprite(950, (Math.floor(Math.random() * 956) + 1100), 'windowatlas', floaterFrames[Math.floor(Math.random() * 4)]);
+	floater5.mask = new Phaser.Display.Masks.BitmapMask(this, windowMask);
+	floater6 = this.add.sprite(920, (Math.floor(Math.random() * 956) + 1100), 'windowatlas', floaterFrames[Math.floor(Math.random() * 4)]);
+	floater6.mask = new Phaser.Display.Masks.BitmapMask(this, windowMask);
+	floater7 = this.add.sprite(860, (Math.floor(Math.random() * 956) + 1100), 'windowatlas', floaterFrames[Math.floor(Math.random() * 4)]);
+	floater7.mask = new Phaser.Display.Masks.BitmapMask(this, windowMask);
+	floaters = [floater1, floater2, floater3, floater4, floater5, floater6, floater7];
+	var cameraFocus = this.add.sprite(2400, -340, 'logo').setInteractive();
+	var textBox = this.add.sprite(200, -396, 'textboxbg').setOrigin(0).setInteractive();
+	textBox.ready = false;
+	textBox.pos = 1;
+	var textBoxText = this.add.text(240, -366, ['Hey! You are in a room!', 'Where are we going?', 'Wow, its beautiful outside!', 'Where are we going? : - )'], {
+		fontFamily: 'Arial',
+		fontSize: 54,
+		color: '#225a89'
+	}).setOrigin(0);
+	var downPrompt = this.add.sprite(1280, -186, 'downprompt').setOrigin(0);
+	downPrompt.alpha = 1;
+	var leftButton = this.add.sprite(20, 764, 'left').setOrigin(0).setInteractive();
+	var rightButton = this.add.sprite(1508, 764, 'right').setOrigin(0).setInteractive();
 	// !left room
-	var sizePoster = this.add.sprite(378, 442, 'sizeposteratlas', 'sizeposter0').setOrigin(0).setScale(0.5).setInteractive(sizePosterPolygon, Phaser.Geom.Polygon.Contains);
+	var sizePoster = this.add.sprite(756, 884, 'sizeposteratlas', 'sizeposter0').setOrigin(0).setInteractive(sizePosterPolygon, Phaser.Geom.Polygon.Contains);
 	var mesh = this.make.mesh({
 		key: 'phaser2',
 		x: 0,
@@ -655,121 +718,115 @@ window.addEventListener('resize', resizeApp);
 		add: false
 	});
 	sizePoster.mask = new Phaser.Display.Masks.GeometryMask(this, mesh);
-	door = this.add.sprite(164, 493, 'dooratlas', '0').setOrigin(0).setScale(0.5).setInteractive(doorKnobPolygon, Phaser.Geom.Polygon.Contains);
+	var rugContain = this.add.sprite(0, 0).setOrigin(0).setInteractive(frontRugBumpPolygon, Phaser.Geom.Polygon.Contains);
+	rugContain.isUp = false;
+	var vase = this.add.sprite(898, 1440, 'vase').setOrigin(0).setInteractive();
+	var wallPoster = this.add.sprite(116, 1286, 'wallposter').setOrigin(0);
+	var rugBump = this.add.sprite(120, 1688, 'rugbump').setOrigin(0.5, 1).setAlpha(1).setScale(1, 0);
+	var frontTable = this.add.sprite(306, 2158, 'fronttable').setOrigin(0).setInteractive(doorKnobPolygon, Phaser.Geom.Polygon.Contains);
+	var door = this.add.sprite(328, 986, 'dooratlas', '0').setOrigin(0).setInteractive(doorKnobPolygon, Phaser.Geom.Polygon.Contains);
 	var doorQuips = [
 		['I think I left my key', 'in deep space.'],
 		['I said, I think I left my key', 'in deep space.'],
 		['The door is locked.', 'Find the key.'],
 		['How did I lock', 'myself inside?']
 	];
-	doorText = this.add.text(0, 0, doorQuips[0], {
-		fontFamily: 'Arial',
-		fontSize: 18,
-		color: '#225a89',
-	}).setOrigin(0);
-	frontPlant = this.add.sprite(0, 1020, 'plantcycleatlas', '0').setOrigin(0).setInteractive(frontPlantPolygon, Phaser.Geom.Polygon.Contains).setScale(0.5);
-	var chooser = this.add.sprite(0, 0, 'chooser').setOrigin(0).setScale(0.5).setInteractive();
-	chooserBg = this.add.sprite(10, 10, 'pages', 'page' + chooserStats.page[chooserStats.currentPage].index).setOrigin(0).setScale(0.5);
-	var caption = this.add.text(20, 320, ['Wow, its beautiful outside!', 'Where are we going?'], {
-		fontFamily: 'Arial',
-		fontSize: 36,
-		color: '#225a89'
-	}).setOrigin(0);
-	var redButton = this.add.sprite(460, 338, 'redbutton').setOrigin(0).setScale(0.5).setInteractive();
-	var greenButton = this.add.sprite(460, 413, 'greenbutton').setOrigin(0).setScale(0.5).setInteractive();
-	var redText = this.add.text(520.5, 362, 'never', {
-		fontFamily: 'Arial',
-		fontSize: 30,
-		color: '#ffffff'
-	}).setOrigin(0.5).setText(chooserStats.page[chooserStats.currentPage].optA);
-	greenText = this.add.text(520.5, 438, 'never', {
-		fontFamily: 'Arial',
-		fontSize: 30,
-		color: '#ffffff'
-	}).setOrigin(0.5).setText(chooserStats.page[chooserStats.currentPage].optB);
+	var helps = {
+		l: [
+			['I\'m really not sure how I got locked inside! : - /', 'How embarassing. I haven\'t swept under the','rug in a while... I don\'t leave my home','often because I really love it.'], 
+		],
+		m: [
+			['Things are always falling into my couch. I try', 'to play memory games to keep my mind sharp.', 'Try holding your mouse down on the arrows,', 'I think I left something in there : - )'],
+		],
+		r: [
+			['I love to read and I love to sing : - ) Have you', 'ever had a song stuck in your head, but you\'ve','forgotten how it goes? If you can help','me remember, I\'ll give you a reward...'],
+		],
+	};
 	var mugSound = this.sound.add('mugsound');
-	mugSound.volume=0.25;
-	var mug1 = this.add.sprite(616, 1150, 'mugatlas', 'mug1').setOrigin(0).setScale(0.5).setInteractive();
+	mugSound.volume = 0.25;
+	var mug1 = this.add.sprite(1232, 2300, 'mugatlas', 'mug1').setOrigin(0).setInteractive();
 	mug1.pos = 1;
+	frontPlant = this.add.sprite(0, 2040, 'plantcycleatlas', 'plantcycle0').setOrigin(0).setInteractive(frontPlantPolygon, Phaser.Geom.Polygon.Contains);
 	// !middle room
-	
-	card1a = this.add.sprite(1125, 934, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1).setScale(0.5);
-	card1b = this.add.sprite(1160, 916, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1).setScale(0.5);
-	card1c = this.add.sprite(1196, 898, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1).setScale(0.5);
-	card1d = this.add.sprite(1232, 880, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1).setScale(0.5);
-	card2a = this.add.sprite(1170, 955, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2).setScale(0.5);
-	card2b = this.add.sprite(1206, 937, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2).setScale(0.5);
-	card2c = this.add.sprite(1242, 919, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2).setScale(0.5);
-	card2d = this.add.sprite(1278, 901, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2).setScale(0.5);
-	card3a = this.add.sprite(1216, 976, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3).setScale(0.5);
-	card3b = this.add.sprite(1252, 958, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3).setScale(0.5);
-	card3c = this.add.sprite(1288, 940, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3).setScale(0.5);
-	card3d = this.add.sprite(1324, 922, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3).setScale(0.5);
+	card1a = this.add.sprite(2250, 1868, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1);
+	card1b = this.add.sprite(2320, 1832, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1);
+	card1c = this.add.sprite(2392, 1796, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1);
+	card1d = this.add.sprite(2464, 1760, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1);
+	card2a = this.add.sprite(2340, 1910, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2);
+	card2b = this.add.sprite(2412, 1874, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2);
+	card2c = this.add.sprite(2484, 1838, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2);
+	card2d = this.add.sprite(2556, 1802, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(2);
+	card3a = this.add.sprite(2432, 1952, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3);
+	card3b = this.add.sprite(2504, 1916, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3);
+	card3c = this.add.sprite(2576, 1880, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3);
+	card3d = this.add.sprite(2648, 1844, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3);
 	//shooter 
-	var score = this.add.text(1600, 220, '0', {
-		fontFamily: 'magistral',
-		fontSize: 64,
-		color: '#ffffff'
-	}).setOrigin(1, 0);
-	controlStrip = this.add.sprite(1292, 260, 'shooteratlas', 'cs00').setOrigin(0).setScale(0.5).setInteractive();
-	var shooterBg = this.add.sprite(1388, 323, 'flyatlas', '0').setOrigin(0).setScale(0.5);
-	pane1 = this.add.sprite(1388, 323, 'obstacleatlas', '0').setOrigin(0).setScale(0.5);
-	pane2 = this.add.sprite(1456, 355, 'obstacleatlas', '0').setOrigin(0).setScale(0.5);
-	pane3 = this.add.sprite(1525, 387, 'obstacleatlas', Math.floor(Math.random() * 12) + 1).setOrigin(0).setScale(0.5);
-
-	p1 = this.add.sprite(1388, 323, 'shooteratlas', '02').setOrigin(0).setScale(0.5);
-
-	var bgCouch = this.add.sprite(834, 621, 'bgcouch').setOrigin(0).setScale(0.5);
-	var couch = this.add.sprite(863, 696, 'couchatlas', 'couch000').setOrigin(0).setScale(0.5);
-	var sq3 = this.add.sprite(1081, 662.5, 'sqatlas', 'w').setOrigin(0).setScale(0.5).setInteractive(sqPolygon, Phaser.Geom.Polygon.Contains);
-	var sq2 = this.add.sprite(960, 718.5, 'sqatlas', 'w').setOrigin(0).setScale(0.5).setInteractive(sqPolygon, Phaser.Geom.Polygon.Contains);
-	var sq1 = this.add.sprite(839, 775, 'sqatlas', 'w').setOrigin(0).setScale(0.5).setInteractive(sqPolygon, Phaser.Geom.Polygon.Contains);
-	var arm = this.add.sprite(1303.7, 671, 'arm').setOrigin(0).setScale(0.5);
-	var side = this.add.sprite(833.5, 805.5, 'side').setOrigin(0).setScale(0.5);
-	var coftable = this.add.sprite(1040, 779, 'coftable').setOrigin(0).setScale(0.5);var mug2 = this.add.sprite(1278, 797, 'mugatlas', 'mug3').setOrigin(0).setScale(0.5).setInteractive();
+	var CSTopPoly = new Phaser.Geom.Polygon([106, 46, 109, 90, 0, 141, 0, 96, 55, 2]);
+	var CSMidPoly = new Phaser.Geom.Polygon([109, 203, 0, 254, 1, 140, 108, 89]);
+	var CSBotPoly = new Phaser.Geom.Polygon([1, 298, 0, 255, 107, 204, 107, 249, 54, 344]);
+	var controlStrip = this.add.sprite(2530, 700, 'shooteratlas', 'cs00').setOrigin(0).setInteractive();
+	var controlStripTop = this.add.sprite(2530, 700).setOrigin(0).setInteractive(CSTopPoly, Phaser.Geom.Polygon.Contains);
+	var controlStripMid = this.add.sprite(2530, 700).setOrigin(0).setInteractive(CSMidPoly, Phaser.Geom.Polygon.Contains);
+	var controlStripBot = this.add.sprite(2530, 700).setOrigin(0).setInteractive(CSBotPoly, Phaser.Geom.Polygon.Contains);
+	controlStripTop.name = "controlstriptop";
+	controlStripMid.name = "controlstripmid";
+	controlStripBot.name = "controlstripbot";
+	var shooterBg = this.add.sprite(2776, 646, 'flyatlas', '0').setOrigin(0);
+	var pane1 = this.add.sprite(2776, 646, 'obstacleatlas', '0').setOrigin(0);
+	var pane2 = this.add.sprite(2912, 710, 'obstacleatlas', '0').setOrigin(0);
+	var pane3 = this.add.sprite(3050, 774, 'obstacleatlas', Math.floor(Math.random() * 12) + 1).setOrigin(0);
+	var p1 = this.add.sprite(2776, 646, 'shooteratlas', '02').setOrigin(0);
+	var widePlant = this.add.sprite(2732, 1510, 'wideplant').setOrigin(0.5, 1);
+	var bgCouch = this.add.sprite(1668, 1242, 'bgcouch').setOrigin(0);
+	var couch = this.add.sprite(1726, 1392, 'couchatlas', 'couch000').setOrigin(0);
+	var sq3 = this.add.sprite(2162.5, 1325, 'sqatlas', 'w').setOrigin(0).setInteractive(sqPolygon, Phaser.Geom.Polygon.Contains);
+	var sq2 = this.add.sprite(1920, 1437, 'sqatlas', 'w').setOrigin(0).setInteractive(sqPolygon, Phaser.Geom.Polygon.Contains);
+	var sq1 = this.add.sprite(1678, 1550, 'sqatlas', 'w').setOrigin(0).setInteractive(sqPolygon, Phaser.Geom.Polygon.Contains);
+	var arm = this.add.sprite(2608, 1342, 'arm').setOrigin(0);
+	var side = this.add.sprite(1667, 1611, 'side').setOrigin(0);
+	var coftable = this.add.sprite(2080, 1558, 'coftable').setOrigin(0);
+	var mug2 = this.add.sprite(2556, 1594, 'mugatlas', 'mug3').setOrigin(0).setInteractive();
 	mug2.pos = 3;
-	var bookStack = this.add.sprite(1315,775, 'bookstackatlas', 'bookstack00').setOrigin(0).setScale(0.5).setInteractive(bookStackPoly, Phaser.Geom.Polygon.Contains);
-	var mug3 = this.add.sprite(1461, 826, 'mugatlas', 'mug7').setOrigin(0).setScale(0.5).setInteractive();
+	var bookStack = this.add.sprite(2630, 1550, 'bookstackatlas', 'bookstack00').setOrigin(0).setInteractive(bookStackPoly, Phaser.Geom.Polygon.Contains);
+	var mug3 = this.add.sprite(2922, 1652, 'mugatlas', 'mug7').setOrigin(0).setInteractive();
 	mug3.pos = 7;
 	// !right room
 	// create books
 	spines = {
-
 		"book1": [{
-			"shape": [22, 43, 22, 164, 3, 154, 2, 33]
+			"shape": [44, 86, 44, 328, 6, 308, 4, 66]
 		}],
 		"book2": [{
-			"shape": [22, 50, 22, 144, 2, 135, 2, 40]
+			"shape": [44, 100, 44, 288, 4, 270, 4, 80]
 		}],
 		"book3": [{
-			"shape": [1, 146, 1, 36, 22, 45, 23, 155]
+			"shape": [2, 292, 2, 72, 44, 90, 46, 310]
 		}],
 		"book4": [{
-			"shape": [22, 42, 22, 164, 1, 153, 1, 32]
+			"shape": [44, 84, 44, 328, 2, 306, 2, 64]
 		}],
 		"book5": [{
-			"shape": [22, 43, 22, 163, 3, 154, 2, 32]
+			"shape": [44, 86, 44, 326, 6, 308, 4, 64]
 		}],
 		"book6": [{
-			"shape": [3, 135, 3, 41, 22, 50, 22, 145]
+			"shape": [6, 270, 6, 82, 44, 100, 44, 290]
 		}],
 		"book7": [{
-			"shape": [22, 45, 22, 157, 2, 148, 2, 35]
+			"shape": [44, 90, 44, 314, 4, 296, 4, 70]
 		}],
 		"book8": [{
-			"shape": [22, 43, 21, 163, 1, 154, 1, 33]
+			"shape": [44, 86, 42, 326, 2, 308, 2, 66]
 		}],
 		"book9": [{
-			"shape": [21, 50, 22, 144, 2, 136, 1, 42]
+			"shape": [42, 100, 44, 288, 4, 272, 2, 84]
 		}],
 		"book10": [{
-			"shape": [16, 43, 16, 172, 1, 167, 1, 36]
+			"shape": [32, 86, 32, 344, 2, 334, 2, 72]
 		}],
 		"book11": [{
-			"shape": [22, 42, 22, 156, 1, 147, 1, 33]
+			"shape": [44, 84, 44, 312, 2, 294, 2, 66]
 		}]
 	};
-
 	book1polygon = new Phaser.Geom.Polygon(spines.book1[0].shape);
 	book2polygon = new Phaser.Geom.Polygon(spines.book2[0].shape);
 	book3polygon = new Phaser.Geom.Polygon(spines.book3[0].shape);
@@ -781,37 +838,50 @@ window.addEventListener('resize', resizeApp);
 	book9polygon = new Phaser.Geom.Polygon(spines.book9[0].shape);
 	book10polygon = new Phaser.Geom.Polygon(spines.book10[0].shape);
 	book11polygon = new Phaser.Geom.Polygon(spines.book11[0].shape);
-
-	bottomShelf = this.add.sprite(2082, 332, 'bookatlas', 'shelf').setOrigin(0);
-	book5 = this.add.sprite(2123, 217, 'bookatlas', 'book5').setOrigin(0).setInteractive(book5polygon, Phaser.Geom.Polygon.Contains);
-	book6 = this.add.sprite(2132, 255, 'bookatlas', 'book6').setOrigin(0).setInteractive(book6polygon, Phaser.Geom.Polygon.Contains);
-	book7 = this.add.sprite(2169, 251, 'bookatlas', 'book7').setOrigin(0).setInteractive(book7polygon, Phaser.Geom.Polygon.Contains);
-	book8 = this.add.sprite(2208, 267, 'bookatlas', 'book8').setOrigin(0).setInteractive(book8polygon, Phaser.Geom.Polygon.Contains);
-	book9 = this.add.sprite(2218, 295, 'bookatlas', 'book9').setOrigin(0).setInteractive(book9polygon, Phaser.Geom.Polygon.Contains);
-	book10 = this.add.sprite(2254, 273, 'bookatlas', 'book10').setOrigin(0).setInteractive(book10polygon, Phaser.Geom.Polygon.Contains);
-	book11 = this.add.sprite(2282, 300, 'bookatlas', 'book11').setOrigin(0).setInteractive();
-	topShelf = this.add.sprite(2082, 162, 'bookatlas', 'shelf').setOrigin(0);
-	book1 = this.add.sprite(2134, 53, 'bookatlas', 'book1').setOrigin(0).setInteractive(book1polygon, Phaser.Geom.Polygon.Contains);
-	book2 = this.add.sprite(2143, 91, 'bookatlas', 'book2').setOrigin(0).setInteractive(book2polygon, Phaser.Geom.Polygon.Contains);
-	book3 = this.add.sprite(2180, 86, 'bookatlas', 'book3').setOrigin(0).setInteractive(book3polygon, Phaser.Geom.Polygon.Contains);
-	book4 = this.add.sprite(2210, 90, 'bookatlas', 'book4').setOrigin(0).setInteractive();
-	shelfPlant = this.add.sprite(2220, 67, 'shelfplantimg').setOrigin(0).setInteractive();
-	var tableLegs = this.add.sprite(1637, 656, 'tablelegs').setOrigin(0).setScale(0.5);
-	var mouseHoles = this.add.sprite(1624, 504, 'holesatlas', 'holes0').setOrigin(0).setScale(0.5).setInteractive(holesPolygon, Phaser.Geom.Polygon.Contains);
-	var topLeg = this.add.sprite(1860, 667, 'topleg').setOrigin(0).setScale(0.5);
-	var tableTop = this.add.sprite(1626, 537, 'tabletop').setOrigin(0).setScale(0.5);
-	lamp = this.add.sprite(1600, 385, 'wobble', '00').setOrigin(0).setInteractive(lampPolygon, Phaser.Geom.Polygon.Contains);
-	var mug4 = this.add.sprite(1835, 578, 'mugatlas', 'mug6').setOrigin(0).setScale(0.5).setInteractive();
+	var clock = this.add.sprite(1628 * 2, 154 * 2, 'clock').setOrigin(0);
+	bottomShelf = this.add.sprite(4164, 664, 'bookatlas', 'shelf').setOrigin(0);
+	book5 = this.add.sprite(4246, 434, 'bookatlas', 'book5').setOrigin(0).setInteractive(book5polygon, Phaser.Geom.Polygon.Contains);
+	book6 = this.add.sprite(4274, 500, 'bookatlas', 'book6').setOrigin(0).setInteractive(book6polygon, Phaser.Geom.Polygon.Contains);
+	book7 = this.add.sprite(4338, 502, 'bookatlas', 'book7').setOrigin(0).setInteractive(book7polygon, Phaser.Geom.Polygon.Contains);
+	book8 = this.add.sprite(4406, 520, 'bookatlas', 'book8').setOrigin(0).setInteractive(book8polygon, Phaser.Geom.Polygon.Contains);
+	book9 = this.add.sprite(4436, 590, 'bookatlas', 'book9').setOrigin(0).setInteractive(book9polygon, Phaser.Geom.Polygon.Contains);
+	book10 = this.add.sprite(4508, 546, 'bookatlas', 'book10').setOrigin(0).setInteractive(book10polygon, Phaser.Geom.Polygon.Contains);
+	book11 = this.add.sprite(4564, 600, 'bookatlas', 'book11').setOrigin(0).setInteractive();
+	topShelf = this.add.sprite(4164, 324, 'bookatlas', 'shelf').setOrigin(0);
+	book1 = this.add.sprite(4263, 106, 'bookatlas', 'book1').setOrigin(0).setInteractive(book1polygon, Phaser.Geom.Polygon.Contains);
+	book2 = this.add.sprite(4296, 172, 'bookatlas', 'book2').setOrigin(0).setInteractive(book2polygon, Phaser.Geom.Polygon.Contains);
+	book3 = this.add.sprite(4360, 172, 'bookatlas', 'book3').setOrigin(0).setInteractive(book3polygon, Phaser.Geom.Polygon.Contains);
+	book4 = this.add.sprite(4420, 180, 'bookatlas', 'book4').setOrigin(0).setInteractive();
+	shelfPlant = this.add.sprite(4420, 64, 'plantcycleatlas', 'plantcycle0').setOrigin(0).setInteractive();
+	var tableLegs = this.add.sprite(3274, 1312, 'tablelegs').setOrigin(0);
+	var mouseHoles = this.add.sprite(3250, 1006, 'holesatlas', 'holes1_00').setOrigin(0).setInteractive(holesPolygon, Phaser.Geom.Polygon.Contains);
+	var topLeg = this.add.sprite(3720, 1334, 'topleg').setOrigin(0);
+	var tableTop = this.add.sprite(3252, 1074, 'tabletop').setOrigin(0);
+	var lamp = this.add.sprite(3200, 770, 'lampatlas', 'lamp00').setOrigin(0).setInteractive(lampPolygon, Phaser.Geom.Polygon.Contains);
+	var mug4 = this.add.sprite(3670, 1156, 'mugatlas', 'mug6').setOrigin(0).setInteractive();
 	mug4.pos = 6;
 	// !create sounds
 	var wobbleSound = this.sound.add('wobblesound');
 	// left room
-	shootSong = this.sound.add('shootloop');
-	shootSong.loop = true;
-	shootSong.volume = 0.2;
+	var sizePosterSound1 = this.sound.add('sizeposter1');
+	var sizePosterSound2 = this.sound.add('sizeposter2');
+	var sizePosterSound3 = this.sound.add('sizeposter3');
+	var sizePosterSound4 = this.sound.add('sizeposter4');
+	var sizePosterSound5 = this.sound.add('sizeposter5');
+	var sizePosterSound6 = this.sound.add('sizeposter6');
+	var sizePosterSound7 = this.sound.add('sizeposter7');
+	var sizePosterSound8 = this.sound.add('sizeposter8');
+	var sizePosterSound9 = this.sound.add('sizeposter9');
+	var sizePosterSound10 = this.sound.add('sizeposter10');
+	var scratchSound = this.sound.add('scratch');
+	var owwSound = this.sound.add('oww');
 	// middle room
+	var shootSong = this.sound.add('shootloop');
+	shootSong.loop = true;
+	var dieSound = this.sound.add('die');
+	var sqSound = this.sound.add('sq');
 	// right room
-	chime1 = this.sound.add('chime1');
+	var chime1 = this.sound.add('chime1');
 	var chime2 = this.sound.add('chime2');
 	var chime3 = this.sound.add('chime3');
 	var chime4 = this.sound.add('chime4');
@@ -820,17 +890,64 @@ window.addEventListener('resize', resizeApp);
 	var chime7 = this.sound.add('chime7');
 	var chime8 = this.sound.add('chime8');
 	var chime0 = this.sound.add('chime0');
-	chime1.volume = 0.2;
-	chime2.volume = 0.2;
-	chime3.volume = 0.2;
-	chime4.volume = 0.2;
-	chime5.volume = 0.2;
-	chime6.volume = 0.2;
-	chime7.volume = 0.2;
-	chime8.volume = 0.2;
-	chime0.volume = 0.2;
 	var chimes = [chime1, chime2, chime3, chime4, chime5, chime6, chime7, chime8, chime0];
 	// !create animations
+	// !universal
+	var timedEvent = this.time.addEvent({
+		delay: 40,
+		callback: makeFloat,
+		callbackScope: this,
+		loop: true
+	});
+	var textBoxTweenUp = this.tweens.add({
+		targets: [textBox, textBoxText, downPrompt],
+		x: '+=0',
+		y: '-=1360',
+		duration: 750,
+		repeat: 0,
+		paused: true,
+		onComplete: function() {
+			textBoxTweenUp.pause();
+			textBox.up = true;
+			downPrompt.alpha = 1;
+		}
+	});
+	var textBoxTweenDownPrep = this.tweens.add({
+		targets: [textBox, textBoxText, downPrompt],
+		x: '+=0',
+		y: '-=100',
+		duration: 150,
+		repeat: 0,
+		paused: true,
+		onStart: function() {
+			downPrompt.alpha = 0;
+		},
+		onComplete: function() {
+			textBoxTweenDownPrep.pause();
+			textBoxTweenDown.resume();
+		}
+	});
+	var textBoxTweenDown = this.tweens.add({
+		targets: [textBox, textBoxText, downPrompt],
+		x: '+=0',
+		y: '+=1460',
+		duration: 600,
+		repeat: 0,
+		paused: true,
+		onComplete: function() {
+			textBoxTweenDown.pause();
+			textBox.up = false;
+		}
+	});
+	var downPromptAnim = this.tweens.add({
+		targets: [downPrompt],
+		y: '+=15',
+		duration: 500,
+		repeat: -1,
+		paused: true,
+		ease: 'Stepped',
+		easeParams: [3],
+	})
 	// !left room
 	var sizePosterAnim = this.anims.create({
 		key: 'sizeposter',
@@ -859,25 +976,6 @@ window.addEventListener('resize', resizeApp);
 		repeat: 0,
 		paused: true,
 		ease: 'easeOut',
-		topLeftX: cropGrid.p9.x,
-		topLeftY: cropGrid.p9.y,
-		topRightY: cropGrid.p8.y,
-		bottomLeftX: cropGrid.p6.x,
-		bottomLeftY: cropGrid.p6.y,
-
-		onComplete: function() {
-			sizePosterSize1.pause();
-		},
-		onUpdate: function() {
-			doVerts();
-		}
-	});
-	var sizePosterSize1 = this.tweens.add({
-		targets: cropQuad,
-		duration: 500,
-		repeat: 0,
-		paused: true,
-		ease: 'easeOut',
 		topLeftX: cropGrid.p5.x,
 		topLeftY: cropGrid.p5.y,
 		topRightX: cropGrid.p6.x,
@@ -886,7 +984,9 @@ window.addEventListener('resize', resizeApp);
 		bottomLeftY: cropGrid.p8.y,
 		bottomRightX: cropGrid.p9.x,
 		bottomRightY: cropGrid.p9.y,
-
+		onStart: function() {
+			sizePosterSound1.play();
+		},
 		onComplete: function() {
 			sizePosterSize1.pause();
 		},
@@ -904,7 +1004,9 @@ window.addEventListener('resize', resizeApp);
 		bottomLeftY: cropGrid.p2.y,
 		bottomRightX: cropGrid.p3.x,
 		bottomRightY: cropGrid.p3.y,
-
+		onStart: function() {
+			sizePosterSound2.play();
+		},
 		onComplete: function() {
 			sizePosterSize2.pause();
 		},
@@ -924,7 +1026,9 @@ window.addEventListener('resize', resizeApp);
 		bottomLeftY: cropGrid.p8.y,
 		bottomRightX: cropGrid.p7.x,
 		bottomRightY: cropGrid.p7.y,
-
+		onStart: function() {
+			sizePosterSound3.play();
+		},
 		onComplete: function() {
 			sizePosterSize3.pause();
 		},
@@ -942,7 +1046,9 @@ window.addEventListener('resize', resizeApp);
 		topLeftY: cropGrid.p6.y,
 		bottomLeftX: cropGrid.p9.x,
 		bottomLeftY: cropGrid.p9.y,
-
+		onStart: function() {
+			sizePosterSound4.play();
+		},
 		onComplete: function() {
 			sizePosterSize4.pause();
 		},
@@ -964,7 +1070,9 @@ window.addEventListener('resize', resizeApp);
 		bottomLeftY: cropGrid.p3.y,
 		bottomRightX: cropGrid.p9.x,
 		bottomRightY: cropGrid.p9.y,
-
+		onStart: function() {
+			sizePosterSound5.play();
+		},
 		onComplete: function() {
 			sizePosterSize5.pause();
 		},
@@ -986,6 +1094,9 @@ window.addEventListener('resize', resizeApp);
 		bottomLeftY: cropGrid.p1.y,
 		bottomRightX: cropGrid.p3.x,
 		bottomRightY: cropGrid.p3.y,
+		onStart: function() {
+			sizePosterSound6.play();
+		},
 		onComplete: function() {
 			sizePosterSize6.pause();
 		},
@@ -1007,7 +1118,9 @@ window.addEventListener('resize', resizeApp);
 		bottomLeftY: cropGrid.p7.y,
 		bottomRightX: cropGrid.p1.x,
 		bottomRightY: cropGrid.p1.y,
-
+		onStart: function() {
+			sizePosterSound7.play();
+		},
 		onComplete: function() {
 			sizePosterSize7.pause();
 		},
@@ -1029,7 +1142,9 @@ window.addEventListener('resize', resizeApp);
 		bottomLeftY: cropGrid.p7.y,
 		bottomRightX: cropGrid.p1.x,
 		bottomRightY: cropGrid.p1.y,
-
+		onStart: function() {
+			sizePosterSound8.play();
+		},
 		onComplete: function() {
 			sizePosterSize8.pause();
 			if (sizePoster.anims.currentAnim === null) {
@@ -1056,11 +1171,12 @@ window.addEventListener('resize', resizeApp);
 		bottomLeftY: cropGrid.p7.y,
 		bottomRightX: cropGrid.p9.x,
 		bottomRightY: cropGrid.p9.y,
-
+		onStart: function() {
+			sizePosterSound9.play();
+		},
 		onComplete: function() {
 			sizePosterSize9a.pause();
 			sizePosterSize9.resume();
-
 		},
 		onUpdate: function() {
 			doVerts();
@@ -1080,7 +1196,6 @@ window.addEventListener('resize', resizeApp);
 		bottomLeftY: cropGrid.p4.y,
 		bottomRightX: cropGrid.p5.x,
 		bottomRightY: cropGrid.p5.y,
-
 		onComplete: function() {
 			sizePosterSize9.pause();
 			sizePoster.anims.pause();
@@ -1095,73 +1210,51 @@ window.addEventListener('resize', resizeApp);
 		frames: doorOpenFrames,
 		frameRate: 15
 	});
-	var doorOpen = this.anims.create({
+	var doorClose = this.anims.create({
 		key: 'doorclose',
 		frames: doorCloseFrames,
 		frameRate: 15
 	});
-	for (var i = 1; i < 7; i++) {
+	for (i = 1; i < 7; i++) {
 		this.anims.create({
 			key: 'plantcycle' + i,
 			frames: plantCycleArray[i],
 			frameRate: 30
 		});
 	}
-	var leftWindowDrift = this.anims.create({
-		key:'leftwindowdrift',
-		frames: leftWindowFrames,
-		frameRate:30,
-		repeat: -1
-	});
-	var widedowDrift = this.anims.create({
-		key:'widedowdrift',
-		frames: widedowFrames,
-		frameRate:30,
-		repeat: -1
-	});
-	
-	var rightWindowDrift = this.anims.create({
-		key:'rightwindowdrift',
-		frames: rightWindowFrames,
-		frameRate:30,
-		repeat: -1
-	});
-	
-	chooserTweenUp = this.tweens.add({
-		targets: [chooser, chooserBg, caption, redButton, greenButton, redText, greenText],
-		x: '+=0',
-		y: '-=680',
-		duration: 750,
-		repeat: 0,
+	var rugBumpUpTween = this.tweens.add({
+		targets: [rugBump],
+		height: 1,
+		scaleY: 1,
+		duration: 500,
+		repeat: -1,
 		paused: true,
-		onComplete: function() {
-			chooserTweenUp.pause();
-			chooserStats.up = true;
+		onRepeat: function() {
+			rugBumpUpTween.pause();
+			rugContain.isUp = true;
 		}
 	});
-	chooserTweenDownPrep = this.tweens.add({
-		targets: [chooser, chooserBg, caption, redButton, greenButton, redText, greenText],
-		x: '+=0',
-		y: '-=50',
-		duration: 150,
-		repeat: 0,
+	var rugBumpDownTween = this.tweens.add({
+		targets: [rugBump],
+		height: 0,
+		scaleY: 0,
+		duration: 250,
+		repeat: -1,
 		paused: true,
-		onComplete: function() {
-			chooserTweenDownPrep.pause();
-			chooserTweenDown.resume();
+		onRepeat: function() {
+			rugBumpDownTween.pause();
+			rugContain.isUp = false;
 		}
 	});
-	var chooserTweenDown = this.tweens.add({
-		targets: [chooser, chooserBg, caption, redButton, greenButton, redText, greenText],
-		x: '+=0',
-		y: '+=730',
-		duration: 600,
-		repeat: 0,
+	var rugBumpJitterTween = this.tweens.add({
+		targets: [rugBump],
+		scaleX: 1.125,
+		duration: 100,
+		repeat: -1,
 		paused: true,
-		onComplete: function() {
-			chooserTweenDown.pause();
-			chooserStats.up = false;
-			door.anims.play('doorclose');
+		onRepeat: function() {
+			rugBumpJitterTween.pause();
+			scratchSound.play();
 		}
 	});
 	// !middle room
@@ -1172,13 +1265,11 @@ window.addEventListener('resize', resizeApp);
 			frameRate: 30
 		}).addFrame(flipArray[i]);
 	}
-
 	var flip = this.anims.create({
 		key: 'flipstart',
 		frames: flipStartFrames,
 		frameRate: 30
 	});
-
 	this.anims.create({
 		key: 'flipback',
 		frames: flipBackFrames,
@@ -1236,34 +1327,48 @@ window.addEventListener('resize', resizeApp);
 		key: 'keyget',
 		frames: keyGetframes,
 	});
-	obstacles = ['obstacle0', 'obstacleA', 'obstacleB', 'obstacleC', 'obstacleD', 'obstacleE', 'obstacleF'];
+	var obstacles = ['obstacle0', 'obstacleA', 'obstacleB', 'obstacleC', 'obstacleD', 'obstacleE', 'obstacleF'];
 	this.anims.create({
 		key: 'up1',
 		frames: u1Frames,
-		frameRate: 10
+		frameRate: 10,
+
 	});
 	this.anims.create({
 		key: 'up2',
 		frames: u2Frames,
-		frameRate: 10
+		frameRate: 10,
+
 	});
 	this.anims.create({
 		key: 'down1',
 		frames: d1Frames,
-		frameRate: 10
+		frameRate: 10,
+
 	});
 	this.anims.create({
 		key: 'down2',
 		frames: d2Frames,
-		frameRate: 10
+		frameRate: 10,
 	});
+	this.anims.create({
+		key: 'doubleup',
+		frames: u1Frames,
+		frameRate: 10,
+
+	}).addFrame(u2Frames);
+	this.anims.create({
+		key: 'doubledown',
+		frames: d1Frames,
+		frameRate: 10,
+
+	}).addFrame(d2Frames);
 	this.anims.create({
 		key: 'crash1',
 		frames: crash1frames,
 		framerate: 15,
 		repeat: 8,
 	});
-
 	this.anims.create({
 		key: 'crash2',
 		frames: crash2frames,
@@ -1283,19 +1388,16 @@ window.addEventListener('resize', resizeApp);
 		repeat: 0,
 	});
 	keyGetTween = this.tweens.add({
-		targets: [invKey],
+		targets: [barKey],
+		y: '+=75',
 		alpha: 1,
-		duration: 1000,
-		ease: 'Power2',
+		duration: 500,
 		repeat: 0,
 		paused: true
 	});
-
-
-
 	var sq1Tween = this.tweens.add({
 		targets: [sq1],
-		y: '-=150',
+		y: '-=300',
 		duration: 500,
 		ease: 'easeOut',
 		repeat: -1,
@@ -1308,7 +1410,7 @@ window.addEventListener('resize', resizeApp);
 	});
 	var sq1TweenFall = this.tweens.add({
 		targets: [sq1],
-		y: '+=150',
+		y: '+=300',
 		duration: 750,
 		ease: 'Bounce',
 		repeat: -1,
@@ -1320,7 +1422,7 @@ window.addEventListener('resize', resizeApp);
 	});
 	var sq2Tween = this.tweens.add({
 		targets: [sq2],
-		y: '-=150',
+		y: '-=300',
 		duration: 500,
 		ease: 'ease',
 		repeat: -1,
@@ -1333,7 +1435,7 @@ window.addEventListener('resize', resizeApp);
 	});
 	var sq2TweenFall = this.tweens.add({
 		targets: [sq2],
-		y: '+=150',
+		y: '+=300',
 		duration: 750,
 		ease: 'Bounce',
 		repeat: -1,
@@ -1345,7 +1447,7 @@ window.addEventListener('resize', resizeApp);
 	});
 	var sq3Tween = this.tweens.add({
 		targets: [sq3],
-		y: '-=150',
+		y: '-=300',
 		duration: 500,
 		ease: 'easeIn',
 		repeat: -1,
@@ -1358,7 +1460,7 @@ window.addEventListener('resize', resizeApp);
 	});
 	var sq3TweenFall = this.tweens.add({
 		targets: [sq3],
-		y: '+=150',
+		y: '+=300',
 		duration: 750,
 		ease: 'Bounce',
 		repeat: -1,
@@ -1378,7 +1480,7 @@ window.addEventListener('resize', resizeApp);
 		key: 'bookcirc',
 		frames: bookCircFrames,
 		frameRate: 30,
-		repeat:0
+		repeat: 0
 	});
 	// !right room
 	this.anims.create({
@@ -1388,8 +1490,8 @@ window.addEventListener('resize', resizeApp);
 	});
 	var book1tween = this.tweens.add({
 		targets: [book1],
-		x: '-=103',
-		y: '+=48',
+		x: '-=206',
+		y: '+=96',
 		duration: 1000,
 		yoyo: true,
 		ease: 'Power2',
@@ -1401,8 +1503,8 @@ window.addEventListener('resize', resizeApp);
 	});
 	var book2tween = this.tweens.add({
 		targets: [book2],
-		x: '-=103',
-		y: '+=48',
+		x: '-=206',
+		y: '+=96',
 		duration: 1000,
 		yoyo: true,
 		ease: 'Power2',
@@ -1412,11 +1514,10 @@ window.addEventListener('resize', resizeApp);
 			book2tween.pause();
 		}
 	});
-
 	var book3tween = this.tweens.add({
 		targets: [book3],
-		x: '-=103',
-		y: '+=48',
+		x: '-=206',
+		y: '+=96',
 		duration: 1000,
 		yoyo: true,
 		ease: 'Power2',
@@ -1426,11 +1527,23 @@ window.addEventListener('resize', resizeApp);
 			book3tween.pause();
 		}
 	});
-
+	var book4tween = this.tweens.add({
+		targets: [book4],
+		x: '-=206',
+		y: '+=96',
+		duration: 1000,
+		yoyo: true,
+		ease: 'Power2',
+		repeat: -1,
+		paused: true,
+		onRepeat: function() {
+			book4tween.pause();
+		}
+	});
 	var book5tween = this.tweens.add({
 		targets: [book5],
-		x: '-=103',
-		y: '+=48',
+		x: '-=206',
+		y: '+=96',
 		duration: 1000,
 		yoyo: true,
 		ease: 'Power2',
@@ -1442,8 +1555,8 @@ window.addEventListener('resize', resizeApp);
 	});
 	var book6tween = this.tweens.add({
 		targets: [book6],
-		x: '-=103',
-		y: '+=48',
+		x: '-=206',
+		y: '+=96',
 		duration: 1000,
 		yoyo: true,
 		ease: 'Power2',
@@ -1455,8 +1568,8 @@ window.addEventListener('resize', resizeApp);
 	});
 	var book7tween = this.tweens.add({
 		targets: [book7],
-		x: '-=103',
-		y: '+=48',
+		x: '-=206',
+		y: '+=96',
 		duration: 1000,
 		yoyo: true,
 		ease: 'Power2',
@@ -1468,8 +1581,8 @@ window.addEventListener('resize', resizeApp);
 	});
 	var book8tween = this.tweens.add({
 		targets: [book8],
-		x: '-=103',
-		y: '+=48',
+		x: '-=206',
+		y: '+=96',
 		duration: 1000,
 		yoyo: true,
 		ease: 'Power2',
@@ -1481,8 +1594,8 @@ window.addEventListener('resize', resizeApp);
 	});
 	var book9tween = this.tweens.add({
 		targets: [book9],
-		x: '-=103',
-		y: '+=48',
+		x: '-=206',
+		y: '+=96',
 		duration: 1000,
 		yoyo: true,
 		ease: 'Power2',
@@ -1494,8 +1607,8 @@ window.addEventListener('resize', resizeApp);
 	});
 	var book10tween = this.tweens.add({
 		targets: [book10],
-		x: '-=103',
-		y: '+=48',
+		x: '-=206',
+		y: '+=96',
 		duration: 1000,
 		yoyo: true,
 		ease: 'Power2',
@@ -1505,191 +1618,128 @@ window.addEventListener('resize', resizeApp);
 			book10tween.pause();
 		}
 	});
-	
-	var book1Stween = this.tweens.add({
-		targets: [book1],
-		x: '-=25.5',
-		y: '+=12',
-		duration: 250,
+	var book11tween = this.tweens.add({
+		targets: [book11],
+		x: '-=206',
+		y: '+=96',
+		duration: 1000,
 		yoyo: true,
 		ease: 'Power2',
 		repeat: -1,
 		paused: true,
 		onRepeat: function() {
-			book1Stween.pause();
+			book11tween.pause();
 		}
 	});
-	var book2Stween = this.tweens.add({
-		targets: [book2],
-		x: '-=25.5',
-		y: '+=12',
-		duration: 250,
-		yoyo: true,
-		ease: 'Power2',
-		repeat: -1,
-		paused: true,
-		onRepeat: function() {
-			book2Stween.pause();
-		}
-	});
-	var book3Stween = this.tweens.add({
-		targets: [book3],
-		x: '-=25.5',
-		y: '+=12',
-		duration: 250,
-		yoyo: true,
-		ease: 'Power2',
-		repeat: -1,
-		paused: true,
-		onRepeat: function() {
-			book3Stween.pause();
-		}
-	});
-	var book5Stween = this.tweens.add({
-		targets: [book5],
-		x: '-=25.5',
-		y: '+=12',
-		duration: 250,
-		yoyo: true,
-		ease: 'Power2',
-		repeat: -1,
-		paused: true,
-		onRepeat: function() {
-			book5Stween.pause();
-		}
-	});
-	var book6Stween = this.tweens.add({
-		targets: [book6],
-		x: '-=25.5',
-		y: '+=12',
-		duration: 250,
-		yoyo: true,
-		ease: 'Power2',
-		repeat: -1,
-		paused: true,
-		onRepeat: function() {
-			book6Stween.pause();
-		}
-	});
-	var book7Stween = this.tweens.add({
-		targets: [book7],
-		x: '-=25.5',
-		y: '+=12',
-		duration: 250,
-		yoyo: true,
-		ease: 'Power2',
-		repeat: -1,
-		paused: true,
-		onRepeat: function() {
-			book7Stween.pause();
-		}
-	});
-	var book8Stween = this.tweens.add({
-		targets: [book8],
-		x: '-=25.5',
-		y: '+=12',
-		duration: 250,
-		yoyo: true,
-		ease: 'Power2',
-		repeat: -1,
-		paused: true,
-		onRepeat: function() {
-			book8Stween.pause();
-		}
-	});
-	var book9Stween = this.tweens.add({
-		targets: [book9],
-		x: '-=25.5',
-		y: '+=12',
-		duration: 250,
-		yoyo: true,
-		ease: 'Power2',
-		repeat: -1,
-		paused: true,
-		onRepeat: function() {
-			book9Stween.pause();
-		}
-	});
-	var book10Stween = this.tweens.add({
-		targets: [book10],
-		x: '-=25.5',
-		y: '+=12',
-		duration: 250,
-		yoyo: true,
-		ease: 'Power2',
-		repeat: -1,
-		paused: true,
-		onRepeat: function() {
-			book10Stween.pause();
-		}
-	});
-	
 	this.anims.create({
-		key: 'mousehole',
-		frames: holesFrames,
+		key: 'mousehole1',
+		frames: holes1Frames,
+		framerate: 30,
+		repeat: 0,
+	});
+	this.anims.create({
+		key: 'mousehole2',
+		frames: holes2Frames,
+		framerate: 30,
+		repeat: 0,
+	});
+	this.anims.create({
+		key: 'mousehole3',
+		frames: holes3Frames,
 		framerate: 30,
 		repeat: 0,
 	});
 
 	_anims = this.anims;
-
-/*for (i = 0; i < 15; i++) {
-		console.log(i);
-		_anims.anims.entries.crash1.addFrame(crash1frames);
-		_anims.anims.entries.crash2.addFrame(crash2frames);
-		_anims.anims.entries.crash3.addFrame(crash3frames);
-	}
-	_anims.anims.entries.crash1.addFrame(respawnFrames);
-	_anims.anims.entries.crash2.addFrame(respawnFrames);
-	_anims.anims.entries.crash3.addFrame(respawnFrames);*/
 	// !create interactions
-/*this.input.on('pointerdown', function (pointer) {
-
-        var child = this.children.getAt(0);
-
-
-        this.children.bringToTop(child);
-
-    }, this);*/
 	// !universal
-	//cursor.on('pointerdown', function() {
-		//context = new AudioContext();
-		context.resume();
-		console.log(context);
-		// game.sound.play('chime8');
-		tween = this.tweens.add({
-			targets: [cursor],
-			y: 623,
-			alpha: 0,
-			duration: 1750,
-			repeat: 0
-		});
-		bgShow = this.tweens.add({
-			targets: [bgM],
-			alpha: 1,
-			duration: 1000,
-			repeat: 0
-		});
-		
-		
-		
-	//}, this);
+	tween = this.tweens.add({
+		targets: [cameraFocus],
+		y: 1246,
+		alpha: 0,
+		duration: 1750,
+		repeat: 0,
+		onComplete: function() {
+			//textBoxTweenUp.resume();
+			textBox.up = true;
+			downPrompt.alpha = 1;
+			menuBarTween.resume();
+			setTimeout(function() {
+				textBox.ready = true;
+				downPromptAnim.resume();
+			}, 1250);
+		}
+	});
+	tween = this.tweens.add({
+		targets: [textBox, textBoxText, downPrompt],
+		y: "+=1586",
+		duration: 1750,
+		repeat: 0,
+	});
+	var menuBarTween = this.tweens.add({
+		targets: [menuBar, barTitle, barSocial, barHelp],
+		y: '+=75',
+		alpha: 1,
+		duration: 500,
+		repeat: 0,
+		paused: true
+	});
+	barTitle.on('pointerover', function(pointer) {
+		barTitle.setFrame('title_on');
+	});
+	barTitle.on('pointerout', function(pointer) {
+		barTitle.setFrame('title');
+	});
+	barSocial.on('pointerover', function(pointer) {
+		barSocial.setFrame('social_on');
+	});
+	barSocial.on('pointerout', function(pointer) {
+		barSocial.setFrame('social');
+	});
+	barHelp.on('pointerover', function(pointer) {
+		barHelp.setFrame('help_on');
+	});
+	barHelp.on('pointerout', function(pointer) {
+		barHelp.setFrame('help');
+	});
+	barHelp.on('pointerdown', function(pointer) {
+		if (textBox.ready == false && textBox.pos == 0) {
+			textBox.ready = true;
+			textBoxTweenUp.resume();
+			downPromptAnim.resume();
+			if (currentRoom == 0) {
+				textBoxText.setText(helps.l[textBox.pos]);
+				textBox.pos=2;
+			} else if (currentRoom == 1) {
+				textBoxText.setText(helps.m[textBox.pos]);
+				textBox.pos=2;
+			} else if (currentRoom == 2) {
+				textBoxText.setText(helps.r[textBox.pos]);
+				textBox.pos=2;
+			}
+		}
+	}, this);
+	barKey.on('pointerover', function(pointer) {
+		barKey.setFrame('key_on');
+	});
+	barKey.on('pointerout', function(pointer) {
+		barKey.setFrame('key');
+	});
 	leftButton.on('pointerdown', function() {
-		//this.input.stopPropagation();
 		if (currentRoom == 1) {
 			currentRoom = 0;
 			leftButton.alpha = 0;
 			tween = this.tweens.add({
-				targets: [uiContainer],
+				targets: [uiContainer, textContainer],
 				x: 0,
-				y: 510,
+				y: 1020,
 				duration: 750,
 				repeat: 0
 			});
 			tween2 = this.tweens.add({
-				targets: [cursor],
-				x: 400,
-				y: 850,
+				targets: [cameraFocus],
+				x: 800,
+				y: 1700,
 				duration: 750,
 				repeat: 0
 			});
@@ -1698,37 +1748,36 @@ window.addEventListener('resize', resizeApp);
 			currentRoom = 1;
 			rightButton.alpha = 1;
 			tween = this.tweens.add({
-				targets: [uiContainer],
-				x: 800,
-				y: 283,
+				targets: [uiContainer, textContainer],
+				x: 1600,
+				y: 566,
 				duration: 750,
 				repeat: 0
 			});
 			tween2 = this.tweens.add({
-				targets: [cursor],
-				x: 1200,
-				y: 623,
+				targets: [cameraFocus],
+				x: 2400,
+				y: 1246,
 				duration: 750,
 				repeat: 0
 			});
 		}
 	}, this);
 	rightButton.on('pointerdown', function() {
-		//this.input.stopPropagation();
 		if (currentRoom == 1) {
 			currentRoom = 2;
 			rightButton.alpha = 0;
 			tween = this.tweens.add({
-				targets: [uiContainer],
-				x: 1600,
-				y: 60,
+				targets: [uiContainer, textContainer],
+				x: 3200,
+				y: 120,
 				duration: 750,
 				repeat: 0
 			});
 			tween2 = this.tweens.add({
-				targets: [cursor],
-				x: 2000,
-				y: 400,
+				targets: [cameraFocus],
+				x: 4000,
+				y: 800,
 				duration: 750,
 				repeat: 0
 			});
@@ -1737,40 +1786,69 @@ window.addEventListener('resize', resizeApp);
 			currentRoom = 1;
 			leftButton.alpha = 1;
 			tween = this.tweens.add({
-				targets: [uiContainer],
-				x: 800,
-				y: 283,
+				targets: [uiContainer, textContainer],
+				x: 1600,
+				y: 566,
 				duration: 750,
 				repeat: 0
 			});
 			tween2 = this.tweens.add({
-				targets: [cursor],
-				x: 1200,
-				y: 623,
+				targets: [cameraFocus],
+				x: 2400,
+				y: 1246,
 				duration: 750,
 				repeat: 0
 			});
-			if (chooserStats.up) {
-				chooserTweenDownPrep.resume();
-			}
 		}
 	}, this);
-
-	// !left room
-/*sizePoster.on('pointerover', function(pointer) {
-
-		if (sizePoster.anims.isPlaying === false) {
-			sizePoster.anims.play('sizeposter');
-		} else {
-			sizePoster.anims.resume();
+	textBox.on('pointerdown', function() {
+		if (textBox.ready == true && textBox.pos == 1) {
+			textBox.ready = false;
+			downPromptAnim.pause();
+			textBox.pos = 2;
+			textBoxText.setText('Hello, my friend.');
+			setTimeout(function() {
+				textBox.ready = true;
+				downPromptAnim.resume();
+			}, 1250);
+		} else if (textBox.ready == true && textBox.pos == 2) {
+			downPromptAnim.pause();
+			textBoxTweenDownPrep.resume();
+			textBox.ready = false;
+			textBox.pos = 0;
+		}  else if (textBox.ready == true && textBox.pos == 3) {
+			textBox.ready = false;
+			setTimeout(function() {
+				textBox.ready = true;
+				textBox.pos = 2;
+			}, 1250);
 		}
-
+	}, this);
+	// !left room
+	rugContain.on('pointerover', function() {
+		if (!rugContain.isUp) {
+			rugBumpUpTween.resume();
+		}
 	});
-	sizePoster.on('pointerout', function(pointer) {
-
-		sizePoster.anims.pause();
-
-	});*/
+	rugContain.on('pointerout', function() {
+		if (rugContain.isUp) {
+			rugBumpDownTween.resume();
+		}
+	});
+	rugContain.on('pointermove', function(pointer) {
+		var pointY = (pointer.y + 900);
+		rugBump.x = pointer.x;
+		rugBump.y = pointY;
+		if (rugContain.isUp) {
+			rugBumpJitterTween.resume();
+		}
+	});
+	rugContain.on('pointerdown', function() {
+		if (rugContain.isUp) {
+			rugBumpDownTween.resume();
+			owwSound.play();
+		}
+	});
 	sizePoster.on('pointerdown', function(pointer) {
 		if (nextSize == 10) {
 			nextSize = 1;
@@ -1779,30 +1857,26 @@ window.addEventListener('resize', resizeApp);
 		nextSize++;
 	});
 	door.on('pointerdown', function(pointer) {
-
-		if (chooserStats.up === false && keyGot === true) {
-			chooserTweenUp.resume();
-			door.anims.play('dooropen');
-			invKey.alpha = 0;
-		} else {
-			doorText.x = 335;
-			doorText.y = 715;
+		if (textBox.ready == false && textBox.pos == 0) {
+			textBox.ready = true;
+			textBoxTweenUp.resume();
+			downPromptAnim.resume();
+			if (doorClicks <= 3) {
+				textBoxText.setText(doorQuips[doorClicks]);
+			} else {
+				doorClicks = 0;
+				textBoxText.setText(doorQuips[doorClicks]);
+			}
+			doorClicks++;
 			setTimeout(function() {
-				doorText.x = 0;
-				doorText.y = 0;
-				doorClicks++;
-				if (doorClicks <= 3) {
-					doorText.setText(doorQuips[doorClicks]);
-				} else {
-					doorClicks = 0;
-					doorText.setText(doorQuips[doorClicks]);
-				}
-			}, 3000)
+				textBoxTweenDownPrep.resume();
+				downPromptAnim.pause();
+				textBox.ready = false;
+			}, 4000);
 
 		}
 	}, this);
 	frontPlant.on('pointerdown', function() {
-
 		if (currentPlant === 0) {
 			frontPlant.play('plantcycle1');
 			currentPlant = 1;
@@ -1817,11 +1891,10 @@ window.addEventListener('resize', resizeApp);
 			currentPlant = 0;
 		}
 	}, this);
-		
 	var mug1tween = this.tweens.add({
 		targets: [mug1],
-		y: '+=25',
-		duration: 100,
+		y: '+=40',
+		duration: 200,
 		ease: 'Power2',
 		repeat: -1,
 		paused: true,
@@ -1831,8 +1904,8 @@ window.addEventListener('resize', resizeApp);
 	});
 	var mug2tween = this.tweens.add({
 		targets: [mug2],
-		y: '+=25',
-		duration: 100,
+		y: '+=40',
+		duration: 200,
 		ease: 'Power2',
 		repeat: -1,
 		paused: true,
@@ -1842,8 +1915,8 @@ window.addEventListener('resize', resizeApp);
 	});
 	var mug3tween = this.tweens.add({
 		targets: [mug3],
-		y: '+=25',
-		duration: 100,
+		y: '+=40',
+		duration: 200,
 		ease: 'Power2',
 		repeat: -1,
 		paused: true,
@@ -1853,8 +1926,8 @@ window.addEventListener('resize', resizeApp);
 	});
 	var mug4tween = this.tweens.add({
 		targets: [mug4],
-		y: '+=25',
-		duration: 100,
+		y: '+=40',
+		duration: 200,
 		ease: 'Power2',
 		repeat: -1,
 		paused: true,
@@ -1862,22 +1935,25 @@ window.addEventListener('resize', resizeApp);
 			mug4tween.pause();
 		}
 	});
-		
-	mug1.on('pointerdown', function(){
-		mug1.y-=25;
+	mug1.on('pointerdown', function() {
+		mug1.y -= 50;
 		mug1tween.resume();
 		mugSound.play();
-		p=mug1.pos;
-		if(p<8){
+		p = mug1.pos;
+		if (p < 8) {
 			p++;
 		} else {
-			p=1;
+			p = 1;
 		}
-		mug1.pos=p;
-		mug1.setFrame('mug'+p);
+		mug1.pos = p;
+		mug1.setFrame('mug' + p);
 	});
 	mug2.on('pointerdown', function() {
-		mug2.y-=25;
+		if (widePlant.scaleX < 1.5) {
+			widePlant.scaleX += 0.05;
+			widePlant.scaleY += 0.05;
+		}
+		mug2.y -= 50;
 		mug2tween.resume();
 		mugSound.play();
 		p = mug2.pos;
@@ -1899,7 +1975,11 @@ window.addEventListener('resize', resizeApp);
 		mugSound.play();
 	});
 	mug3.on('pointerdown', function() {
-		mug3.y-=25;
+		if (widePlant.scaleX > 0.75) {
+			widePlant.scaleX -= 0.1;
+			widePlant.scaleY -= 0.1;
+		}
+		mug3.y -= 50;
 		mug3tween.resume();
 		mugSound.play();
 		p = mug2.pos;
@@ -1919,46 +1999,23 @@ window.addEventListener('resize', resizeApp);
 		mug2.setFrame('mug' + p);
 		mug3.setFrame('mug' + p2);
 	});
-	mug4.on('pointerdown', function(){
-		mug4.y-=25;
+	mug4.on('pointerdown', function() {
+		mug4.y -= 50;
 		mug4tween.resume();
 		mugSound.play();
-		p=mug4.pos;
-		if(p<8){
+		p = mug4.pos;
+		if (p < 8) {
 			p++;
 		} else {
-			p=1;
+			p = 1;
 		}
-		mug4.pos=p;
-		mug4.setFrame('mug'+p);
+		mug4.pos = p;
+		mug4.setFrame('mug' + p);
 	});
-	
-	// !chooser
-	this.input.setTopOnly(true);
-	redButton.on('pointerdown', function() {
-		chooserStats.currentPage = chooserStats.page[chooserStats.currentPage].linkA;
-		chooserBg.setFrame('page' + chooserStats.page[chooserStats.currentPage].index);
-		caption.setText(chooserStats.page[chooserStats.currentPage].caption);
-		redText.setText(chooserStats.page[chooserStats.currentPage].optA);
-		greenText.setText(chooserStats.page[chooserStats.currentPage].optB);
-	}, this);
-	greenButton.on('pointerdown', function() {
-		chooserStats.currentPage = chooserStats.page[chooserStats.currentPage].linkB;
-		chooserBg.setFrame('page' + chooserStats.page[chooserStats.currentPage].index);
-		caption.setText(chooserStats.page[chooserStats.currentPage].caption);
-		redText.setText(chooserStats.page[chooserStats.currentPage].optA);
-		greenText.setText(chooserStats.page[chooserStats.currentPage].optB);
-	}, this);
-	bgL.on('pointerdown', function(pointer) {
-		if (chooserStats.up) {
-			console.log('dddd');
-			chooserTweenDownPrep.resume();
-		}
-	}, this);
+
 	// !middle room
-
 	sq1.on('pointerdown', function() {
-
+		sqSound.play();
 		if (sq1.frame.name === 'w') {
 			sq1.setFrame('y');
 		} else if (sq1.frame.name === 'y') {
@@ -1969,9 +2026,8 @@ window.addEventListener('resize', resizeApp);
 			sq1.setFrame('w');
 		}
 	}, this);
-
 	sq2.on('pointerdown', function() {
-
+		sqSound.play();
 		if (sq2.frame.name === 'w') {
 			sq2.setFrame('y');
 		} else if (sq2.frame.name === 'y') {
@@ -1982,9 +2038,8 @@ window.addEventListener('resize', resizeApp);
 			sq2.setFrame('w');
 		}
 	}, this);
-
 	sq3.on('pointerdown', function() {
-
+		sqSound.play();
 		if (sq3.frame.name === 'w') {
 			sq3.setFrame('y');
 		} else if (sq3.frame.name === 'y') {
@@ -1996,9 +2051,9 @@ window.addEventListener('resize', resizeApp);
 		}
 	}, this);
 
-	bookStack.on('pointerdown', function(){
+	bookStack.on('pointerdown', function() {
 		bookStack.anims.play('bookcirc');
-	}, this)
+	}, this);
 
 	var shuffle = function(array) {
 			var currentIndex = array.length,
@@ -2013,16 +2068,12 @@ window.addEventListener('resize', resizeApp);
 			}
 			return array;
 		};
-		var cardFlipSound = this.sound.add('cardflipsound');
-		var flipBackSound = this.sound.add('flipbacksound');
-		var cardWinSound = this.sound.add('cardwinsound');
-		cardFlipSound.volume=0.3;
-		flipBackSound.volume=0.3;
+	var cardFlipSound = this.sound.add('cardflipsound');
+	var flipBackSound = this.sound.add('flipbacksound');
+	var cardWinSound = this.sound.add('cardwinsound');
 	var cardFlip = function(x) {
-		
+
 			cardContainer.bringToTop(x);
-			//x.anims.play('flip'+(Math.floor(Math.random() * (1)) + 1).toString());
-			//wobbleSound.play();
 			if (x.flipped !== true) {
 
 				x.flipped = true;
@@ -2039,7 +2090,7 @@ window.addEventListener('resize', resizeApp);
 					x.anims.play('flip' + x.face);
 					cardFlipSound.play();
 					if (firstCard == secondCard) {
-						setTimeout(function(){
+						setTimeout(function() {
 							cardWinSound.play();
 						}, 1250);
 						totalFlipped += 2;
@@ -2053,7 +2104,7 @@ window.addEventListener('resize', resizeApp);
 							firstCard = null;
 							secondCard = null;
 							firstFlip = null;
-							setTimeout(function(){
+							setTimeout(function() {
 								cardWinSound.play();
 							}, 7000);
 							setTimeout(function() {
@@ -2093,10 +2144,7 @@ window.addEventListener('resize', resizeApp);
 						}, 1750);
 					}
 				}
-			} else {
-				//x.flipped=false;
-				//x.anims.play('flipback');
-			}
+			} else {}
 		};
 	card1a.on('pointerdown', function(card1a) {
 		cardFlip(this);
@@ -2136,261 +2184,265 @@ window.addEventListener('resize', resizeApp);
 	});
 	// assign faces
 	shuffle(faces);
-
 	// !shooter
-	controlStrip.on('pointerover', function(pointer) {
+	this.input.on('pointerover', function(event, gameObjects) {
 
-		if (shooterBg.anims.isPlaying === false) {
+		if (gameObjects[0].name == "controlstriptop" || gameObjects[0].name == "controlstripmid" || gameObjects[0].name == "controlstripbot") {
 			controlStrip.setFrame('cs02');
 		}
-
 	});
-	controlStrip.on('pointerout', function(pointer) {
-		if (shooterBg.anims.isPlaying === false) {
+	this.input.on('pointerout', function(event, gameObjects) {
+		if (gameObjects[0].name == "controlstriptop" || gameObjects[0].name == "controlstripmid" || gameObjects[0].name == "controlstripbot") {
 			controlStrip.setFrame('cs00');
 		}
 	});
-	controlStrip.on('pointerdown', function(pointer) {
-		//if possible, resume
-		if (shooterBg.anims.isPaused && shipRespawning === false) {
-			shooterBg.anims.resume();
-			pane1.anims.resume();
-			pane2.anims.resume();
-			pane3.anims.resume();
-			shootSong.resume();
-
-		} else {
-			//initialize
-			shooterBg.anims.play('fly');
-			shootSong.play();
-		}
-		//set inital anims
-		if (pane1.anims.currentAnim == null && pane2.anims.currentAnim == null && pane3.anims.currentAnim == null) {
-
-			pane1.anims.play('obstacle0');
-			pane2.anims.play('obstacle0');
-			if (pane3.frame.name === '1' || pane3.frame.name === '2') {
-				pane3.anims.play('obstacleA');
-			} else if (pane3.frame.name === '3' || pane3.frame.name === '4') {
-				pane3.anims.play('obstacleB');
-			} else if (pane3.frame.name === '5' || pane3.frame.name === '6') {
-				pane3.anims.play('obstacleC');
-			} else if (pane3.frame.name === '7' || pane3.frame.name === '8') {
-				pane3.anims.play('obstacleD');
-			} else if (pane3.frame.name === '9' || pane3.frame.name === '10') {
-				pane3.anims.play('obstacleE');
-			} else if (pane3.frame.name === '11' || pane3.frame.name === '12') {
-				pane3.anims.play('obstacleF');
-			}
-		}
-
-		controlStrip.setFrame('cs01');
-		//start interval
-		var mouseCheck = setInterval(function() {
-			if (startY == null) {
-				startY = pointer.position.y;
-			}
-			if (shipRespawning === false) {
-				shooterTick++;
-			}
-			if (pane3.anims.currentAnim.key === 'obstacle0' && shooterTick == 4) {
-				pane1.anims.play(pane2.anims.currentAnim.key);
-				pane2.anims.play(pane3.anims.currentAnim.key);
-				if (dodgeCounter >= 21 && !keySpawned && !keyGot) {
-					pane3.anims.play('keyget');
-					keySpawned = true;
-				} else if (dodgeCounter == 32) {
-					//keyGetTween.resume();
-				} else {
-					pane3.anims.play(obstacles[Math.floor(Math.random() * 6) + 1]);
-				}
-
-
-				if (shipRespawning === false) {
-					dodgeCounter++;
-				}
-				score.setText(dodgeCounter);
-				shooterTick = 0;
-			} else if (pane3.anims.currentAnim != 'obstacle0' && pane3.anims.currentAnim != null && shooterTick == 4) {
-				pane1.anims.play(pane2.anims.currentAnim.key);
-				shooterTick = 0;
-				if (shipRespawning === false) {
-					dodgeCounter++;
-				}
-				score.setText(dodgeCounter);
-				score.setText(dodgeCounter);
-
-				pane2.anims.play(pane3.anims.currentAnim.key);
-				if (dodgeCounter == 30 && !keySpawned && !keyGot) {
-					console.log('no I am make key get');
-					pane3.anims.play('keyget');
-					keySpawned = true;
-				} else if (dodgeCounter == 32) {
-					keyGetTween.resume();
-				} else {
-					pane3.play('obstacle0');
-				}
-
-			}
-
-			// mouse movement stuff
-			if (pointer.position.y - startY <= -50 && shipRespawning === false) {
+	this.input.on('pointerover', function(event, gameObjects) {
+		if (event.isDown && shooterBg.anims.isPaused == false && shipRespawning === false && pane1.anims.currentAnim != null) {
+			if (gameObjects[0].name == "controlstriptop") {
 				if (shipPos == 1) {
 					p1.anims.play('up2');
-					shipPos = 0;
 				} else if (shipPos == 2) {
-					p1.anims.play('up1');
-					shipPos = 1;
+					p1.anims.play('doubleup');
 				}
-			} else if (pointer.position.y - startY >= 50 && shipRespawning === false) {
-				if (shipPos === 0) {
+				shipPos = 0;
+			} else if (gameObjects[0].name == "controlstripmid") {
+				if (shipPos == 0) {
 					p1.anims.play('down1');
-					shipPos = 1;
-				} else if (shipPos == 1) {
+				} else {
+					p1.anims.play('up1');
+				}
+				shipPos = 1;
+			} else if (gameObjects[0].name == "controlstripbot") {
+				if (shipPos == 1) {
 					p1.anims.play('down2');
-					shipPos = 2;
+				} else if (shipPos == 0) {
+					p1.anims.play('doubledown');
+				}
+				shipPos = 2;
+			}
+		}
+	});
+	var shooterLoop = function(pointer) {
+			//if possible, resume
+			if (shooterBg.anims.isPaused && shipRespawning === false) {
+				shooterBg.anims.resume();
+				pane1.anims.resume();
+				pane2.anims.resume();
+				pane3.anims.resume();
+				shootSong.resume();
+			} else {
+				//initialize
+				shooterBg.anims.play('fly');
+				shootSong.play();
+			}
+			//set inital anims
+			if (pane1.anims.currentAnim == null && pane2.anims.currentAnim == null && pane3.anims.currentAnim == null) {
+				pane1.anims.play('obstacle0');
+				pane2.anims.play('obstacle0');
+				if (pane3.frame.name === '1' || pane3.frame.name === '2') {
+					pane3.anims.play('obstacleA');
+				} else if (pane3.frame.name === '3' || pane3.frame.name === '4') {
+					pane3.anims.play('obstacleB');
+				} else if (pane3.frame.name === '5' || pane3.frame.name === '6') {
+					pane3.anims.play('obstacleC');
+				} else if (pane3.frame.name === '7' || pane3.frame.name === '8') {
+					pane3.anims.play('obstacleD');
+				} else if (pane3.frame.name === '9' || pane3.frame.name === '10') {
+					pane3.anims.play('obstacleE');
+				} else if (pane3.frame.name === '11' || pane3.frame.name === '12') {
+					pane3.anims.play('obstacleF');
 				}
 			}
-
-			if (pointer.isDown === false || pointer.rightButtonDown()) {
-				shooterBg.anims.pause();
-				pane1.anims.pause();
-				pane2.anims.pause();
-				pane3.anims.pause();
-				clearInterval(mouseCheck);
-				controlStrip.setFrame('cs00');
-				shootSong.pause();
-				startY = null;
-				if (pointer.x >= controlStrip.x - 800 && pointer.x < (controlStrip.x - 800 + controlStrip.width) && pointer.y >= controlStrip.y - 223 && pointer.y < (controlStrip.y - 223 + controlStrip.height)) {
-					controlStrip.setFrame('cs02');
+			controlStrip.setFrame('cs01');
+			//start interval
+			var mouseCheck = setInterval(function() {
+				if (shipRespawning === false) {
+					shooterTick++;
 				}
-			}
-
-			if (startY != null) {
-				startY = pointer.position.y;
-			}
-			if (pane1.anims.currentAnim.key === "obstacle0") {
-				collisionZone.a = false;
-				collisionZone.b = false;
-				collisionZone.c = false;
-			} else if (pane1.anims.currentAnim.key === "obstacleA") {
-				collisionZone.a = false;
-				collisionZone.b = false;
-				collisionZone.c = true;
-			} else if (pane1.anims.currentAnim.key === "obstacleB") {
-				collisionZone.a = false;
-				collisionZone.b = true;
-				collisionZone.c = false;
-			} else if (pane1.anims.currentAnim.key === "obstacleC") {
-				collisionZone.a = true;
-				collisionZone.b = false;
-				collisionZone.c = false;
-			} else if (pane1.anims.currentAnim.key === "obstacleD") {
-				collisionZone.a = true;
-				collisionZone.b = true;
-				collisionZone.c = false;
-			} else if (pane1.anims.currentAnim.key === "obstacleE") {
-				collisionZone.a = true;
-				collisionZone.b = false;
-				collisionZone.c = true;
-			} else if (pane1.anims.currentAnim.key === "obstacleF") {
-				collisionZone.a = false;
-				collisionZone.b = true;
-				collisionZone.c = true;
-			} else if (pane1.anims.currentAnim.key === "keyget") {
-				collisionZone.a = false;
-				collisionZone.b = false;
-				collisionZone.c = false;
-				collisionZone.key = true;
-			}
-			var killShip = function() {
-					clearInterval(mouseCheck);
-					shooterTick = 0;
-					shooterBg.anims.pause();
-					if (keySpawned) {
-						pane1.anims.play('obstacle0');
-						pane2.anims.play('obstacle0');
-						pane3.anims.play('obstacle0');
-						keySpawned = false;
+				if (pane3.anims.currentAnim.key === 'obstacle0' && shooterTick == 4) {
+					pane1.anims.play(pane2.anims.currentAnim.key);
+					pane2.anims.play(pane3.anims.currentAnim.key);
+					if (dodgeCounter >= 21 && !keySpawned && !keyGot) {
+						pane3.anims.play('keyget');
+						keySpawned = true;
+					} else if (dodgeCounter == 32) {
+						//keyGetTween.resume();
+					} else {
+						pane3.anims.play(obstacles[Math.floor(Math.random() * 6) + 1]);
 					}
+					if (shipRespawning === false) {
+						dodgeCounter++;
+					}
+					shooterTick = 0;
+				} else if (pane3.anims.currentAnim != 'obstacle0' && pane3.anims.currentAnim != null && shooterTick == 4) {
+					pane1.anims.play(pane2.anims.currentAnim.key);
+					shooterTick = 0;
+					if (shipRespawning === false) {
+						dodgeCounter++;
+					}
+					pane2.anims.play(pane3.anims.currentAnim.key);
+					if (dodgeCounter == 30 && !keySpawned && !keyGot) {
+						pane3.anims.play('keyget');
+						keySpawned = true;
+					} else if (dodgeCounter == 32) {
+						keyGetTween.resume();
+					} else {
+						pane3.play('obstacle0');
+					}
+				}
+
+				// mouse movement stuff
+				if (pointer.isDown === false || pointer.rightButtonDown()) {
+					shooterBg.anims.pause();
 					pane1.anims.pause();
 					pane2.anims.pause();
 					pane3.anims.pause();
+					clearInterval(mouseCheck);
+					controlStrip.setFrame('cs00');
 					shootSong.pause();
-					dodgeCounter = 0;
-					score.setText(dodgeCounter);
-
 					startY = null;
-				};
-			if (shipPos === 0 && collisionZone.a === true && shipRespawning === false) {
-				killShip();
-				p1.anims.play('crash1');
-				shipPos = 1;
-				shipRespawning = true;
-			} else if (shipPos == 1 && collisionZone.b === true && shipRespawning === false) {
-				killShip();
-				p1.anims.play('crash2');
-				shipRespawning = true;
-			} else if (shipPos == 2 && collisionZone.c === true && shipRespawning === false) {
-				killShip();
-				p1.anims.play('crash3');
-				shipPos = 1;
-				shipRespawning = true;
-			} else if (pane1.anims.currentAnim.key == 'keyget' && collisionZone.key === true && shipRespawning === false) {
-				keyGot = true;
-				keySpawned = false;
-				keyGetTween.resume();
-				pane1.play('obstacle0');
-			}
-		}, 250);
-		p1.on('animationcomplete', function(anim, frame) {
-			this.emit('animationcomplete_' + anim.key, anim, frame);
-		}, p1);
-		p1.on('animationcomplete_crash1', function() {
-			p1.anims.play('respawn');
-		});
-		p1.on('animationcomplete_crash2', function() {
-			p1.anims.play('respawn');
-		});
-		p1.on('animationcomplete_crash3', function() {
-			p1.anims.play('respawn');
-		});
-		p1.on('animationcomplete_respawn', function() {
-
-			if (shipRespawning === true) {
-				shootSong.seek = 0;
-				if (pane2.anims.currentAnim == "keyget") {
-					pane1.play('obstacle0');
-				} else {
-					pane1.play(pane2.anims.currentAnim.key);
-				}
-				pane2.anims.play(pane3.anims.currentAnim.key);
-				pane2.anims.isPlaying = false;
-				pane3.play('obstacle0');
-				collisionZone = {
-					a: false,
-					b: false,
-					c: false
-				};
-				if (pointer.isDown === true && shipRespawning === true) {
 					if (pointer.x >= controlStrip.x - 800 && pointer.x < (controlStrip.x - 800 + controlStrip.width) && pointer.y >= controlStrip.y - 223 && pointer.y < (controlStrip.y - 223 + controlStrip.height)) {
 						controlStrip.setFrame('cs02');
-					} else {
-						controlStrip.setFrame('cs00');
 					}
-					//console.log('I think mosue is down');
-					//mouseCheck();
-/*pane1.anims.resume();
-					pane2.anims.resume();
-					pane3.anims.resume();
-					shooterBg.anims.resume();
-					shootSong.play();*/
 				}
+				// collision zones
+				if (pane1.anims.currentAnim.key === "obstacle0") {
+					collisionZone.a = false;
+					collisionZone.b = false;
+					collisionZone.c = false;
+				} else if (pane1.anims.currentAnim.key === "obstacleA") {
+					collisionZone.a = false;
+					collisionZone.b = false;
+					collisionZone.c = true;
+				} else if (pane1.anims.currentAnim.key === "obstacleB") {
+					collisionZone.a = false;
+					collisionZone.b = true;
+					collisionZone.c = false;
+				} else if (pane1.anims.currentAnim.key === "obstacleC") {
+					collisionZone.a = true;
+					collisionZone.b = false;
+					collisionZone.c = false;
+				} else if (pane1.anims.currentAnim.key === "obstacleD") {
+					collisionZone.a = true;
+					collisionZone.b = true;
+					collisionZone.c = false;
+				} else if (pane1.anims.currentAnim.key === "obstacleE") {
+					collisionZone.a = true;
+					collisionZone.b = false;
+					collisionZone.c = true;
+				} else if (pane1.anims.currentAnim.key === "obstacleF") {
+					collisionZone.a = false;
+					collisionZone.b = true;
+					collisionZone.c = true;
+				} else if (pane1.anims.currentAnim.key === "keyget") {
+					collisionZone.a = false;
+					collisionZone.b = false;
+					collisionZone.c = false;
+					collisionZone.key = true;
+				}
+				var killShip = function() {
+						clearInterval(mouseCheck);
+						shooterTick = 0;
+						shooterBg.anims.pause();
+						pane1.play('obstacle0');
+						if (keySpawned) {
+							pane2.anims.play('obstacle0');
+							pane3.anims.play('obstacle0');
+							keySpawned = false;
+						}
+						pane1.anims.pause();
+						pane2.anims.pause();
+						pane3.anims.pause();
+						shootSong.pause();
+						dodgeCounter = 0;
+						startY = null;
+					};
+				if (shipPos === 0 && collisionZone.a === true && shipRespawning === false) {
+					killShip();
+					p1.anims.play('crash1');
+					dieSound.play();
+					shipPos = 1;
+					shipRespawning = true;
+				} else if (shipPos == 1 && collisionZone.b === true && shipRespawning === false) {
+					killShip();
+					p1.anims.play('crash2');
+					dieSound.play();
+					shipRespawning = true;
+				} else if (shipPos == 2 && collisionZone.c === true && shipRespawning === false) {
+					killShip();
+					p1.anims.play('crash3');
+					dieSound.play();
+					shipPos = 1;
+					shipRespawning = true;
+				} else if (pane1.anims.currentAnim.key == 'keyget' && collisionZone.key === true && shipRespawning === false) {
+					keyGot = true;
+					keySpawned = false;
+					keyGetTween.resume();
+					pane1.play('obstacle0');
+				}
+			}, 250);
+			p1.on('animationcomplete', function(anim, frame) {
+				this.emit('animationcomplete_' + anim.key, anim, frame);
+			}, p1);
+			p1.on('animationcomplete_crash1', function() {
+				p1.anims.play('respawn');
+			});
+			p1.on('animationcomplete_crash2', function() {
+				p1.anims.play('respawn');
+			});
+			p1.on('animationcomplete_crash3', function() {
+				p1.anims.play('respawn');
+			});
+			p1.on('animationcomplete_respawn', function() {
 
-			}
-			shipRespawning = false;
-		});
+				if (shipRespawning === true) {
+					shootSong.seek = 0;
+					collisionZone = {
+						a: false,
+						b: false,
+						c: false,
+					};
+					if (pointer.isDown === true && shipRespawning === true) {
+						if (pointer.x >= controlStrip.x - 800 && pointer.x < (controlStrip.x - 800 + controlStrip.width) && pointer.y >= controlStrip.y - 223 && pointer.y < (controlStrip.y - 223 + controlStrip.height)) {
+							controlStrip.setFrame('cs02');
+						} else {
+							controlStrip.setFrame('cs00');
+						}
+					}
 
+				}
+				shipRespawning = false;
+			});
+
+
+		};
+
+	controlStripTop.on('pointerdown', function(pointer) {
+		shooterLoop(pointer);
+		if (shipPos == 1) {
+			p1.anims.play('up2');
+		} else if (shipPos == 2) {
+			p1.anims.play('doubleup');
+		}
+		shipPos = 0;
+	});
+	controlStripMid.on('pointerdown', function(pointer) {
+		shooterLoop(pointer);
+		if (shipPos == 0) {
+			p1.anims.play('down1');
+		} else if (shipPos == 2) {
+			p1.anims.play('up1');
+		}
+		shipPos = 1;
+	});
+	controlStripBot.on('pointerdown', function(pointer) {
+		shooterLoop(pointer);
+		if (shipPos == 0) {
+			p1.anims.play('doubledown');
+		} else if (shipPos == 1) {
+			p1.anims.play('down2');
+		}
+		shipPos = 2;
 	});
 	couch.anims.play('couch');
 	sq1.on('pointerdown', function() {
@@ -2407,91 +2459,85 @@ window.addEventListener('resize', resizeApp);
 		this.anims.play('lampwobble');
 		wobbleSound.play();
 	});
-
-/*shelfPlant.on('pointerdown', function() {
-		chime1.play();
-		console.log(chime1.volume);
-	}, this);*/
-
-	sequence = function(x) {
-		if (x == prevTone && prevTone != 8) {
-
-			bookChimes[x].alpha = 0.75;
-			prevTone++;
-		} else if (x == prevTone && prevTone == 8) {
-			//chime1.play();
-			//chime3.play();
-			//chime5.play();
-			//chime8.play();
-			prevTone++;
-			bookChimes[x].alpha = 1;
-			bookChimes.forEach(function(e) {
-				e.alpha = 1;
-				e.input.enabled = true;
-
-				setTimeout(function() {
-					if (bookChimes.indexOf(e) === 8) {
-						game.sound.play('chime8');
-						book1tween.resume();
-					} else if (bookChimes.indexOf(e) === 7) {
-						book2tween.resume();
-					} else if (bookChimes.indexOf(e) === 6) {
-						book3tween.resume();
-					} else if (bookChimes.indexOf(e) === 5) {
-						game.sound.play('chime5');
-						book5tween.resume();
-					} else if (bookChimes.indexOf(e) === 4) {
-						book6tween.resume();
-					} else if (bookChimes.indexOf(e) === 3) {
-						book7tween.resume();
-					} else if (bookChimes.indexOf(e) === 2) {
-						game.sound.play('chime3');
-						book9tween.resume();
-					} else if (bookChimes.indexOf(e) === 1) {
-						book10tween.resume();
-					} else if (bookChimes.indexOf(e) === 0) {
-						book1tween.resume();
-						book2tween.resume();
-						book3tween.resume();
-						book5tween.resume();
-						book6tween.resume();
-						book8tween.resume();
-						book9tween.resume();
-						book10tween.resume();
-						game.sound.play('chime1');
-						if (confirm("Song for you!")) {
-							openExternalLink('https://www.youtube.com/watch?v=Y5KMl11I7Zs');
-						} else {
-
+	var sequence = function(x) {
+			if (x == prevTone && prevTone != 8) {
+				bookChimes[x].alpha = 0.75;
+				prevTone++;
+			} else if (x == prevTone && prevTone == 8) {
+				//chime1.play();
+				//chime3.play();
+				//chime5.play();
+				//chime8.play();
+				prevTone++;
+				bookChimes[x].alpha = 1;
+				bookChimes.forEach(function(e) {
+					e.alpha = 1;
+					e.input.enabled = true;
+					setTimeout(function() {
+						if (bookChimes.indexOf(e) === 8) {
+							book1tween.resume();
+						} else if (bookChimes.indexOf(e) === 7) {
+							game.sound.play('chime7');
+							book2tween.resume();
+						} else if (bookChimes.indexOf(e) === 6) {
+							game.sound.play('chime5');
+							book3tween.resume();
+						} else if (bookChimes.indexOf(e) === 5) {
+							game.sound.play('chime6');
+							book5tween.resume();
+						} else if (bookChimes.indexOf(e) === 4) {
+							game.sound.play('chime4');
+							book6tween.resume();
+						} else if (bookChimes.indexOf(e) === 3) {
+							game.sound.play('chime3');
+							book8tween.resume();
+						} else if (bookChimes.indexOf(e) === 2) {
+							game.sound.play('chime2');
+							book9tween.resume();
+						} else if (bookChimes.indexOf(e) === 1) {
+							game.sound.play('chime1');
+							book10tween.resume();
+						} else if (bookChimes.indexOf(e) === 0) {
+							
 						}
-
-					}
-
-/*tween = book1.tweens.add({
-						targets: bookChimes[prevTone],
-						x: '-=103',
-						y: '+=48',
-						duration: 1000,
-						yoyo: true,
-						ease: 'Power2',
-					});*/
-				}, (prevTone * 400));
-				prevTone -= 1;
-				console.log(prevTone);
-			});
-		} else {
-			bookChimes[x].alpha = 1;
-			bookChimes.forEach(function(e) {
-				e.alpha = 1;
-				e.input.enabled = true;
-			});
-			prevTone = 1;
-			//console.log(prevTone + ' is one');
-		}
-	};
-
+					}, (prevTone * 300));
+					prevTone -= 1;
+				});
+				setTimeout(function(){
+					book1tween.resume();
+					book2tween.resume();
+					book3tween.resume();
+					book4tween.resume();
+					book5tween.resume();
+					book6tween.resume();
+					book7tween.resume();
+					book8tween.resume();
+					book9tween.resume();
+					book10tween.resume();
+					book11tween.resume();
+					game.sound.play('chime1');
+					game.sound.play('chime3');
+					game.sound.play('chime5');
+					game.sound.play('chime8');
+					prevTone = 1;
+					/*if (confirm("Song for you!")) {
+								openExternalLink('https://www.youtube.com/watch?v=Y5KMl11I7Zs');
+							} else {}*/
+				}, 4500)
+			} else {
+				bookChimes[x].alpha = 1;
+				bookChimes.forEach(function(e) {
+					e.alpha = 1;
+					e.input.enabled = true;
+				});
+				prevTone = 1;
+			}
+		};
+	/*this.input.on('pointerdown', function(event, gameObjects) {
+		console.log(gameObjects[0]);
+	});*/
+	
 	book1.on('pointerdown', function() {
-
 		book1tween.resume();
 		sequence(8);
 		chime8.play();
@@ -2500,13 +2546,11 @@ window.addEventListener('resize', resizeApp);
 		book2tween.resume();
 		sequence(7);
 		chime7.play();
-
 	}, this);
 	book3.on('pointerdown', function() {
 		book3tween.resume();
 		sequence(5);
 		chime5.play();
-
 	}, this);
 	book5.on('pointerdown', function() {
 		book5tween.resume();
@@ -2538,48 +2582,66 @@ window.addEventListener('resize', resizeApp);
 		sequence(2);
 		chime2.play();
 	}, this);
-	
-	
-	mouseHoles.on('pointerdown', function() {
-		this.anims.play('mousehole');
-	});
+	mouseHoles.on('pointerdown', function(pointer) {
+		var whichHole = pointer.x;
+		if (currentHoles === 0 && !mouseHoles.anims.isPlaying) {
+			if (whichHole < 1000) {
+				mouseHoles.anims.playReverse('mousehole1');
+			} else {
+				mouseHoles.anims.play('mousehole1');
+			}
+			currentHoles = 1;
+		} else if (currentHoles == 1 && !mouseHoles.anims.isPlaying) {
+			if (whichHole < 1000) {
+				mouseHoles.anims.playReverse('mousehole2');
+			} else {
+				mouseHoles.anims.play('mousehole2');
+			}
+			currentHoles = 2;
+		} else if (currentHoles == 2 && !mouseHoles.anims.isPlaying) {
+			if (whichHole < 1000) {
+				mouseHoles.anims.playReverse('mousehole3');
+			} else {
+				mouseHoles.anims.play('mousehole3');
+			}
+			currentHoles = 0;
+		}
+	}, this);
 	openExternalLink = function(url) {
-
-
 		window.open(url);
-
 	};
 	// !create containers
 	// universal
-	var uiContainer = this.add.container(800, 283, [leftButton, rightButton, invKey]);
-	// left room
-	var chooseContainer = this.add.container(100, 1280, [chooser, chooserBg, caption, redButton, greenButton, redText, greenText]);
-//	var mugs = this.add.container(0, 0, [mug1, mug2, mug3]);
-	
-		/*for (i = 0; i < 3; i++) {
-		mugs.list[i].on('pointerdown', function(x){
-			console.log(mugs.list[i]);
-			mugClick(mugs.list[i]);
-		}, this);
-	}*/
-	// middle room
-	var cardContainer = this.add.container(-15, -50, [card1a, card1b, card1c, card1d, card2a, card2b, card2c, card2d, card3a, card3b, card3c, card3d]);
+	// !left room
+	// !middle room
+	var cardContainer = this.add.container(-30, -100, [card1a, card1b, card1c, card1d, card2a, card2b, card2c, card2d, card3a, card3b, card3c, card3d]);
 	flipOrder = [card1a, card1b, card1c, card1d, card2a, card2b, card2c, card2d, card3a, card3b, card3c, card3d, card3d, card3c, card3b, card3a, card2d, card2c, card2b, card2a, card1d, card1c, card1b, card1a];
 	for (i = 0; i < faces.length; i++) {
 		cardContainer.list[i].face = faces[i];
 	}
-	// right room
+	// !right room
 	var booksContainer = this.add.container(0, 0, [bottomShelf, book5, book6, book7, book8, book9, book10, book11, topShelf, book1, book2, book3, book4, shelfPlant]);
 	bookChimes = [book4, book6, book10, book5, book8, book3, book9, book2, book1];
+	var uiContainer = this.add.container(1600, 566, [leftButton, rightButton, menuBar, barTitle, barSocial, barHelp, barKey]);
+	var textContainer = this.add.container(1600, 566, [textBox, textBoxText, downPrompt]);
 
-	this.cameras.main.startFollow(cursor);
-	leftWindow.anims.play('leftwindowdrift');
-	widedow.anims.play('widedowdrift');
-	rightWindow.anims.play('rightwindowdrift');
-
+	this.cameras.main.startFollow(cameraFocus);
 }
 
-function update() {
-	
-	
-}
+function update() {};
+
+var makeFloat = function() {
+		floaters.forEach(function(f) {
+			if (f.mult === undefined) {
+				f.mult = (Math.random() * 3) + 0.25;
+			}
+			f.x += 2.25 * f.mult;
+			f.y -= 1.05 * f.mult;
+			if (f.x > 4200) {
+				f.x = 900;
+				f.y = (Math.floor(Math.random() * 956) + 1100);
+				f.setFrame(floaterFrames[Math.floor(Math.random() * 4)]);
+				f.mult = undefined;
+			}
+		});
+	};

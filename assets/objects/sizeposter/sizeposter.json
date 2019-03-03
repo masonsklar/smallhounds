@@ -1,11 +1,11 @@
 {
 	"textures": [
 		{
-			"image": "sizeposter.png",
+			"image": "assets/objects/sizeposter/sizeposter.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 822,
-				"h": 876
+				"w": 1096,
+				"h": 602
 			},
 			"scale": 1,
 			"frames": [
@@ -32,27 +32,6 @@
 				},
 				{
 					"filename": "sizeposter1",
-					"rotated": true,
-					"trimmed": false,
-					"sourceSize": {
-						"w": 272,
-						"h": 600
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 0,
-						"w": 272,
-						"h": 600
-					},
-					"frame": {
-						"x": 1,
-						"y": 603,
-						"w": 272,
-						"h": 600
-					}
-				},
-				{
-					"filename": "sizeposter2",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -73,7 +52,7 @@
 					}
 				},
 				{
-					"filename": "sizeposter3",
+					"filename": "sizeposter2",
 					"rotated": false,
 					"trimmed": false,
 					"sourceSize": {
@@ -92,6 +71,27 @@
 						"w": 272,
 						"h": 600
 					}
+				},
+				{
+					"filename": "sizeposter3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 272,
+						"h": 600
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 272,
+						"h": 600
+					},
+					"frame": {
+						"x": 823,
+						"y": 1,
+						"w": 272,
+						"h": 600
+					}
 				}
 			]
 		}
@@ -99,6 +99,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:feb536932197c54f724f4d7ff0d31d51:0d0d09d0cd01380b1686a7043c6af8eb:e3b0b479624b3958fab4e86e01472cda$"
+		"smartupdate": "$TexturePacker:SmartUpdate:b0be3e704555991c9a2c2c1c12205897:0d0d09d0cd01380b1686a7043c6af8eb:e3b0b479624b3958fab4e86e01472cda$"
 	}
 }

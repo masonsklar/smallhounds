@@ -1,7 +1,7 @@
 {
 	"textures": [
 		{
-			"image": "lamp-0.png",
+			"image": "assets/objects/lamp/lamp-0.png",
 			"format": "RGBA8888",
 			"size": {
 				"w": 1815,
@@ -621,7 +621,7 @@
 			]
 		},
 		{
-			"image": "lamp-1.png",
+			"image": "assets/objects/lamp/lamp-1.png",
 			"format": "RGBA8888",
 			"size": {
 				"w": 1982,
