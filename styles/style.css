@@ -1,0 +1,152 @@
+body{
+  background-color: #ffca4d;
+  font-family: magistral, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  overflow: hidden;
+  margin: 0;
+}
+#wrapper {
+  margin: 0 auto;
+}
+#actions {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+@media(min-width:700px) {
+  #actions {
+    margin-top: -3em;
+  }
+}
+#gameframe{
+  width:90%;
+  height: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+canvas {
+  width: 100%;
+  height: 100%;
+  margin: auto 0;
+}
+#header {
+  background: #181818;
+  display: flex;
+  align-content: center;
+  padding: 0 2em;
+}
+#header h1 {
+  text-transform: lowercase;
+  color: white;
+  font-size: 1.8em;
+  margin: 0.3em 0;
+  margin-right: 1em;
+}
+#header h1 a {
+  text-decoration: none;
+}
+#header ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+#header li {
+  list-style: none;
+  margin-right: 1em;
+  font-size: 1em;
+}
+#header li.icon {
+  font-size: 1.3em;
+}
+#header a {
+  color: white;
+}
+#textbox{
+  width: 75%;
+  background-image: url('assets/ui/chooser.png');
+  background-size: 86%;
+  background-position: top center;
+  background-repeat: no-repeat;
+  margin: 18% auto 0;
+}
+#textbox p{
+  color: #225a89;
+  font-size: 1.5em;
+  font-family: arial;
+  width: 80%;
+  margin: 2% auto 0;
+}
+svg {
+  position: absolute;
+  left:0;
+}
+#footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+  margin-bottom: 1em;
+}
+#footer p {
+  margin-right: 1em;
+  text-transform: lowercase;
+}
+#footer ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+#footer ul li {
+  list-style: none;
+}
+#footer ul li:not(:last-child) {
+  margin-right: 1em;
+}
+#footer a {
+  color: #151515;
+}
+.button, button {
+  background: #EE555C;
+  color: white;
+  border-style: none;
+  max-width: 250px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  padding: 0.5em;
+  cursor: pointer;
+  margin: 1em;
+  font-size: 2em;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 5px 0px;
+}
+.button:active, button:active {
+  background: #d84d53;
+  transform: translateY(2px);
+  box-shadow: rgba(0, 0, 0, 0.15) 0 3px 0px;
+}
+body.mobile #startbutton {
+  display: none;
+}
+#trings, #dcones, #ucones, #rod1, #rod2, #rod3{
+  transition: all 4s;
+  z-index: 3;
+}
+@media (min-device-width : 300px) and (max-device-width : 680px) {
+  #gameframe{
+    display: none;
+  }
+}
