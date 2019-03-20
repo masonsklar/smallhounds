@@ -290,8 +290,8 @@ function preload() {
 	progressBox.fillStyle(0xffffff, 0);
 	progressBox.fillRect(400, 930, 600, 1200);
 	percentText.setOrigin(0.5, 0.5);
-	var preTextBox = this.add.image(200, 1310, 'textboxbg').setOrigin(0);
-	var preTextBoxText = this.add.text(240, 1340, ['Huh. I really want to go out today, but I seem','to have misplaced my key...','Where could it be?'], {
+	//var preTextBox = this.add.image(200, 1310, 'textboxbg').setOrigin(0);
+	var preTextBoxText = this.add.text(240, 1700, ['Huh. I really want to go out today, but I seem','to have misplaced my key...','Where could it be?'], {
 		fontFamily: 'fieldwork-hum',
 		fontSize: 54,
 		color: '#225a89'
@@ -314,7 +314,7 @@ function preload() {
 		progressBox.destroy();
 		percentText.destroy();
 		preTextBoxText.destroy();
-		preTextBox.destroy();
+		//preTextBox.destroy();
 	});
 	// !load audio
 	this.load.audio('wobblesound', 'assets/objects/lamp/audio/i.mp3');
