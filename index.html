@@ -7,7 +7,10 @@
 	<script type="text/javascript" src="newphaser.js"></script>
 	<script type="text/javascript" src="room.js"></script>
 	<script type="text/javascript" src="lottie.js"></script>
-<link rel="stylesheet" href="https://use.typekit.net/wls1kao.css">
+	<link rel="stylesheet" type="text/css" href="styles/normalize.css">
+	<link rel="stylesheet" type="text/css" href="styles/style2.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.typekit.net/wls1kao.css"/>
 <style type="text/css">
 	body{
 		background-color: #ffca4d;
@@ -17,8 +20,77 @@
 		overflow: hidden;
 		margin: 0;
 	}
+	#menubar{
+	background-color: #225a89;
+	width:100%;
+	height: 0;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	}
+	.barbutton{
+		position: absolute;
+	}
+	#barlogo{
+		background: url('assets/ui/title.png');
+		background-color: #225a89;
+		background-size: contain;
+		background-position: center;
+		background-repeat: no-repeat; 
+		height: 0;
+	}
+	#barlogo:hover{
+		background: url('assets/ui/title_on.png');
+		background-color: white;
+		background-size: contain;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+	#barhelp{
+		background: url('assets/ui/help.png');
+		background-color: #225a89;
+		background-size: contain;
+		background-position: center;
+		background-repeat: no-repeat;
+		height: 0;
+		opacity: 0;
+		transition: opacity 0.5s linear;
+	}
+	#barhelp:hover{
+		background: url('assets/ui/help_on.png');
+		background-color: white;
+		background-size: contain;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+	#barkey{
+		background: url('assets/ui/key.png');
+		background-color: #225a89;
+		background-size: contain;
+		background-position: center;
+		background-repeat: no-repeat;
+		height: 0;
+		opacity: 0;
+		transition: opacity 0.5s linear;
+	}
+	#barkey:hover{
+		background: url('assets/ui/key_on.png');
+		background-color: white;
+		background-size: contain;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
 	#gameframe{
 	width:90%;
+	height: 0;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	}
+	#footer{
+	width:100%;
 	height: 0;
 	margin: 0 auto;
 	display: flex;
@@ -40,6 +112,7 @@
     z-index: 2;
 	}
 	#textbox{
+		font-family: fieldwork-hum, sans-serif;
 		width: 75%;
 		background-image: url('assets/ui/chooser.png');
 		background-size: 86%;
@@ -50,17 +123,21 @@
 	#textbox p{
 		color: #225a89;
     font-size: 1.5em;
-    font-family: arial;
     width: 80%;
     margin: 2% auto 0;
 	}
 	svg {
 		position: absolute;
 		left:0;
+		pointer-events: none;
 	}
 	#trings, #dcones, #ucones, #rod1, #rod2, #rod3{
 		transition: all 4s;
 		z-index: 3;
+	}
+	#colors, #smallhounds{
+		opacity: 0;
+		transition: all 0.25s ease;
 	}
 	#warning {
 		display: none;
@@ -86,16 +163,28 @@
 </style>
 	</head>
 	<body>
+		<div id="menubar">
+			<div id="barlogo" class="barbutton"></div>
+			<div id="barhelp" class="barbutton"></div>
+			<div id="barkey" class="barbutton"></div>
+		</div>
 		<div id="gameframe">
-			<h1 id="startbutton">START</h1>
-			<div id="textbox">
-				<p>Hello, it's night time.<br/>
-					Hello, it's night time.<br/>
-					Hello, it's night time.<br/>
-					Hello, it's night time.
-				</p>
+			
+			<div id="actions">
+				<a class="button" href="http://eepurl.com/gkACgz" target="_blank">Sign up for updates</a>
+			<button id="startbutton">...unless you could help me with a little something quick?</button>
 			</div>
-			</div>
+		</div>
+		<div id="footer">
+			<ul>
+				<li><a href="https://instagram.com/smallhounds" target="_blank"><i class="fab fa-instagram"></i></a></li>
+				<li><a href="https://twitter.com/smallhounds" target="_blank"><i class="fab fa-twitter"></i></a></li>
+				<li><a href="http://eepurl.com/gkACgz" target="_blank"><i class="far fa-envelope"></i></a></li>
+				<!--
+				<li><a href="https://soundcloud.com/smallhounds" target="_blank"><i class="fab fa-soundcloud"></i></a></li>
+			-->
+			</ul>
+		</div>
 			<div id="warning">
 				<h1>come back on desktop : - )</h1>
 			</div>

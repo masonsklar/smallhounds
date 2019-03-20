@@ -4,15 +4,10 @@ var idleData;
 var loadAnim;
 var resizeFrame = function() {
 		if (game == undefined) {
-			// Width-height-ratio of game resolution
-			// Replace 360 with your game width, and replace 640 with your game height
-			// Make div full height of browser and keep the ratio of game resolution
 			let div = document.getElementById('gameframe');
 			div.style.width = window.innerHeight + 'px';
 			div.style.height = window.innerHeight + 'px';
 
-			// Check if device DPI messes up the width-height-ratio
-			//let canvas			= document.getElementsByTagName('canvas')[0];
 			let dpi_w = parseInt(div.style.width) / div.width;
 			let dpi_h = parseInt(div.style.height) / div.height;
 
@@ -24,9 +19,9 @@ var resizeFrame = function() {
 				var width = window.innerWidth;
 				var height = window.innerWidth;
 			}
-			// Scale canvas	
 			div.style.width = width + 'px';
 			div.style.height = height + 'px';
+
 		}
 	}
 
@@ -35,8 +30,9 @@ function generateRandomNumber(x, y) {
 };
 
 window.onload = function() {
-	window.addEventListener('resize', resizeFrame);
+	window.addEventListener('resize', resizeApp);
 	resizeFrame();
+	resizeApp();
 	idleData = {
 		wrapper: document.getElementById('gameframe'),
 		animType: 'svg',
@@ -50,6 +46,12 @@ window.onload = function() {
 	loadAnim = bodymovin.loadAnimation(idleData);
 	var movers = ["#rod1", "#rod2", "#rod3", "#ucones", "#dcones", "#trings"];
 	$('#startbutton').click(function() {
+		$('#smallhounds').css({
+				'opacity': '1'
+		});
+		$('#colors').css({
+				'opacity': '1'
+		});
 		clearInterval(floatInterval);
 		movers.forEach(function(e) {
 			newX = generateRandomNumber(-800, 800);
@@ -91,26 +93,63 @@ window.onload = function() {
 }
 var resizeApp = function() {
 		let div = document.getElementById('gameframe');
-		div.style.width = window.innerHeight + 'px';
-		div.style.height = window.innerHeight + 'px';
+		
+				// Check if device DPI messes up the width-height-ratio
+		if(document.getElementsByTagName('canvas')[0]){
+			let canvas = document.getElementsByTagName('canvas')[0];
+			let dpi_w = parseInt(div.style.width) / canvas.width;
+			let dpi_h = parseInt(div.style.height) / canvas.height;
+		} else {
+			dpi_w=1;
+			dpi_h=1;
+		}
 
-		// Check if device DPI messes up the width-height-ratio
-		let canvas = document.getElementsByTagName('canvas')[0];
-
-		let dpi_w = parseInt(div.style.width) / canvas.width;
-		let dpi_h = parseInt(div.style.height) / canvas.height;
-
+		
 		if (window.innerHeight <= window.innerWidth) {
-			height = window.innerHeight * (dpi_w / dpi_h);
-			width = window.innerHeight * (dpi_w / dpi_h);
-
+			var barHeight = window.innerHeight/20;
+			height = window.innerHeight - (2*barHeight) * (dpi_w / dpi_h);
+			width = window.innerHeight - (2*barHeight) * (dpi_w / dpi_h);
+			spacer=0;
 		} else if (window.innerHeight > window.innerWidth) {
 			height = window.innerWidth * (dpi_w / dpi_h);
 			width = window.innerWidth * (dpi_w / dpi_h);
+			var barHeight = window.innerWidth/20;
+			spacer = (window.innerHeight - ((barHeight*2)+height))/2;
 		}
+		
+		div.style.width = width + 'px';
+		div.style.height = height + 'px';
+		
 		// Scale canvas	
-		canvas.style.width = width + 'px';
-		canvas.style.height = height + 'px';
+		if(document.getElementsByTagName('canvas')[0]){	
+			let canvas = document.getElementsByTagName('canvas')[0];
+			canvas.style.width = width + 'px';
+			canvas.style.height = height + 'px';
+			}
+			$('#menubar').css({
+				'height':barHeight + 'px',
+				'width': width + 'px',
+				'margin-top':spacer + 'px'
+			});
+			$('#footer').css({
+				'height':barHeight + 'px',
+				'width': width + 'px'
+			});
+			$('.barbutton').css({
+				'height':barHeight + 'px',
+			});
+			$('#barlogo').css({
+				'width': width*.25 + 'px'
+			});
+			$('#barhelp').css({
+				'width': width*.09 + 'px',
+				'left': (window.innerWidth-width)/2 + $('#barlogo').width()+'px'
+			});
+			$('#barkey').css({
+				'width': width*.11 + 'px',
+				'left': (window.innerWidth-width)/2 + $('#barlogo').width()+$('#barhelp').width()+'px'
+			});
+		
 	}; /* !inside the game */
 var _anims;
 var windowMask;
@@ -234,14 +273,14 @@ function preload() {
 	$('#gameframe').css({
 		"background": "#ffca4d"
 	});
-	var preLogo = this.add.image(800, 800, 'logo');
+	var preLogo = this.add.image(800, 636, 'logo');
 	var width = this.cameras.main.width;
 	var height = this.cameras.main.height;
 	var progressBar = this.add.graphics();
 	var progressBox = this.add.graphics();
 	var percentText = this.make.text({
 		x: width / 2,
-		y: 1000,
+		y: 836 ,
 		text: '0%',
 		style: {
 			font: '72pt magistral',
@@ -252,8 +291,8 @@ function preload() {
 	progressBox.fillRect(400, 930, 600, 1200);
 	percentText.setOrigin(0.5, 0.5);
 	var preTextBox = this.add.image(200, 1310, 'textboxbg').setOrigin(0);
-	var preTextBoxText = this.add.text(240, 1340, ['Hey! You are in a room!', 'Where are we going?', 'Wow, its beautiful outside!', 'Where are we going? : - )'], {
-		fontFamily: 'Arial',
+	var preTextBoxText = this.add.text(240, 1340, ['Huh. I really want to go out today, but I seem','to have misplaced my key...','Where could it be?'], {
+		fontFamily: 'fieldwork-hum',
 		fontSize: 54,
 		color: '#225a89'
 	}).setOrigin(0);
@@ -261,8 +300,9 @@ function preload() {
 	this.load.on('progress', function(value) {
 		progressBar.clear();
 		progressBar.fillStyle(0x225a89, 2);
-		progressBar.fillRect(300, 930, 1000 * value, 140);
+		progressBar.fillRect(300, 766, 1000 * value, 140);
 		percentText.setText(parseInt(value * 100) + '% ');
+		preTextBoxText.setText(['Huh. I really want to go out today, but I seem','to have misplaced my key...','Where could it be?']);
 	});
 	this.load.on('fileprogress', function(file) {
 		//percentText.setText(file.key);
@@ -337,7 +377,6 @@ function preload() {
 	this.load.image('tabletop', 'assets/objects/table/top.png');
 	// !load atlasses
 	// universal
-	this.load.atlas('menubaratlas', 'assets/ui/menubar.png', 'assets/ui/menubar.json');
 	this.load.atlas('windowatlas', 'assets/objects/window/window.png', 'assets/objects/window/window.json');
 	// !left room
 	this.load.atlas('sizeposteratlas', 'assets/objects/sizeposter/sizeposter.png', 'assets/objects/sizeposter/sizeposter.json');
@@ -664,11 +703,6 @@ function create() {
 	makeRug(graphicsM, '0x94da90');
 	makeRug(graphicsR, '0x94da90');
 	//var logo = this.add.sprite(860, -130, 'logo').setOrigin(0);
-	var menuBar = this.add.sprite(0, -196, 'menubaratlas', 'barbg').setOrigin(0).setAlpha(0);
-	var barTitle = this.add.sprite(0, -196, 'menubaratlas', 'title').setOrigin(0).setInteractive().setAlpha(0);
-	var barSocial = this.add.sprite(408, -196, 'menubaratlas', 'social').setOrigin(0).setInteractive().setAlpha(0);
-	var barHelp = this.add.sprite(604, -196, 'menubaratlas', 'help').setOrigin(0).setInteractive().setAlpha(0);
-	var barKey = this.add.sprite(754, -196, 'menubaratlas', 'key').setOrigin(0).setInteractive().setAlpha(0);
 
 	windowMask = this.add.sprite(1259, 95, 'windowmask').setOrigin(0);
 	windowMask.add = false;
@@ -691,12 +725,13 @@ function create() {
 	floater7 = this.add.sprite(860, (Math.floor(Math.random() * 956) + 1100), 'windowatlas', floaterFrames[Math.floor(Math.random() * 4)]);
 	floater7.mask = new Phaser.Display.Masks.BitmapMask(this, windowMask);
 	floaters = [floater1, floater2, floater3, floater4, floater5, floater6, floater7];
-	var cameraFocus = this.add.sprite(2400, -340, 'logo').setInteractive();
+	var fadeLogo = this.add.sprite(2400, -504, 'logo').setInteractive();
+	var cameraFocus = this.add.sprite(2400, -340).setInteractive();
 	var textBox = this.add.sprite(200, -396, 'textboxbg').setOrigin(0).setInteractive();
 	textBox.ready = false;
 	textBox.pos = 1;
-	var textBoxText = this.add.text(240, -366, ['Hey! You are in a room!', 'Where are we going?', 'Wow, its beautiful outside!', 'Where are we going? : - )'], {
-		fontFamily: 'Arial',
+	var textBoxText = this.add.text(240, -366, ['Huh. I really want to go out today, but I seem','to have misplaced my key...','Where could it be?'], {
+		fontFamily: 'fieldwork-hum',
 		fontSize: 54,
 		color: '#225a89'
 	}).setOrigin(0);
@@ -1387,14 +1422,6 @@ function create() {
 		framerate: 30,
 		repeat: 0,
 	});
-	keyGetTween = this.tweens.add({
-		targets: [barKey],
-		y: '+=75',
-		alpha: 1,
-		duration: 500,
-		repeat: 0,
-		paused: true
-	});
 	var sq1Tween = this.tweens.add({
 		targets: [sq1],
 		y: '-=300',
@@ -1653,56 +1680,8 @@ function create() {
 	_anims = this.anims;
 	// !create interactions
 	// !universal
-	tween = this.tweens.add({
-		targets: [cameraFocus],
-		y: 1246,
-		alpha: 0,
-		duration: 1750,
-		repeat: 0,
-		onComplete: function() {
-			//textBoxTweenUp.resume();
-			textBox.up = true;
-			downPrompt.alpha = 1;
-			menuBarTween.resume();
-			setTimeout(function() {
-				textBox.ready = true;
-				downPromptAnim.resume();
-			}, 1250);
-		}
-	});
-	tween = this.tweens.add({
-		targets: [textBox, textBoxText, downPrompt],
-		y: "+=1586",
-		duration: 1750,
-		repeat: 0,
-	});
-	var menuBarTween = this.tweens.add({
-		targets: [menuBar, barTitle, barSocial, barHelp],
-		y: '+=75',
-		alpha: 1,
-		duration: 500,
-		repeat: 0,
-		paused: true
-	});
-	barTitle.on('pointerover', function(pointer) {
-		barTitle.setFrame('title_on');
-	});
-	barTitle.on('pointerout', function(pointer) {
-		barTitle.setFrame('title');
-	});
-	barSocial.on('pointerover', function(pointer) {
-		barSocial.setFrame('social_on');
-	});
-	barSocial.on('pointerout', function(pointer) {
-		barSocial.setFrame('social');
-	});
-	barHelp.on('pointerover', function(pointer) {
-		barHelp.setFrame('help_on');
-	});
-	barHelp.on('pointerout', function(pointer) {
-		barHelp.setFrame('help');
-	});
-	barHelp.on('pointerdown', function(pointer) {
+	
+	$('#barhelp').click(function() {
 		if (textBox.ready == false && textBox.pos == 0) {
 			textBox.ready = true;
 			textBoxTweenUp.resume();
@@ -1718,12 +1697,32 @@ function create() {
 				textBox.pos=2;
 			}
 		}
-	}, this);
-	barKey.on('pointerover', function(pointer) {
-		barKey.setFrame('key_on');
 	});
-	barKey.on('pointerout', function(pointer) {
-		barKey.setFrame('key');
+	
+	tween = this.tweens.add({
+		targets: [fadeLogo, cameraFocus],
+		y: 1246,
+		alpha: 0,
+		duration: 1750,
+		repeat: 0,
+		onComplete: function() {
+			//textBoxTweenUp.resume();
+			$('#barhelp').css({
+				'opacity': '1'
+			});
+			textBox.up = true;
+			downPrompt.alpha = 1;
+			setTimeout(function() {
+				textBox.ready = true;
+				downPromptAnim.resume();
+			}, 1250);
+		}
+	});
+	tween = this.tweens.add({
+		targets: [textBox, textBoxText, downPrompt],
+		y: "+=1586",
+		duration: 1750,
+		repeat: 0,
 	});
 	leftButton.on('pointerdown', function() {
 		if (currentRoom == 1) {
@@ -2285,7 +2284,8 @@ function create() {
 						pane3.anims.play('keyget');
 						keySpawned = true;
 					} else if (dodgeCounter == 32) {
-						keyGetTween.resume();
+						console.log('ece??');
+						//keyGetTween.resume();
 					} else {
 						pane3.play('obstacle0');
 					}
@@ -2377,7 +2377,9 @@ function create() {
 				} else if (pane1.anims.currentAnim.key == 'keyget' && collisionZone.key === true && shipRespawning === false) {
 					keyGot = true;
 					keySpawned = false;
-					keyGetTween.resume();
+					$('#barkey').css({
+							'opacity': '1'
+						});
 					pane1.play('obstacle0');
 				}
 			}, 250);
@@ -2622,7 +2624,7 @@ function create() {
 	// !right room
 	var booksContainer = this.add.container(0, 0, [bottomShelf, book5, book6, book7, book8, book9, book10, book11, topShelf, book1, book2, book3, book4, shelfPlant]);
 	bookChimes = [book4, book6, book10, book5, book8, book3, book9, book2, book1];
-	var uiContainer = this.add.container(1600, 566, [leftButton, rightButton, menuBar, barTitle, barSocial, barHelp, barKey]);
+	var uiContainer = this.add.container(1600, 566, [leftButton, rightButton]);
 	var textContainer = this.add.container(1600, 566, [textBox, textBoxText, downPrompt]);
 
 	this.cameras.main.startFollow(cameraFocus);
