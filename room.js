@@ -1,7 +1,17 @@
+/* If mobile, don't do nothin' */
+function isMobileDevice() {
+	return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+}
+if( isMobileDevice() ) {
+	document.body.classList.add('mobile');
+	return;
+}
+
 /* !outside the game */
 var game;
 var idleData;
 var loadAnim;
+/* Set game size */
 function setGameSize() {
 	let
   header = document.getElementById('header'),
