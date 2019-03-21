@@ -14,6 +14,7 @@ function setGameSize() {
   headerHeight = parseFloat( headerStyle.getPropertyValue('height') ),
   footerHeight = parseFloat( footerStyle.getPropertyValue('height') );
   let
+	windowWidth = window.innerWidth;
   windowHeight = window.innerHeight;
   gameHeight = windowHeight - headerHeight - footerHeight;
   // Set sizes
@@ -21,10 +22,18 @@ function setGameSize() {
   	gameWrapper.style.marginTop = headerHeight + 'px';
   	gameWrapper.style.height = gameHeight + 'px';
   	gameWrapper.style.width = gameHeight + 'px';
+		if(windowWidth < windowHeight) {
+			gameWrapper.style.width = gameWidth + 'px';
+			gameWrapper.style.height = gameWidth + 'px';
+		}
 	}
 	if(game) {
   	game.style.height = gameHeight + 'px';
   	game.style.width = gameHeight + 'px';
+		if(windowWidth < windowHeight) {
+			game.style.width = gameWidth + 'px';
+			game.style.height = gameWidth + 'px';
+		}
 	}
 }
 /*

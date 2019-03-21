@@ -92,7 +92,7 @@ svg {
   flex-direction: column;
   bottom: 0;
   font-size: 1.2em;
-  margin-bottom: 1em;
+  min-height: 2em;
 }
 #footer p {
   margin-right: 1em;
