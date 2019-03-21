@@ -24,7 +24,7 @@ function setGameSize() {
   	gameWrapper.style.marginTop = headerHeight + 'px';
   	gameWrapper.style.height = gameHeight + 'px';
   	gameWrapper.style.width = gameHeight + 'px';
-		if(windowWidth < windowHeight) {
+		if(windowWidth < gameHeight) {
 			gameWrapper.style.width = windowWidth + 'px';
 			gameWrapper.style.height = windowWidth + 'px';
 		}
