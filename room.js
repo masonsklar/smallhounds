@@ -14,7 +14,7 @@ function setGameSize() {
   headerHeight = parseFloat( headerStyle.getPropertyValue('height') ),
   footerHeight = parseFloat( footerStyle.getPropertyValue('height') );
   let
-  windowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
+  windowHeight = window.innerHeight;
   gameHeight = windowHeight - headerHeight - footerHeight;
   // Set sizes
 	if(gameWrapper) {
@@ -23,10 +23,11 @@ function setGameSize() {
   	gameWrapper.style.width = gameHeight + 'px';
 	}
 	if(game) {
-  game.style.height = gameHeight + 'px';
-  game.style.width = gameHeight + 'px';
+  	game.style.height = gameHeight + 'px';
+  	game.style.width = gameHeight + 'px';
 	}
 }
+/*
 var resizeFrame = function() {
 		if (game == undefined) {
 			let div = document.getElementById('gameframe');
@@ -46,10 +47,9 @@ var resizeFrame = function() {
 			}
 			div.style.width = width + 'px';
 			div.style.height = height + 'px';
-
 		}
 	}
-
+*/
 function generateRandomNumber(x, y) {
 	return Math.random() * (y - x) + x;
 };
@@ -118,6 +118,7 @@ window.onload = function() {
 	}, 1200)
 
 }
+/*
 var resizeApp = function() {
 		let div = document.getElementById('gameframe');
 
@@ -177,7 +178,8 @@ var resizeApp = function() {
 				'left': (window.innerWidth-width)/2 + $('#barlogo').width()+$('#barhelp').width()+'px'
 			});
 
-	}; /* !inside the game */
+	}; */
+	/* !inside the game */
 var _anims;
 var windowMask;
 var floaters;
