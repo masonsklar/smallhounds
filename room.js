@@ -1,11 +1,3 @@
-/* If mobile, don't do nothin' */
-function isMobileDevice() {
-	return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
-}
-if( isMobileDevice() ) {
-	document.body.classList.add('mobile');
-	return;
-}
 
 /* !outside the game */
 var game;
@@ -74,6 +66,14 @@ function generateRandomNumber(x, y) {
 };
 
 window.onload = function() {
+	/* If mobile, don't do nothin' */
+	function isMobileDevice() {
+		return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+	}
+	if( isMobileDevice() ) {
+		document.body.classList.add('mobile');
+		return;
+	}
 	// window.addEventListener('resize', resizeApp);
 	// resizeFrame();
 	// resizeApp();
