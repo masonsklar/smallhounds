@@ -2,6 +2,31 @@
 var game;
 var idleData;
 var loadAnim;
+function setGameSize() {
+	let
+  header = document.getElementById('header'),
+  footer = document.getElementById('footer'),
+  gameWrapper = document.getElementById('gameframe');
+  let
+  headerStyle = window.getComputedStyle(header),
+  footerStyle = window.getComputedStyle(footer);
+  let
+  headerHeight = parseFloat( headerStyle.getPropertyValue('height') ),
+  footerHeight = parseFloat( footerStyle.getPropertyValue('height') );
+  let
+  windowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
+  gameHeight = windowHeight - headerHeight - footerHeight;
+  // Set sizes
+	if(gameWrapper) {
+  	gameWrapper.style.marginTop = headerHeight + 'px';
+  	gameWrapper.style.height = gameHeight + 'px';
+  	gameWrapper.style.width = gameHeight + 'px';
+	}
+	if(game) {
+  game.style.height = gameHeight + 'px';
+  game.style.width = gameHeight + 'px';
+	}
+}
 var resizeFrame = function() {
 		if (game == undefined) {
 			let div = document.getElementById('gameframe');
@@ -30,9 +55,11 @@ function generateRandomNumber(x, y) {
 };
 
 window.onload = function() {
-	window.addEventListener('resize', resizeApp);
-	resizeFrame();
-	resizeApp();
+	// window.addEventListener('resize', resizeApp);
+	// resizeFrame();
+	// resizeApp();
+	setGameSize();
+	window.addEventListener('resize', setGameSize);
 	idleData = {
 		wrapper: document.getElementById('gameframe'),
 		animType: 'svg',
@@ -93,7 +120,7 @@ window.onload = function() {
 }
 var resizeApp = function() {
 		let div = document.getElementById('gameframe');
-		
+
 				// Check if device DPI messes up the width-height-ratio
 		if(document.getElementsByTagName('canvas')[0]){
 			let canvas = document.getElementsByTagName('canvas')[0];
@@ -104,7 +131,7 @@ var resizeApp = function() {
 			dpi_h=1;
 		}
 
-		
+
 		if (window.innerHeight <= window.innerWidth) {
 			var barHeight = window.innerHeight/20;
 			height = window.innerHeight - (2*barHeight) * (dpi_w / dpi_h);
@@ -116,12 +143,12 @@ var resizeApp = function() {
 			var barHeight = window.innerWidth/20;
 			spacer = (window.innerHeight - ((barHeight*2)+height))/2;
 		}
-		
+
 		div.style.width = width + 'px';
 		div.style.height = height + 'px';
-		
-		// Scale canvas	
-		if(document.getElementsByTagName('canvas')[0]){	
+
+		// Scale canvas
+		if(document.getElementsByTagName('canvas')[0]){
 			let canvas = document.getElementsByTagName('canvas')[0];
 			canvas.style.width = width + 'px';
 			canvas.style.height = height + 'px';
@@ -149,7 +176,7 @@ var resizeApp = function() {
 				'width': width*.11 + 'px',
 				'left': (window.innerWidth-width)/2 + $('#barlogo').width()+$('#barhelp').width()+'px'
 			});
-		
+
 	}; /* !inside the game */
 var _anims;
 var windowMask;
@@ -352,7 +379,7 @@ function preload() {
 	this.load.audio('chime8', 'assets/objects/books/audio/8.wav');
 	this.load.audio('chime0', 'assets/objects/books/audio/no.wav');
 	// !load images
-	// universal 
+	// universal
 	//this.load.image('room', 'assets/bg/room.png');
 	//this.load.image('logo', 'assets/ui/logo2.png');
 	this.load.image('left', 'assets/ui/left.png');
@@ -364,7 +391,7 @@ function preload() {
 	this.load.image('rugbump', 'assets/objects/rugbump/rugbump.png');
 	this.load.image('vase', 'assets/objects/vase.png');
 	this.load.image('fronttable', 'assets/objects/fronttable.png');
-	// middle room 
+	// middle room
 	this.load.image('wideplant', 'assets/objects/wideplant.png');
 	this.load.image('bgcouch', 'assets/objects/couch/sq/bgcouch.png');
 	this.load.image('arm', 'assets/objects/couch/sq/arm.png');
@@ -768,7 +795,7 @@ function create() {
 	];
 	var helps = {
 		l: [
-			['I\'m really not sure how I got locked inside! : - /', 'How embarassing. I haven\'t swept under the','rug in a while... I don\'t leave my home','often because I really love it.'], 
+			['I\'m really not sure how I got locked inside! : - /', 'How embarassing. I haven\'t swept under the','rug in a while... I don\'t leave my home','often because I really love it.'],
 		],
 		m: [
 			['Things are always falling into my couch. I try', 'to play memory games to keep my mind sharp.', 'Try holding your mouse down on the arrows,', 'I think I left something in there : - )'],
@@ -795,7 +822,7 @@ function create() {
 	card3b = this.add.sprite(2504, 1916, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3);
 	card3c = this.add.sprite(2576, 1880, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3);
 	card3d = this.add.sprite(2648, 1844, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3);
-	//shooter 
+	//shooter
 	var CSTopPoly = new Phaser.Geom.Polygon([106, 46, 109, 90, 0, 141, 0, 96, 55, 2]);
 	var CSMidPoly = new Phaser.Geom.Polygon([109, 203, 0, 254, 1, 140, 108, 89]);
 	var CSBotPoly = new Phaser.Geom.Polygon([1, 298, 0, 255, 107, 204, 107, 249, 54, 344]);
@@ -1680,7 +1707,7 @@ function create() {
 	_anims = this.anims;
 	// !create interactions
 	// !universal
-	
+
 	$('#barhelp').click(function() {
 		if (textBox.ready == false && textBox.pos == 0) {
 			textBox.ready = true;
@@ -1698,7 +1725,7 @@ function create() {
 			}
 		}
 	});
-	
+
 	tween = this.tweens.add({
 		targets: [fadeLogo, cameraFocus],
 		y: 1246,
@@ -2500,7 +2527,7 @@ function create() {
 							game.sound.play('chime1');
 							book10tween.resume();
 						} else if (bookChimes.indexOf(e) === 0) {
-							
+
 						}
 					}, (prevTone * 300));
 					prevTone -= 1;
@@ -2538,7 +2565,7 @@ function create() {
 	/*this.input.on('pointerdown', function(event, gameObjects) {
 		console.log(gameObjects[0]);
 	});*/
-	
+
 	book1.on('pointerdown', function() {
 		book1tween.resume();
 		sequence(8);
