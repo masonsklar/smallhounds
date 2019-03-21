@@ -1,15 +1,104 @@
-body{
-  background-color: #ffca4d;
-  font-family: magistral, sans-serif;
-  font-style: normal;
-  font-weight: 300;
-  overflow: hidden;
-  margin: 0;
-}
-#wrapper {
-  margin: 0 auto;
-}
-#gameframe{
+/*
+ * Layout
+ */
+
+ body{
+   background-color: #ffca4d;
+   font-family: magistral, sans-serif;
+   font-style: normal;
+   font-weight: 300;
+   overflow: hidden;
+   margin: 0;
+ }
+
+ #header {
+   background: #181818;
+   display: flex;
+   align-content: center;
+   padding: 0 2em;
+   position: absolute;
+   top: 0;
+   width: 100%;
+ }
+ #header h1 {
+   text-transform: lowercase;
+   color: white;
+   font-size: 1.8em;
+   margin: 0.3em 0;
+   margin-right: 1em;
+ }
+ #header h1 a {
+   text-decoration: none;
+ }
+ #header ul {
+   margin: 0;
+   padding: 0;
+   display: flex;
+   align-items: center;
+ }
+ #header li {
+   list-style: none;
+   margin-right: 1em;
+   font-size: 1em;
+ }
+ #header li.icon {
+   font-size: 1.3em;
+ }
+ #header a {
+   color: white;
+ }
+
+ #footer {
+   position: absolute;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   justify-content: center;
+   bottom: 0;
+   font-size: 1.2em;
+   min-height: 4em;
+ }
+ #footer p {
+   margin-right: 1em;
+   text-transform: lowercase;
+ }
+ #footer ul {
+   margin: 0;
+   padding: 0;
+   display: flex;
+   align-items: center;
+ }
+ #footer ul li {
+   list-style: none;
+ }
+ #footer ul li:not(:last-child) {
+   margin-right: 1em;
+ }
+ #footer a {
+   color: #225a89;
+ }
+
+ #footer a:hover {
+   color: white;
+ }
+
+ #warning {
+   display: none;
+ }
+   body.mobile #gameframe{
+     display: none;
+   }
+   body.mobile #warning {
+     display: block;
+   }
+
+
+/*
+ * Game, actions
+ */
+
+#gameframe {
   margin: 0 auto;
   top: 0;
   position: relative;
@@ -17,56 +106,13 @@ body{
   flex-direction: column;
   justify-content: center;
 }
+
 canvas {
   width: 100%;
   height: 100%;
   margin: auto 0;
 }
-#actions {
-  position: absolute;
-  bottom: 22%;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-#header {
-  background: #181818;
-  display: flex;
-  align-content: center;
-  padding: 0 2em;
-  position: absolute;
-  top: 0;
-  width: 100%;
-}
-#header h1 {
-  text-transform: lowercase;
-  color: white;
-  font-size: 1.8em;
-  margin: 0.3em 0;
-  margin-right: 1em;
-}
-#header h1 a {
-  text-decoration: none;
-}
-#header ul {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-}
-#header li {
-  list-style: none;
-  margin-right: 1em;
-  font-size: 1em;
-}
-#header li.icon {
-  font-size: 1.3em;
-}
-#header a {
-  color: white;
-}
+
 #textbox{
   width: 75%;
   background-image: url('assets/ui/chooser.png');
@@ -80,47 +126,22 @@ svg {
   position: absolute;
   left:0;
 }
-#footer {
+
+#actions {
   position: absolute;
+  bottom: 22%;
   width: 100%;
   display: flex;
-  align-items: center;
-  flex-direction: column;
-  bottom: 0;
-  font-size: 1.2em;
-  min-height: 2em;
-}
-#footer p {
-  margin-right: 1em;
-  text-transform: lowercase;
-}
-#footer ul {
-  margin: 0;
-  padding: 0;
-  display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
 }
-#footer ul li {
-  list-style: none;
-}
-#footer ul li:not(:last-child) {
-  margin-right: 1em;
-}
-#footer a {
-  color: #225a89;
-}
 
-#footer a:hover {
-  color: white;
-}
-
-body.mobile #startbutton {
-  display: none;
-}
 #trings, #dcones, #ucones, #rod1, #rod2, #rod3{
   transition: all 4s;
   z-index: 3;
 }
+
 .button, button {
   background: #EE555C;
   /* font-family: fieldwork-hum, sans-serif; */
@@ -136,16 +157,13 @@ body.mobile #startbutton {
   margin: 10px 1em 0;
   font-size: 1.5em;
 }
+
 .button:active, button:active {
   background: #d84d53;
   transform: translateY(2px);
 }
-#warning {
+
+body.mobile #gameframe,
+body.mobile #startbutton {
   display: none;
 }
-  body.mobile #gameframe{
-    display: none;
-  }
-  body.mobile #warning {
-    display: block;
-  }
