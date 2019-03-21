@@ -29,14 +29,14 @@ function setGameSize() {
 			gameWrapper.style.height = windowWidth + 'px';
 		}
 	}
-	if(game) {
-  	game.style.height = gameHeight + 'px';
-  	game.style.width = gameHeight + 'px';
-		if(windowWidth < windowHeight) {
-			game.style.width = windowWidth + 'px';
-			game.style.height = windowWidth + 'px';
-		}
-	}
+	// if(game) {
+  // 	game.style.height = gameHeight + 'px';
+  // 	game.style.width = gameHeight + 'px';
+	// 	if(windowWidth < windowHeight) {
+	// 		game.style.width = windowWidth + 'px';
+	// 		game.style.height = windowWidth + 'px';
+	// 	}
+	// }
 }
 /*
 var resizeFrame = function() {
