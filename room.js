@@ -98,6 +98,7 @@ window.onload = function() {
 		$('#colors').css({
 				'opacity': '1'
 		});
+		$('#actions').hide();
 		clearInterval(floatInterval);
 		movers.forEach(function(e) {
 			newX = generateRandomNumber(-800, 800);
@@ -317,7 +318,7 @@ var config = {
 //var game = new Phaser.Game(config);
 
 function preload() {
-	resizeApp();
+	setGameSize();
 	$('#gameframe').css({
 		"background": "#ffca4d"
 	});
@@ -448,7 +449,7 @@ function preload() {
 }
 
 function create() {
-	window.addEventListener('resize', resizeApp);
+	// window.addEventListener('resize', resizeApp);
 	// !create frames
 	// !left room
 	var sizePosterPolygon = new Phaser.Geom.Polygon([273, 472, 0, 600, 0, 126, 273, 0]);
