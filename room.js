@@ -23,16 +23,16 @@ function setGameSize() {
   	gameWrapper.style.height = gameHeight + 'px';
   	gameWrapper.style.width = gameHeight + 'px';
 		if(windowWidth < windowHeight) {
-			gameWrapper.style.width = gameWidth + 'px';
-			gameWrapper.style.height = gameWidth + 'px';
+			gameWrapper.style.width = windowWidth + 'px';
+			gameWrapper.style.height = windowWidth + 'px';
 		}
 	}
 	if(game) {
   	game.style.height = gameHeight + 'px';
   	game.style.width = gameHeight + 'px';
 		if(windowWidth < windowHeight) {
-			game.style.width = gameWidth + 'px';
-			game.style.height = gameWidth + 'px';
+			game.style.width = windowWidth + 'px';
+			game.style.height = windowWidth + 'px';
 		}
 	}
 }

@@ -38,5 +38,13 @@
 		<script type="text/javascript" src="newphaser.js"></script>
 		<script type="text/javascript" src="room.js"></script>
 		<script type="text/javascript" src="lottie.js"></script>
+		<script>
+			function isMobileDevice() {
+	    	return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+			}
+			if( isMobileDevice() ) {
+				document.body.classList.add('mobile');
+			}
+		</script>
 	</body>
 </html>

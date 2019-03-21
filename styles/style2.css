@@ -144,9 +144,12 @@ body.mobile #startbutton {
   background: #d84d53;
   transform: translateY(2px);
 }
-
-@media (min-device-width : 300px) and (max-device-width : 680px) {
-  #gameframe{
+#warning {
+  display: none;
+}
+  body.mobile #gameframe{
     display: none;
   }
-}
+  body.mobile #warning {
+    display: block;
+  }
