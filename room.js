@@ -92,6 +92,9 @@ window.onload = function() {
 	loadAnim = bodymovin.loadAnimation(idleData);
 	var movers = ["#rod1", "#rod2", "#rod3", "#ucones", "#dcones", "#trings"];
 	$('#startbutton').click(function() {
+		$('#bartitle').css({
+				'opacity': '0'
+		});
 		$('#smallhounds').css({
 				'opacity': '1'
 		});
@@ -112,7 +115,7 @@ window.onload = function() {
 		setTimeout(function() {
 			movers.forEach(function(e) {
 				$(e).css({
-					'transform': 'translate(0px,0px)',
+					'transform': 'translate(0px,-82px)',
 					'opacity': '1'
 				})
 			});
@@ -776,15 +779,15 @@ function create() {
 	floaters = [floater1, floater2, floater3, floater4, floater5, floater6, floater7];
 	var fadeLogo = this.add.sprite(2400, -504, 'logo').setInteractive();
 	var cameraFocus = this.add.sprite(2400, -340).setInteractive();
-	var textBox = this.add.sprite(200, -396, 'textboxbg').setOrigin(0).setInteractive();
+	var textBox = this.add.sprite(200, 964, 'textboxbg').setOrigin(0).setInteractive();
 	textBox.ready = false;
 	textBox.pos = 1;
-	var textBoxText = this.add.text(240, -366, ['Huh. I really want to go out today, but I seem','to have misplaced my key...','Where could it be?'], {
+	var textBoxText = this.add.text(240, 994, ['Huh. I really want to go out today, but I seem','to have misplaced my key...','Where could it be?'], {
 		fontFamily: 'fieldwork-hum',
 		fontSize: 54,
 		color: '#225a89'
 	}).setOrigin(0);
-	var downPrompt = this.add.sprite(1280, -186, 'downprompt').setOrigin(0);
+	var downPrompt = this.add.sprite(1280, 1174, 'downprompt').setOrigin(0);
 	downPrompt.alpha = 1;
 	var leftButton = this.add.sprite(20, 764, 'left').setOrigin(0).setInteractive();
 	var rightButton = this.add.sprite(1508, 764, 'right').setOrigin(0).setInteractive();
@@ -809,6 +812,7 @@ function create() {
 	var rugBump = this.add.sprite(120, 1688, 'rugbump').setOrigin(0.5, 1).setAlpha(1).setScale(1, 0);
 	var frontTable = this.add.sprite(306, 2158, 'fronttable').setOrigin(0).setInteractive(doorKnobPolygon, Phaser.Geom.Polygon.Contains);
 	var door = this.add.sprite(328, 986, 'dooratlas', '0').setOrigin(0).setInteractive(doorKnobPolygon, Phaser.Geom.Polygon.Contains);
+	var doorOpened;
 	var doorQuips = [
 		['I think I left my key', 'in deep space.'],
 		['I said, I think I left my key', 'in deep space.'],
@@ -1292,12 +1296,14 @@ function create() {
 	var doorOpen = this.anims.create({
 		key: 'dooropen',
 		frames: doorOpenFrames,
-		frameRate: 15
+		frameRate: 15,
+
 	});
 	var doorClose = this.anims.create({
 		key: 'doorclose',
 		frames: doorCloseFrames,
-		frameRate: 15
+		frameRate: 15,
+
 	});
 	for (i = 1; i < 7; i++) {
 		this.anims.create({
@@ -1336,7 +1342,7 @@ function create() {
 		duration: 100,
 		repeat: -1,
 		paused: true,
-		onRepeat: function() {
+		onRepeat: function(){
 			rugBumpJitterTween.pause();
 			scratchSound.play();
 		}
@@ -1755,7 +1761,10 @@ function create() {
 		duration: 1750,
 		repeat: 0,
 		onComplete: function() {
-			//textBoxTweenUp.resume();
+			textBoxTweenUp.resume();
+			$('#bartitle').css({
+				'opacity': '1'
+			});
 			$('#barhelp').css({
 				'opacity': '1'
 			});
@@ -1905,7 +1914,7 @@ function create() {
 		nextSize++;
 	});
 	door.on('pointerdown', function(pointer) {
-		if (textBox.ready == false && textBox.pos == 0) {
+		if (textBox.ready == false && textBox.pos == 0 && !keyGot) {
 			textBox.ready = true;
 			textBoxTweenUp.resume();
 			downPromptAnim.resume();
@@ -1922,8 +1931,20 @@ function create() {
 				textBox.ready = false;
 			}, 4000);
 
+		} else if(keyGot){
+			door.anims.play('dooropen');
+			
 		}
 	}, this);
+	door.on('animationcomplete', function(anim, frame) {
+				this.emit('animationcomplete_' + anim.key, anim, frame);
+	}, door);
+	door.on('animationcomplete_dooropen', function() {
+				doorOpened=true;
+	});
+	door.on('animationcomplete_doorclose', function() {
+				doorOpened=false;
+	});
 	frontPlant.on('pointerdown', function() {
 		if (currentPlant === 0) {
 			frontPlant.play('plantcycle1');
@@ -2584,9 +2605,11 @@ function create() {
 				prevTone = 1;
 			}
 		};
-	/*this.input.on('pointerdown', function(event, gameObjects) {
-		console.log(gameObjects[0]);
-	});*/
+	this.input.on('pointerdown', function(event, gameObjects) {
+		if(doorOpened==true){
+			door.anims.play('doorclose');
+		}
+	});
 
 	book1.on('pointerdown', function() {
 		book1tween.resume();
