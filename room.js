@@ -410,8 +410,9 @@ function preload() {
 	this.load.image('left', 'assets/ui/left.png');
 	this.load.image('right', 'assets/ui/right.png');
 	this.load.image('windowmask', 'assets/objects/window/windowmask.png');
-	// left room
 	this.load.image('textboxbg', 'assets/chooser/chooser.png');
+	// left room
+	this.load.image('dlmask', 'assets/objects/dl/mask.png');
 	this.load.image('wallposter', 'assets/objects/wallposter.png');
 	this.load.image('rugbump', 'assets/objects/rugbump/rugbump.png');
 	this.load.image('vase', 'assets/objects/vase.png');
@@ -431,6 +432,7 @@ function preload() {
 	// universal
 	this.load.atlas('windowatlas', 'assets/objects/window/window.png', 'assets/objects/window/window.json');
 	// !left room
+	this.load.atlas('dlatlas', 'assets/objects/dl/dl.png', 'assets/objects/dl/dl.json');
 	this.load.atlas('sizeposteratlas', 'assets/objects/sizeposter/sizeposter.png', 'assets/objects/sizeposter/sizeposter.json');
 	this.load.atlas('dooratlas', 'assets/objects/door/door.png', 'assets/objects/door/door.json');
 	this.load.multiatlas('plantcycleatlas', 'assets/objects/plantcycle/plantcycle.json');
@@ -455,9 +457,15 @@ function create() {
 	// window.addEventListener('resize', resizeApp);
 	// !create frames
 	// !left room
+	var dlPolygon = new Phaser.Geom.Polygon([ 307,342, 306,253, 579,376, 575,469 ]);
 	var sizePosterPolygon = new Phaser.Geom.Polygon([273, 472, 0, 600, 0, 126, 273, 0]);
 	var doorKnobPolygon = new Phaser.Geom.Polygon([255, 429, 327, 395, 330, 518, 254, 560]);
 	var frontPlantPolygon = new Phaser.Geom.Polygon([222, 74, 292, 68, 331, 292, 274, 443, 194, 469, 128, 441, 70, 271]);
+	var dlFrames = this.anims.generateFrameNames('dlatlas', {
+		prefix:'dl',
+		start:1,
+		end:4
+	});
 	var sizePosterFrames = this.anims.generateFrameNames('sizeposteratlas', {
 		prefix: 'sizeposter',
 		start: 0,
@@ -792,6 +800,9 @@ function create() {
 	var leftButton = this.add.sprite(20, 764, 'left').setOrigin(0).setInteractive();
 	var rightButton = this.add.sprite(1508, 764, 'right').setOrigin(0).setInteractive();
 	// !left room
+	var vase = this.add.sprite(898, 1440, 'vase').setOrigin(0).setInteractive();
+	var rugBump = this.add.sprite(120, 1688, 'rugbump').setOrigin(0.5, 1).setAlpha(1).setScale(1, 0);
+	
 	var sizePoster = this.add.sprite(756, 884, 'sizeposteratlas', 'sizeposter0').setOrigin(0).setInteractive(sizePosterPolygon, Phaser.Geom.Polygon.Contains);
 	var mesh = this.make.mesh({
 		key: 'phaser2',
@@ -807,9 +818,10 @@ function create() {
 	sizePoster.mask = new Phaser.Display.Masks.GeometryMask(this, mesh);
 	var rugContain = this.add.sprite(0, 0).setOrigin(0).setInteractive(frontRugBumpPolygon, Phaser.Geom.Polygon.Contains);
 	rugContain.isUp = false;
-	var vase = this.add.sprite(898, 1440, 'vase').setOrigin(0).setInteractive();
+	var dl = this.add.sprite(-130,1160,'dlatlas','dl1').setOrigin(0).setInteractive(dlPolygon, Phaser.Geom.Polygon.Contains);
+	dl.name='dl';
+	var dlMask = this.add.sprite(0,1048,'dlmask').setOrigin(0);
 	var wallPoster = this.add.sprite(116, 1286, 'wallposter').setOrigin(0);
-	var rugBump = this.add.sprite(120, 1688, 'rugbump').setOrigin(0.5, 1).setAlpha(1).setScale(1, 0);
 	var frontTable = this.add.sprite(306, 2158, 'fronttable').setOrigin(0).setInteractive(doorKnobPolygon, Phaser.Geom.Polygon.Contains);
 	var door = this.add.sprite(328, 986, 'dooratlas', '0').setOrigin(0).setInteractive(doorKnobPolygon, Phaser.Geom.Polygon.Contains);
 	var doorOpened;
@@ -1037,6 +1049,7 @@ function create() {
 		easeParams: [3],
 	})
 	// !left room
+
 	var sizePosterAnim = this.anims.create({
 		key: 'sizeposter',
 		frames: sizePosterFrames,
@@ -1293,6 +1306,38 @@ function create() {
 		}
 	});
 	var sizeTweens = [null, sizePosterSize1, sizePosterSize2, sizePosterSize3, sizePosterSize4, sizePosterSize5, sizePosterSize6, sizePosterSize7, sizePosterSize8, sizePosterSize9a];
+		var dlAnim = this.anims.create({
+		key: 'dlanim',
+		frames: dlFrames,
+		frameRate: 8,
+		repeat: -1
+	});
+	var dlTweenOut = this.tweens.add({
+		targets:[dl],
+		x:'+=788',
+		y: '+=368',
+		duration: 250,
+		paused: true,
+		ease: 'Bounce',
+		repeat: -1,
+		onRepeat: function(){
+			dlTweenOut.pause();
+			dl.anims.play('dlanim');
+		}
+	});
+	var dlTweenIn = this.tweens.add({
+		targets:[dl],
+		x:'-=788',
+		y: '-=368',
+		duration: 250,
+		paused: true,
+		repeat: -1,
+		onRepeat: function(){
+			dlTweenIn.pause();
+			door.anims.play('doorclose');
+			dl.anims.pause();
+		}
+	});
 	var doorOpen = this.anims.create({
 		key: 'dooropen',
 		frames: doorOpenFrames,
@@ -1304,6 +1349,16 @@ function create() {
 		frames: doorCloseFrames,
 		frameRate: 15,
 
+	});
+	door.on('animationcomplete', function(anim, frame) {
+				this.emit('animationcomplete_' + anim.key, anim, frame);
+	}, door);
+	door.on('animationcomplete_dooropen', function() {
+				doorOpened=true;
+				dlTweenOut.resume();
+	});
+	door.on('animationcomplete_doorclose', function() {
+				doorOpened=false;
 	});
 	for (i = 1; i < 7; i++) {
 		this.anims.create({
@@ -1341,7 +1396,10 @@ function create() {
 		scaleX: 1.125,
 		duration: 100,
 		repeat: -1,
-		paused: true,
+		paused: false,
+		onStart: function(){
+				rugBumpJitterTween.pause();
+		},
 		onRepeat: function(){
 			rugBumpJitterTween.pause();
 			scratchSound.play();
@@ -1760,11 +1818,13 @@ function create() {
 		alpha: 0,
 		duration: 1750,
 		repeat: 0,
-		onComplete: function() {
-			textBoxTweenUp.resume();
+		onStart: function(){
 			$('#bartitle').css({
 				'opacity': '1'
-			});
+			});	
+		},
+		onComplete: function() {
+			textBoxTweenUp.resume();
 			$('#barhelp').css({
 				'opacity': '1'
 			});
@@ -1840,6 +1900,9 @@ function create() {
 			});
 		}
 		if (currentRoom === 0) {
+			if(doorOpened==true){
+				dlTweenIn.resume();
+			}
 			currentRoom = 1;
 			leftButton.alpha = 1;
 			tween = this.tweens.add({
@@ -1883,7 +1946,7 @@ function create() {
 	}, this);
 	// !left room
 	rugContain.on('pointerover', function() {
-		if (!rugContain.isUp) {
+		if (!rugContain.isUp && !doorOpened) {
 			rugBumpUpTween.resume();
 		}
 	});
@@ -1936,15 +1999,14 @@ function create() {
 			
 		}
 	}, this);
-	door.on('animationcomplete', function(anim, frame) {
-				this.emit('animationcomplete_' + anim.key, anim, frame);
-	}, door);
-	door.on('animationcomplete_dooropen', function() {
-				doorOpened=true;
+	
+	
+	dl.on('pointerdown',function(){
+		if(doorOpened){
+			openExternalLink('https://www.youtube.com/watch?v=Y5KMl11I7Zs');
+		}
 	});
-	door.on('animationcomplete_doorclose', function() {
-				doorOpened=false;
-	});
+	
 	frontPlant.on('pointerdown', function() {
 		if (currentPlant === 0) {
 			frontPlant.play('plantcycle1');
@@ -2005,6 +2067,10 @@ function create() {
 		}
 	});
 	mug1.on('pointerdown', function() {
+		if(doorOpened==true){
+			dlTweenIn.resume();
+		}
+
 		mug1.y -= 50;
 		mug1tween.resume();
 		mugSound.play();
@@ -2605,11 +2671,6 @@ function create() {
 				prevTone = 1;
 			}
 		};
-	this.input.on('pointerdown', function(event, gameObjects) {
-		if(doorOpened==true){
-			door.anims.play('doorclose');
-		}
-	});
 
 	book1.on('pointerdown', function() {
 		book1tween.resume();
