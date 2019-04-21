@@ -393,22 +393,22 @@ function preload() {
 
 	//middle room
 	this.load.audio('sq', 'assets/objects/couch/sq.wav');
-	this.load.audio('cardflipsound', 'assets/objects/card/cardflip.wav');
-	this.load.audio('flipbacksound', 'assets/objects/card/flipback.wav');
-	this.load.audio('cardwinsound', 'assets/objects/card/win.wav');
-	this.load.audio('shootloop', 'assets/objects/shooter/shootloop.wav');
-	this.load.audio('die', 'assets/objects/shooter/die.wav');
+	this.load.audio('cardflipsound', 'assets/objects/card/audio/cardflip.mp3');
+	this.load.audio('flipbacksound', 'assets/objects/card/audio/flipback.mp3');
+	this.load.audio('cardwinsound', 'assets/objects/card/audio/win.mp3');
+	this.load.audio('shootloop', 'assets/objects/shooter/audio/shootloop.mp3');
+	this.load.audio('die', 'assets/objects/shooter/audio/die.mp3');
 	this.load.audio('bookstack_sound', 'assets/objects/bookstack/audio/bookstack.mp3');
 	//right room
-	this.load.audio('chime1', 'assets/objects/books/audio/1.wav');
-	this.load.audio('chime2', 'assets/objects/books/audio/2.wav');
-	this.load.audio('chime3', 'assets/objects/books/audio/3.wav');
-	this.load.audio('chime4', 'assets/objects/books/audio/4.wav');
-	this.load.audio('chime5', 'assets/objects/books/audio/5.wav');
-	this.load.audio('chime6', 'assets/objects/books/audio/6.wav');
-	this.load.audio('chime7', 'assets/objects/books/audio/7.wav');
-	this.load.audio('chime8', 'assets/objects/books/audio/8.wav');
-	this.load.audio('chime0', 'assets/objects/books/audio/no.wav');
+	this.load.audio('chime1', 'assets/objects/books/audio/books-01.mp3');
+	this.load.audio('chime2', 'assets/objects/books/audio/books-02.mp3');
+	this.load.audio('chime3', 'assets/objects/books/audio/books-03.mp3');
+	this.load.audio('chime4', 'assets/objects/books/audio/books-04.mp3');
+	this.load.audio('chime5', 'assets/objects/books/audio/books-05.mp3');
+	this.load.audio('chime6', 'assets/objects/books/audio/books-06.mp3');
+	this.load.audio('chime7', 'assets/objects/books/audio/books-07.mp3');
+	this.load.audio('chime8', 'assets/objects/books/audio/books-08.mp3');
+	this.load.audio('chime0', 'assets/objects/books/audio/books-no.mp3');
 	this.load.audio('hole_sound1', 'assets/objects/holes/audio/holes-01.mp3');
 	this.load.audio('hole_sound2', 'assets/objects/holes/audio/holes-02.mp3');
 	this.load.audio('hole_sound3', 'assets/objects/holes/audio/holes-03.mp3');
@@ -987,7 +987,9 @@ function create() {
 	// middle room
 	var shootSong = this.sound.add('shootloop');
 	shootSong.loop = true;
+	shootSong.volume = 0.3;
 	var dieSound = this.sound.add('die');
+	dieSound.volume = 0.2;
 	var sqSound = this.sound.add('sq');
 	// right room
 	var chime1 = this.sound.add('chime1');
@@ -999,6 +1001,16 @@ function create() {
 	var chime7 = this.sound.add('chime7');
 	var chime8 = this.sound.add('chime8');
 	var chime0 = this.sound.add('chime0');
+	let chimeVolume = 0.1;
+	chime1.volume = chimeVolume;
+	chime2.volume = chimeVolume;
+	chime3.volume = chimeVolume;
+	chime4.volume = chimeVolume;
+	chime5.volume = chimeVolume;
+	chime6.volume = chimeVolume;
+	chime7.volume = chimeVolume;
+	chime8.volume = chimeVolume;
+	chime0.volume = chimeVolume;
 	var chimes = [chime1, chime2, chime3, chime4, chime5, chime6, chime7, chime8, chime0];
 	// !create animations
 	// !universal
@@ -2218,7 +2230,9 @@ function create() {
 			return array;
 		};
 	var cardFlipSound = this.sound.add('cardflipsound');
+	cardFlipSound.volume = 0.1;
 	var flipBackSound = this.sound.add('flipbacksound');
+	flipBackSound.volume = 0.1;
 	var cardWinSound = this.sound.add('cardwinsound');
 	var cardFlip = function(x) {
 
