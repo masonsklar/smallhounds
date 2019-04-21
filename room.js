@@ -369,7 +369,7 @@ function preload() {
 		//preTextBox.destroy();
 	});
 	// !load audio
-	this.load.audio('wobblesound', 'assets/objects/lamp/audio/i.mp3');
+	this.load.audio('wobblesound', 'assets/objects/lamp/audio/lamp.mp3');
 	//universal
 	this.load.audio('mugsound', 'assets/objects/mug/mug.mp3');
 	//left room
@@ -386,6 +386,11 @@ function preload() {
 	this.load.audio('sizeposter8', 'assets/objects/sizeposter/sizeposter8.wav');
 	this.load.audio('sizeposter9', 'assets/objects/sizeposter/sizeposter9.wav');
 	this.load.audio('sizeposter10', 'assets/objects/sizeposter/sizeposter10.wav');
+	this.load.audio('plantcycle_sound1', 'assets/objects/plantcycle/audio/plantcycle-01.mp3');
+	this.load.audio('plantcycle_sound2', 'assets/objects/plantcycle/audio/plantcycle-02.mp3');
+	this.load.audio('plantcycle_sound3', 'assets/objects/plantcycle/audio/plantcycle-03.mp3');
+	this.load.audio('plantcycle_sound4', 'assets/objects/plantcycle/audio/plantcycle-04.mp3');
+
 	//middle room
 	this.load.audio('sq', 'assets/objects/couch/sq.wav');
 	this.load.audio('cardflipsound', 'assets/objects/card/cardflip.wav');
@@ -393,6 +398,7 @@ function preload() {
 	this.load.audio('cardwinsound', 'assets/objects/card/win.wav');
 	this.load.audio('shootloop', 'assets/objects/shooter/shootloop.wav');
 	this.load.audio('die', 'assets/objects/shooter/die.wav');
+	this.load.audio('bookstack_sound', 'assets/objects/bookstack/audio/bookstack.mp3');
 	//right room
 	this.load.audio('chime1', 'assets/objects/books/audio/1.wav');
 	this.load.audio('chime2', 'assets/objects/books/audio/2.wav');
@@ -403,6 +409,9 @@ function preload() {
 	this.load.audio('chime7', 'assets/objects/books/audio/7.wav');
 	this.load.audio('chime8', 'assets/objects/books/audio/8.wav');
 	this.load.audio('chime0', 'assets/objects/books/audio/no.wav');
+	this.load.audio('hole_sound1', 'assets/objects/holes/audio/holes-01.mp3');
+	this.load.audio('hole_sound2', 'assets/objects/holes/audio/holes-02.mp3');
+	this.load.audio('hole_sound3', 'assets/objects/holes/audio/holes-03.mp3');
 	// !load images
 	// universal
 	//this.load.image('room', 'assets/bg/room.png');
@@ -802,7 +811,7 @@ function create() {
 	// !left room
 	var vase = this.add.sprite(898, 1440, 'vase').setOrigin(0).setInteractive();
 	var rugBump = this.add.sprite(120, 1688, 'rugbump').setOrigin(0.5, 1).setAlpha(1).setScale(1, 0);
-	
+
 	var sizePoster = this.add.sprite(756, 884, 'sizeposteratlas', 'sizeposter0').setOrigin(0).setInteractive(sizePosterPolygon, Phaser.Geom.Polygon.Contains);
 	var mesh = this.make.mesh({
 		key: 'phaser2',
@@ -1821,7 +1830,7 @@ function create() {
 		onStart: function(){
 			$('#bartitle').css({
 				'opacity': '1'
-			});	
+			});
 		},
 		onComplete: function() {
 			textBoxTweenUp.resume();
@@ -1996,30 +2005,34 @@ function create() {
 
 		} else if(keyGot){
 			door.anims.play('dooropen');
-			
+
 		}
 	}, this);
-	
-	
+
+
 	dl.on('pointerdown',function(){
 		if(doorOpened){
 			openExternalLink('https://www.youtube.com/watch?v=Y5KMl11I7Zs');
 		}
 	});
-	
+
 	frontPlant.on('pointerdown', function() {
 		if (currentPlant === 0) {
 			frontPlant.play('plantcycle1');
 			currentPlant = 1;
+			game.sound.play('plantcycle_sound1');
 		} else if (currentPlant == 1) {
 			frontPlant.play('plantcycle2');
 			currentPlant = 2;
+			game.sound.play('plantcycle_sound2');
 		} else if (currentPlant == 2) {
 			frontPlant.play('plantcycle3');
 			currentPlant = 3;
+			game.sound.play('plantcycle_sound3');
 		} else if (currentPlant == 3) {
 			frontPlant.play('plantcycle4');
 			currentPlant = 0;
+			game.sound.play('plantcycle_sound4');
 		}
 	}, this);
 	var mug1tween = this.tweens.add({
@@ -2188,6 +2201,7 @@ function create() {
 
 	bookStack.on('pointerdown', function() {
 		bookStack.anims.play('bookcirc');
+		game.sound.play('bookstack_sound');
 	}, this);
 
 	var shuffle = function(array) {
@@ -2725,6 +2739,7 @@ function create() {
 			} else {
 				mouseHoles.anims.play('mousehole1');
 			}
+			game.sound.play('hole_sound1');
 			currentHoles = 1;
 		} else if (currentHoles == 1 && !mouseHoles.anims.isPlaying) {
 			if (whichHole < 1000) {
@@ -2732,6 +2747,7 @@ function create() {
 			} else {
 				mouseHoles.anims.play('mousehole2');
 			}
+			game.sound.play('hole_sound2');
 			currentHoles = 2;
 		} else if (currentHoles == 2 && !mouseHoles.anims.isPlaying) {
 			if (whichHole < 1000) {
@@ -2739,6 +2755,7 @@ function create() {
 			} else {
 				mouseHoles.anims.play('mousehole3');
 			}
+			game.sound.play('hole_sound3');
 			currentHoles = 0;
 		}
 	}, this);
