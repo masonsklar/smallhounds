@@ -375,17 +375,17 @@ function preload() {
 	//left room
 	this.load.audio('scratch', 'assets/objects/rugbump/scratch.wav');
 	this.load.audio('oww', 'assets/objects/rugbump/oww.wav');
-	this.load.audio('sizeposter1', 'assets/objects/sizeposter/sizeposter1.wav');
-	this.load.audio('sizeposter1', 'assets/objects/sizeposter/sizeposter1.wav');
-	this.load.audio('sizeposter2', 'assets/objects/sizeposter/sizeposter2.wav');
-	this.load.audio('sizeposter3', 'assets/objects/sizeposter/sizeposter3.wav');
-	this.load.audio('sizeposter4', 'assets/objects/sizeposter/sizeposter4.wav');
-	this.load.audio('sizeposter5', 'assets/objects/sizeposter/sizeposter5.wav');
-	this.load.audio('sizeposter6', 'assets/objects/sizeposter/sizeposter6.wav');
-	this.load.audio('sizeposter7', 'assets/objects/sizeposter/sizeposter7.wav');
-	this.load.audio('sizeposter8', 'assets/objects/sizeposter/sizeposter8.wav');
-	this.load.audio('sizeposter9', 'assets/objects/sizeposter/sizeposter9.wav');
-	this.load.audio('sizeposter10', 'assets/objects/sizeposter/sizeposter10.wav');
+	this.load.audio('sizeposter1', 'assets/objects/sizeposter/audio/sizeposter1.mp3');
+	this.load.audio('sizeposter1', 'assets/objects/sizeposter/audio/sizeposter1.mp3');
+	this.load.audio('sizeposter2', 'assets/objects/sizeposter/audio/sizeposter2.mp3');
+	this.load.audio('sizeposter3', 'assets/objects/sizeposter/audio/sizeposter3.mp3');
+	this.load.audio('sizeposter4', 'assets/objects/sizeposter/audio/sizeposter4.mp3');
+	this.load.audio('sizeposter5', 'assets/objects/sizeposter/audio/sizeposter5.mp3');
+	this.load.audio('sizeposter6', 'assets/objects/sizeposter/audio/sizeposter6.mp3');
+	this.load.audio('sizeposter7', 'assets/objects/sizeposter/audio/sizeposter7.mp3');
+	this.load.audio('sizeposter8', 'assets/objects/sizeposter/audio/sizeposter8.mp3');
+	this.load.audio('sizeposter9', 'assets/objects/sizeposter/audio/sizeposter9.mp3');
+	this.load.audio('sizeposter10', 'assets/objects/sizeposter/audio/sizeposter10.mp3');
 	this.load.audio('plantcycle_sound1', 'assets/objects/plantcycle/audio/plantcycle-01.mp3');
 	this.load.audio('plantcycle_sound2', 'assets/objects/plantcycle/audio/plantcycle-02.mp3');
 	this.load.audio('plantcycle_sound3', 'assets/objects/plantcycle/audio/plantcycle-03.mp3');
@@ -982,6 +982,17 @@ function create() {
 	var sizePosterSound8 = this.sound.add('sizeposter8');
 	var sizePosterSound9 = this.sound.add('sizeposter9');
 	var sizePosterSound10 = this.sound.add('sizeposter10');
+	let sizePosterVolume = 0.2;
+	sizePosterSound1.volume = sizePosterVolume;
+	sizePosterSound2.volume = sizePosterVolume;
+	sizePosterSound3.volume = sizePosterVolume;
+	sizePosterSound4.volume = sizePosterVolume;
+	sizePosterSound5.volume = sizePosterVolume;
+	sizePosterSound6.volume = sizePosterVolume;
+	sizePosterSound7.volume = sizePosterVolume;
+	sizePosterSound8.volume = sizePosterVolume;
+	sizePosterSound9.volume = sizePosterVolume;
+	sizePosterSound10.volume = sizePosterVolume;
 	var scratchSound = this.sound.add('scratch');
 	var owwSound = this.sound.add('oww');
 	// middle room
