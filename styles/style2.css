@@ -150,7 +150,7 @@ svg {
   /* font-family: fieldwork-hum, sans-serif; */
   color: white;
   border-style: none;
-  max-width: 220px;
+  max-width: 212px;
   border-radius: 5px;
   text-decoration: none;
   display: block;
@@ -168,19 +168,22 @@ svg {
 }
 
 .baritem{
+	cursor: default;
 	color: white;
 	height: 100%;
 	font-size: 1.8em;
-    margin: 0.3em 0;
-    margin-right: 1em;
+    margin: 0.3em 0.5em 0 0;
     font-weight: 300;
     opacity: 0;
     cursor: pointer;
     transition: opacity 0.5s linear;
 }
-#barkey img{
+
+.baritem img{
 	height: 1.2em;
+	user-select: none;
 }
+
 #smallhounds, #colors{
 	opacity: 0;
 	transition: opacity 0.5s linear;

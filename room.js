@@ -1,76 +1,49 @@
-
 /* !outside the game */
 var game;
 var idleData;
-var loadAnim;
-/* Set game size */
+var loadAnim; /* Set game size */
+
 function setGameSize() {
 	let
-  header = document.getElementById('header'),
-  footer = document.getElementById('footer'),
-  gameWrapper = document.getElementById('gameframe');
-  let
-  headerStyle = window.getComputedStyle(header),
-  footerStyle = window.getComputedStyle(footer);
-  let
-  headerHeight = parseFloat( headerStyle.getPropertyValue('height') ),
-  footerHeight = parseFloat( footerStyle.getPropertyValue('height') );
-  let
+	header = document.getElementById('header'), footer = document.getElementById('footer'), gameWrapper = document.getElementById('gameframe');
+	let
+	headerStyle = window.getComputedStyle(header), footerStyle = window.getComputedStyle(footer);
+	let
+	headerHeight = parseFloat(headerStyle.getPropertyValue('height')), footerHeight = parseFloat(footerStyle.getPropertyValue('height'));
+	let
 	windowWidth = window.innerWidth;
-  windowHeight = window.innerHeight;
-  gameHeight = windowHeight - headerHeight - footerHeight;
-  // Set sizes
-	if(gameWrapper) {
-  	gameWrapper.style.marginTop = headerHeight + 'px';
-  	gameWrapper.style.height = gameHeight + 'px';
-  	gameWrapper.style.width = gameHeight + 'px';
-		if(windowWidth < gameHeight) {
+	windowHeight = window.innerHeight;
+	gameHeight = windowHeight - headerHeight - footerHeight;
+	// Set sizes
+	if (gameWrapper) {
+		gameWrapper.style.marginTop = headerHeight + 'px';
+		gameWrapper.style.height = gameHeight + 'px';
+		gameWrapper.style.width = gameHeight + 'px';
+		if (windowWidth < gameHeight) {
 			gameWrapper.style.width = windowWidth + 'px';
 			gameWrapper.style.height = windowWidth + 'px';
 		}
 	}
 	// if(game) {
-  // 	game.style.height = gameHeight + 'px';
-  // 	game.style.width = gameHeight + 'px';
+	// 	game.style.height = gameHeight + 'px';
+	// 	game.style.width = gameHeight + 'px';
 	// 	if(windowWidth < windowHeight) {
 	// 		game.style.width = windowWidth + 'px';
 	// 		game.style.height = windowWidth + 'px';
 	// 	}
 	// }
 }
-/*
-var resizeFrame = function() {
-		if (game == undefined) {
-			let div = document.getElementById('gameframe');
-			div.style.width = window.innerHeight + 'px';
-			div.style.height = window.innerHeight + 'px';
 
-			let dpi_w = parseInt(div.style.width) / div.width;
-			let dpi_h = parseInt(div.style.height) / div.height;
-
-			if (window.innerHeight <= window.innerWidth) {
-				var height = window.innerHeight;
-				var width = window.innerHeight;
-
-			} else if (window.innerHeight > window.innerWidth) {
-				var width = window.innerWidth;
-				var height = window.innerWidth;
-			}
-			div.style.width = width + 'px';
-			div.style.height = height + 'px';
-		}
-	}
-*/
 function generateRandomNumber(x, y) {
 	return Math.random() * (y - x) + x;
 };
 
-window.onload = function() {
-	/* If mobile, don't do nothin' */
+window.onload = function() { /* If mobile, don't do nothin' */
+
 	function isMobileDevice() {
 		return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
 	}
-	if( isMobileDevice() ) {
+	if (isMobileDevice()) {
 		document.body.classList.add('mobile');
 		return;
 	}
@@ -93,13 +66,13 @@ window.onload = function() {
 	var movers = ["#rod1", "#rod2", "#rod3", "#ucones", "#dcones", "#trings"];
 	$('#startbutton').click(function() {
 		$('#bartitle').css({
-				'opacity': '0'
+			'opacity': '0'
 		});
 		$('#smallhounds').css({
-				'opacity': '1'
+			'opacity': '1'
 		});
 		$('#colors').css({
-				'opacity': '1'
+			'opacity': '1'
 		});
 		$('#actions').hide();
 		clearInterval(floatInterval);
@@ -202,7 +175,7 @@ var resizeApp = function() {
 			});
 
 	}; */
-	/* !inside the game */
+/* !inside the game */
 var _anims;
 var windowMask;
 var floaters;
@@ -285,6 +258,7 @@ var collisionZone = {
 };
 var keySpawned;
 var keyGot = false;
+var holeGot = false;
 var shipPos = 1;
 var shipRespawning = false;
 var startY = null;
@@ -332,7 +306,7 @@ function preload() {
 	var progressBox = this.add.graphics();
 	var percentText = this.make.text({
 		x: width / 2,
-		y: 836 ,
+		y: 836,
 		text: '0%',
 		style: {
 			font: '72pt magistral',
@@ -343,7 +317,7 @@ function preload() {
 	progressBox.fillRect(400, 930, 600, 1200);
 	percentText.setOrigin(0.5, 0.5);
 	//var preTextBox = this.add.image(200, 1310, 'textboxbg').setOrigin(0);
-	var preTextBoxText = this.add.text(240, 1700, ['Huh. I really want to go out today, but I seem','to have misplaced my key...','Where could it be?'], {
+	var preTextBoxText = this.add.text(240, 1700, ['Huh. I really want to go out today, but I seem', 'to have misplaced my key...', 'Where could it be?'], {
 		fontFamily: 'fieldwork-hum',
 		fontSize: 54,
 		color: '#225a89'
@@ -354,7 +328,7 @@ function preload() {
 		progressBar.fillStyle(0x225a89, 2);
 		progressBar.fillRect(300, 766, 1000 * value, 140);
 		percentText.setText(parseInt(value * 100) + '% ');
-		preTextBoxText.setText(['Huh. I really want to go out today, but I seem','to have misplaced my key...','Where could it be?']);
+		preTextBoxText.setText(['Huh. I really want to go out today, but I seem', 'to have misplaced my key...', 'Where could it be?']);
 	});
 	this.load.on('fileprogress', function(file) {
 		//percentText.setText(file.key);
@@ -373,6 +347,9 @@ function preload() {
 	//universal
 	this.load.audio('mugsound', 'assets/objects/mug/mug.mp3');
 	//left room
+	this.load.audio('locked', 'assets/objects/door/locked.wav');
+	this.load.audio('open', 'assets/objects/door/open.wav');
+	this.load.audio('close', 'assets/objects/door/close.wav');
 	this.load.audio('scratch', 'assets/objects/rugbump/scratch.wav');
 	this.load.audio('oww', 'assets/objects/rugbump/oww.wav');
 	this.load.audio('sizeposter1', 'assets/objects/sizeposter/sizeposter1.wav');
@@ -457,14 +434,14 @@ function create() {
 	// window.addEventListener('resize', resizeApp);
 	// !create frames
 	// !left room
-	var dlPolygon = new Phaser.Geom.Polygon([ 307,342, 306,253, 579,376, 575,469 ]);
+	var dlPolygon = new Phaser.Geom.Polygon([ 404,494, 321,410, 329,281, 411,272, 507,367, 504,501 ]);
 	var sizePosterPolygon = new Phaser.Geom.Polygon([273, 472, 0, 600, 0, 126, 273, 0]);
 	var doorKnobPolygon = new Phaser.Geom.Polygon([255, 429, 327, 395, 330, 518, 254, 560]);
 	var frontPlantPolygon = new Phaser.Geom.Polygon([222, 74, 292, 68, 331, 292, 274, 443, 194, 469, 128, 441, 70, 271]);
 	var dlFrames = this.anims.generateFrameNames('dlatlas', {
-		prefix:'dl',
-		start:1,
-		end:4
+		prefix: 'dl',
+		start: 1,
+		end: 4
 	});
 	var sizePosterFrames = this.anims.generateFrameNames('sizeposteratlas', {
 		prefix: 'sizeposter',
@@ -763,7 +740,6 @@ function create() {
 	makeRug(graphicsM, '0x94da90');
 	makeRug(graphicsR, '0x94da90');
 	//var logo = this.add.sprite(860, -130, 'logo').setOrigin(0);
-
 	windowMask = this.add.sprite(1259, 95, 'windowmask').setOrigin(0);
 	windowMask.add = false;
 	var leftWindow = this.add.sprite(1210, 792, 'windowatlas', 'leftwindow').setOrigin(0);
@@ -787,22 +763,21 @@ function create() {
 	floaters = [floater1, floater2, floater3, floater4, floater5, floater6, floater7];
 	var fadeLogo = this.add.sprite(2400, -504, 'logo').setInteractive();
 	var cameraFocus = this.add.sprite(2400, -340).setInteractive();
-	var textBox = this.add.sprite(200, 964, 'textboxbg').setOrigin(0).setInteractive();
+	var textBox = this.add.sprite(200, 0, 'textboxbg').setOrigin(0).setInteractive();
 	textBox.ready = false;
-	textBox.pos = 1;
-	var textBoxText = this.add.text(240, 994, ['Huh. I really want to go out today, but I seem','to have misplaced my key...','Where could it be?'], {
+	var textBoxText = this.add.text(240, 30, ['Huh. I really want to go out today, but I seem', 'to have misplaced my key...', 'Where could it be?'], {
 		fontFamily: 'fieldwork-hum',
 		fontSize: 54,
 		color: '#225a89'
 	}).setOrigin(0);
-	var downPrompt = this.add.sprite(1280, 1174, 'downprompt').setOrigin(0);
+	var downPrompt = this.add.sprite(1280, 210, 'downprompt').setOrigin(0);
 	downPrompt.alpha = 1;
 	var leftButton = this.add.sprite(20, 764, 'left').setOrigin(0).setInteractive();
 	var rightButton = this.add.sprite(1508, 764, 'right').setOrigin(0).setInteractive();
 	// !left room
 	var vase = this.add.sprite(898, 1440, 'vase').setOrigin(0).setInteractive();
 	var rugBump = this.add.sprite(120, 1688, 'rugbump').setOrigin(0.5, 1).setAlpha(1).setScale(1, 0);
-	
+
 	var sizePoster = this.add.sprite(756, 884, 'sizeposteratlas', 'sizeposter0').setOrigin(0).setInteractive(sizePosterPolygon, Phaser.Geom.Polygon.Contains);
 	var mesh = this.make.mesh({
 		key: 'phaser2',
@@ -818,29 +793,30 @@ function create() {
 	sizePoster.mask = new Phaser.Display.Masks.GeometryMask(this, mesh);
 	var rugContain = this.add.sprite(0, 0).setOrigin(0).setInteractive(frontRugBumpPolygon, Phaser.Geom.Polygon.Contains);
 	rugContain.isUp = false;
-	var dl = this.add.sprite(-130,1160,'dlatlas','dl1').setOrigin(0).setInteractive(dlPolygon, Phaser.Geom.Polygon.Contains);
-	dl.name='dl';
-	var dlMask = this.add.sprite(0,1048,'dlmask').setOrigin(0);
+	var dl = this.add.sprite(-130, 1160, 'dlatlas', 'dl1').setOrigin(0).setInteractive(dlPolygon, Phaser.Geom.Polygon.Contains);
+	dl.name = 'dl';
+	var dlMask = this.add.sprite(0, 1048, 'dlmask').setOrigin(0);
 	var wallPoster = this.add.sprite(116, 1286, 'wallposter').setOrigin(0);
 	var frontTable = this.add.sprite(306, 2158, 'fronttable').setOrigin(0).setInteractive(doorKnobPolygon, Phaser.Geom.Polygon.Contains);
-	var door = this.add.sprite(328, 986, 'dooratlas', '0').setOrigin(0).setInteractive(doorKnobPolygon, Phaser.Geom.Polygon.Contains);
+	var door = this.add.sprite(328, 986, 'dooratlas', '5').setOrigin(0).setInteractive(doorKnobPolygon, Phaser.Geom.Polygon.Contains);
+	var lockSound = this.sound.add('locked');
+	var openSound = this.sound.add('open');
+	var closeSound = this.sound.add('close');
 	var doorOpened;
 	var doorQuips = [
-		['I think I left my key', 'in deep space.'],
-		['I said, I think I left my key', 'in deep space.'],
-		['The door is locked.', 'Find the key.'],
-		['How did I lock', 'myself inside?']
+		['I think I left my key...', 'in deep space.', 'Yeah, pretty sure I left it in space.'],
+		['I said,','I think I left my key...', 'in deep space.', 'Yeah, pretty sure I left it in space.'],
+		['The door is locked.', 'Find the key.', 'Please.', 'Thank you! : - )'],
+		['How did I lock myself inside?', ': - /'],
+		['Wait... where do I put the key in?', 'Did I misplace my heyhole? What a day!']
 	];
 	var helps = {
 		l: [
-			['I\'m really not sure how I got locked inside! : - /', 'How embarassing. I haven\'t swept under the','rug in a while... I don\'t leave my home','often because I really love it.'],
-		],
+			['I\'m really not sure how I got locked inside! : - /', 'How embarassing. I haven\'t swept under the', 'rug in a while... I don\'t leave my home', 'often because I really love it.'], ],
 		m: [
-			['Things are always falling into my couch. I try', 'to play memory games to keep my mind sharp.', 'Try holding your mouse down on the arrows,', 'I think I left something in there : - )'],
-		],
+			['Things are always falling into my couch. I try to', 'play memory games to keep my mind sharp.', 'Try holding your mouse down on the arrows,', 'I think I left something in there : - )'], ],
 		r: [
-			['I love to read and I love to sing : - ) Have you', 'ever had a song stuck in your head, but you\'ve','forgotten how it goes? If you can help','me remember, I\'ll give you a reward...'],
-		],
+			['I love to read and I love to sing ; - ) Have you', 'ever had a song stuck in your head, but you\'ve', 'forgotten how it goes? If you can help', 'me remember, I\'ll give you a reward...'], ],
 	};
 	var mugSound = this.sound.add('mugsound');
 	mugSound.volume = 0.25;
@@ -848,6 +824,10 @@ function create() {
 	mug1.pos = 1;
 	frontPlant = this.add.sprite(0, 2040, 'plantcycleatlas', 'plantcycle0').setOrigin(0).setInteractive(frontPlantPolygon, Phaser.Geom.Polygon.Contains);
 	// !middle room
+	var holeText = [
+		['What?', 'It looks like you found a... hole?', 'Looks like the perfect size to accept a key, if', 'only I knew where mine was...'],
+		['What?', 'It looks like you found a... keyhole?', 'Oh yeah! I forgot I left it there last Tuesday...']
+	];
 	card1a = this.add.sprite(2250, 1868, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1);
 	card1b = this.add.sprite(2320, 1832, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1);
 	card1c = this.add.sprite(2392, 1796, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1);
@@ -861,6 +841,7 @@ function create() {
 	card3c = this.add.sprite(2576, 1880, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3);
 	card3d = this.add.sprite(2648, 1844, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3);
 	//shooter
+	var keyText = ['Hey! Look at that!', 'You found my key! Thank you so much! Maybe', 'now I can finally get outa here and get some', 'fresh air...'];
 	var CSTopPoly = new Phaser.Geom.Polygon([106, 46, 109, 90, 0, 141, 0, 96, 55, 2]);
 	var CSMidPoly = new Phaser.Geom.Polygon([109, 203, 0, 254, 1, 140, 108, 89]);
 	var CSBotPoly = new Phaser.Geom.Polygon([1, 298, 0, 255, 107, 204, 107, 249, 54, 344]);
@@ -994,33 +975,32 @@ function create() {
 	// !create animations
 	// !universal
 	var timedEvent = this.time.addEvent({
-		delay: 40,
+		delay: 30,
 		callback: makeFloat,
 		callbackScope: this,
 		loop: true
 	});
 	var textBoxTweenUp = this.tweens.add({
 		targets: [textBox, textBoxText, downPrompt],
-		x: '+=0',
-		y: '-=1360',
-		duration: 750,
+		y: '-=405',
+		duration: 500,
 		repeat: 0,
 		paused: true,
 		onComplete: function() {
-			textBoxTweenUp.pause();
 			textBox.up = true;
+			textBoxTweenUp.pause();
 			downPrompt.alpha = 1;
 		}
 	});
 	var textBoxTweenDownPrep = this.tweens.add({
 		targets: [textBox, textBoxText, downPrompt],
-		x: '+=0',
 		y: '-=100',
 		duration: 150,
 		repeat: 0,
 		paused: true,
 		onStart: function() {
 			downPrompt.alpha = 0;
+			downPromptAnim.pause();
 		},
 		onComplete: function() {
 			textBoxTweenDownPrep.pause();
@@ -1029,9 +1009,8 @@ function create() {
 	});
 	var textBoxTweenDown = this.tweens.add({
 		targets: [textBox, textBoxText, downPrompt],
-		x: '+=0',
-		y: '+=1460',
-		duration: 600,
+		y: '+=505',
+		duration: 450,
 		repeat: 0,
 		paused: true,
 		onComplete: function() {
@@ -1049,7 +1028,6 @@ function create() {
 		easeParams: [3],
 	})
 	// !left room
-
 	var sizePosterAnim = this.anims.create({
 		key: 'sizeposter',
 		frames: sizePosterFrames,
@@ -1306,36 +1284,38 @@ function create() {
 		}
 	});
 	var sizeTweens = [null, sizePosterSize1, sizePosterSize2, sizePosterSize3, sizePosterSize4, sizePosterSize5, sizePosterSize6, sizePosterSize7, sizePosterSize8, sizePosterSize9a];
-		var dlAnim = this.anims.create({
+	var dlAnim = this.anims.create({
 		key: 'dlanim',
 		frames: dlFrames,
 		frameRate: 8,
 		repeat: -1
 	});
 	var dlTweenOut = this.tweens.add({
-		targets:[dl],
-		x:'+=788',
+		targets: [dl],
+		x: '+=788',
 		y: '+=368',
 		duration: 250,
 		paused: true,
 		ease: 'Bounce',
 		repeat: -1,
-		onRepeat: function(){
+		onRepeat: function() {
 			dlTweenOut.pause();
 			dl.anims.play('dlanim');
 		}
 	});
 	var dlTweenIn = this.tweens.add({
-		targets:[dl],
-		x:'-=788',
+		targets: [dl],
+		x: '-=788',
 		y: '-=368',
 		duration: 250,
 		paused: true,
 		repeat: -1,
-		onRepeat: function(){
-			dlTweenIn.pause();
-			door.anims.play('doorclose');
-			dl.anims.pause();
+		onRepeat: function() {
+			if (!dlTweenIn.paused) {
+				dlTweenIn.pause();
+				door.anims.play('doorclose');
+				dl.anims.pause();
+			}
 		}
 	});
 	var doorOpen = this.anims.create({
@@ -1351,14 +1331,15 @@ function create() {
 
 	});
 	door.on('animationcomplete', function(anim, frame) {
-				this.emit('animationcomplete_' + anim.key, anim, frame);
+		this.emit('animationcomplete_' + anim.key, anim, frame);
 	}, door);
 	door.on('animationcomplete_dooropen', function() {
-				doorOpened=true;
-				dlTweenOut.resume();
+		doorOpened = true;
+		dlTweenOut.resume();
 	});
 	door.on('animationcomplete_doorclose', function() {
-				doorOpened=false;
+		doorOpened = false;
+		closeSound.play();
 	});
 	for (i = 1; i < 7; i++) {
 		this.anims.create({
@@ -1375,8 +1356,10 @@ function create() {
 		repeat: -1,
 		paused: true,
 		onRepeat: function() {
-			rugBumpUpTween.pause();
-			rugContain.isUp = true;
+			if (!rugBumpUpTween.paused) {
+				rugBumpUpTween.pause();
+				rugContain.isUp = true;
+			}
 		}
 	});
 	var rugBumpDownTween = this.tweens.add({
@@ -1387,8 +1370,10 @@ function create() {
 		repeat: -1,
 		paused: true,
 		onRepeat: function() {
-			rugBumpDownTween.pause();
-			rugContain.isUp = false;
+			if (!rugBumpDownTween.paused) {
+				rugBumpDownTween.pause();
+				rugContain.isUp = false;
+			}
 		}
 	});
 	var rugBumpJitterTween = this.tweens.add({
@@ -1397,10 +1382,10 @@ function create() {
 		duration: 100,
 		repeat: -1,
 		paused: false,
-		onStart: function(){
-				rugBumpJitterTween.pause();
+		onStart: function() {
+			rugBumpJitterTween.pause();
 		},
-		onRepeat: function(){
+		onRepeat: function() {
 			rugBumpJitterTween.pause();
 			scratchSound.play();
 		}
@@ -1538,7 +1523,7 @@ function create() {
 	var sq1Tween = this.tweens.add({
 		targets: [sq1],
 		y: '-=300',
-		duration: 500,
+		duration: 480,
 		ease: 'easeOut',
 		repeat: -1,
 		paused: true,
@@ -1563,7 +1548,7 @@ function create() {
 	var sq2Tween = this.tweens.add({
 		targets: [sq2],
 		y: '-=300',
-		duration: 500,
+		duration: 480,
 		ease: 'ease',
 		repeat: -1,
 		paused: true,
@@ -1588,7 +1573,7 @@ function create() {
 	var sq3Tween = this.tweens.add({
 		targets: [sq3],
 		y: '-=300',
-		duration: 500,
+		duration: 480,
 		ease: 'easeIn',
 		repeat: -1,
 		paused: true,
@@ -1793,22 +1778,30 @@ function create() {
 	_anims = this.anims;
 	// !create interactions
 	// !universal
-
 	$('#barhelp').click(function() {
-		if (textBox.ready == false && textBox.pos == 0) {
+		if (textBox.ready == false && !textBox.up) {
 			textBox.ready = true;
 			textBoxTweenUp.resume();
-			downPromptAnim.resume();
+			setTimeout(function() {
+				downPromptAnim.resume();
+			}, 1250);
 			if (currentRoom == 0) {
-				textBoxText.setText(helps.l[textBox.pos]);
-				textBox.pos=2;
+				textBoxText.setText(helps.l[0]);
 			} else if (currentRoom == 1) {
-				textBoxText.setText(helps.m[textBox.pos]);
-				textBox.pos=2;
+				textBoxText.setText(helps.m[0]);
 			} else if (currentRoom == 2) {
-				textBoxText.setText(helps.r[textBox.pos]);
-				textBox.pos=2;
+				textBoxText.setText(helps.r[0]);
 			}
+		}
+	});
+	$('#slot1').click(function() {
+		if (keyGot || holeGot) {
+			lockSound.play();
+		}
+	});
+	$('#slot2').click(function() {
+		if (keyGot && holeGot) {
+			lockSound.play();
 		}
 	});
 
@@ -1818,17 +1811,16 @@ function create() {
 		alpha: 0,
 		duration: 1750,
 		repeat: 0,
-		onStart: function(){
+		onStart: function() {
 			$('#bartitle').css({
 				'opacity': '1'
-			});	
+			});
 		},
 		onComplete: function() {
 			textBoxTweenUp.resume();
 			$('#barhelp').css({
 				'opacity': '1'
 			});
-			textBox.up = true;
 			downPrompt.alpha = 1;
 			setTimeout(function() {
 				textBox.ready = true;
@@ -1900,7 +1892,7 @@ function create() {
 			});
 		}
 		if (currentRoom === 0) {
-			if(doorOpened==true){
+			if (doorOpened) {
 				dlTweenIn.resume();
 			}
 			currentRoom = 1;
@@ -1922,26 +1914,10 @@ function create() {
 		}
 	}, this);
 	textBox.on('pointerdown', function() {
-		if (textBox.ready == true && textBox.pos == 1) {
-			textBox.ready = false;
-			downPromptAnim.pause();
-			textBox.pos = 2;
-			textBoxText.setText('Hello, my friend.');
-			setTimeout(function() {
-				textBox.ready = true;
-				downPromptAnim.resume();
-			}, 1250);
-		} else if (textBox.ready == true && textBox.pos == 2) {
+		if (textBox.ready && textBox.up) {
 			downPromptAnim.pause();
 			textBoxTweenDownPrep.resume();
 			textBox.ready = false;
-			textBox.pos = 0;
-		}  else if (textBox.ready == true && textBox.pos == 3) {
-			textBox.ready = false;
-			setTimeout(function() {
-				textBox.ready = true;
-				textBox.pos = 2;
-			}, 1250);
 		}
 	}, this);
 	// !left room
@@ -1977,10 +1953,13 @@ function create() {
 		nextSize++;
 	});
 	door.on('pointerdown', function(pointer) {
-		if (textBox.ready == false && textBox.pos == 0 && !keyGot) {
-			textBox.ready = true;
+		if (!textBox.ready && !textBox.up && !textBox.locked && !keyGot && !doorOpened) {
+			textBox.locked=true;
+			lockSound.play();
 			textBoxTweenUp.resume();
-			downPromptAnim.resume();
+			setTimeout(function() {
+				downPromptAnim.resume();
+			}, 500)
 			if (doorClicks <= 3) {
 				textBoxText.setText(doorQuips[doorClicks]);
 			} else {
@@ -1991,22 +1970,34 @@ function create() {
 			setTimeout(function() {
 				textBoxTweenDownPrep.resume();
 				downPromptAnim.pause();
+			}, 4000);
+			setTimeout(function() {
+				textBox.locked=false;
+			}, 4500)
+		} else if (keyGot && !holeGot) {
+			lockSound.play();
+			textBox.ready = true;
+			textBoxTweenUp.resume();
+			downPromptAnim.resume();
+			textBoxText.setText(doorQuips[4]);
+			setTimeout(function() {
+				textBoxTweenDownPrep.resume();
+				downPromptAnim.pause();
 				textBox.ready = false;
 			}, 4000);
-
-		} else if(keyGot){
+		} else if (keyGot && holeGot) {
 			door.anims.play('dooropen');
-			
+			openSound.play();
 		}
 	}, this);
-	
-	
-	dl.on('pointerdown',function(){
-		if(doorOpened){
+
+
+	dl.on('pointerdown', function() {
+		if (doorOpened) {
 			openExternalLink('https://www.youtube.com/watch?v=Y5KMl11I7Zs');
 		}
 	});
-	
+
 	frontPlant.on('pointerdown', function() {
 		if (currentPlant === 0) {
 			frontPlant.play('plantcycle1');
@@ -2067,7 +2058,7 @@ function create() {
 		}
 	});
 	mug1.on('pointerdown', function() {
-		if(doorOpened==true){
+		if (doorOpened) {
 			dlTweenIn.resume();
 		}
 
@@ -2209,7 +2200,7 @@ function create() {
 	var cardFlip = function(x) {
 
 			cardContainer.bringToTop(x);
-			if (x.flipped !== true) {
+			if (!x.flipped) {
 
 				x.flipped = true;
 				if (firstCard == null) {
@@ -2243,8 +2234,32 @@ function create() {
 								cardWinSound.play();
 							}, 7000);
 							setTimeout(function() {
-								if (confirm("Song for you!")) {
-									openExternalLink('https://www.youtube.com/watch?v=Y5KMl11I7Zs');
+								if (!holeGot) {
+									holeGot = true;
+									if (!keyGot) {
+										$('#slot1').html('<img src="assets/ui/hole.png"/>');
+										$('#slot1').css({
+											'opacity': '1',
+											'cursor': 'pointer'
+										});
+									} else {
+										$('#slot2').html('<img src="assets/ui/hole.png"/>');
+										$('#slot2').css({
+											'opacity': '1',
+											'cursor': 'pointer'
+										});
+									}
+									door.setFrame('0');
+									if (!textBox.ready) {
+										textBox.ready = true;
+										textBoxTweenUp.resume();
+										downPromptAnim.resume();
+										if (!keyGot) {
+											textBoxText.setText(holeText[0]);
+										} else {
+											textBoxText.setText(holeText[1]);
+										}
+									}
 								}
 							}, 8000);
 							flipOrder.forEach(function(e) {
@@ -2419,9 +2434,6 @@ function create() {
 					if (dodgeCounter == 30 && !keySpawned && !keyGot) {
 						pane3.anims.play('keyget');
 						keySpawned = true;
-					} else if (dodgeCounter == 32) {
-						console.log('ece??');
-						//keyGetTween.resume();
 					} else {
 						pane3.play('obstacle0');
 					}
@@ -2513,10 +2525,26 @@ function create() {
 				} else if (pane1.anims.currentAnim.key == 'keyget' && collisionZone.key === true && shipRespawning === false) {
 					keyGot = true;
 					keySpawned = false;
-					$('#barkey').css({
-							'opacity': '1'
+					if (!holeGot) {
+						$('#slot1').html('<img src="assets/ui/key.png"/>');
+						$('#slot1').css({
+							'opacity': '1',
+							'cursor': 'pointer'
 						});
+					} else {
+						$('#slot2').html('<img src="assets/ui/keyl.png"/>');
+						$('#slot2').css({
+							'opacity': '1',
+							'cursor': 'pointer'
+						});
+					}
 					pane1.play('obstacle0');
+					if (textBox.ready == false) {
+						textBox.ready = true;
+						textBoxTweenUp.resume();
+						downPromptAnim.resume();
+						textBoxText.setText(keyText);
+					}
 				}
 			}, 250);
 			p1.on('animationcomplete', function(anim, frame) {
@@ -2533,28 +2561,24 @@ function create() {
 			});
 			p1.on('animationcomplete_respawn', function() {
 
-				if (shipRespawning === true) {
+				if (shipRespawning) {
 					shootSong.seek = 0;
 					collisionZone = {
 						a: false,
 						b: false,
 						c: false,
 					};
-					if (pointer.isDown === true && shipRespawning === true) {
+					if (pointer.isDowne && shipRespawning) {
 						if (pointer.x >= controlStrip.x - 800 && pointer.x < (controlStrip.x - 800 + controlStrip.width) && pointer.y >= controlStrip.y - 223 && pointer.y < (controlStrip.y - 223 + controlStrip.height)) {
 							controlStrip.setFrame('cs02');
 						} else {
 							controlStrip.setFrame('cs00');
 						}
 					}
-
 				}
 				shipRespawning = false;
 			});
-
-
 		};
-
 	controlStripTop.on('pointerdown', function(pointer) {
 		shooterLoop(pointer);
 		if (shipPos == 1) {
@@ -2641,7 +2665,7 @@ function create() {
 					}, (prevTone * 300));
 					prevTone -= 1;
 				});
-				setTimeout(function(){
+				setTimeout(function() {
 					book1tween.resume();
 					book2tween.resume();
 					book3tween.resume();
@@ -2658,9 +2682,34 @@ function create() {
 					game.sound.play('chime5');
 					game.sound.play('chime8');
 					prevTone = 1;
-					/*if (confirm("Song for you!")) {
-								openExternalLink('https://www.youtube.com/watch?v=Y5KMl11I7Zs');
-							} else {}*/
+					if (!holeGot) {
+						holeGot = true;
+						if (!keyGot) {
+							$('#slot1').html('<img src="assets/ui/hole.png"/>');
+							$('#slot1').css({
+								'opacity': '1',
+								'cursor': 'pointer'
+							});
+						} else {
+							$('#slot2').html('<img src="assets/ui/hole.png"/>');
+							$('#slot2').css({
+								'opacity': '1',
+								'cursor': 'pointer'
+							});
+						}
+
+						door.setFrame('0');
+						if (!textBox.ready) {
+							textBox.ready = true;
+							textBoxTweenUp.resume();
+							downPromptAnim.resume();
+							if (!keyGot) {
+								textBoxText.setText(holeText[0]);
+							} else {
+								textBoxText.setText(holeText[1]);
+							}
+						}
+					}
 				}, 4500)
 			} else {
 				bookChimes[x].alpha = 1;
