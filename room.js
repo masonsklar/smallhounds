@@ -16,7 +16,6 @@ function setGameSize() {
 	gameHeight = windowHeight - headerHeight - footerHeight;
 	// Set sizes
 	if (gameWrapper) {
-		gameWrapper.style.marginTop = headerHeight + 'px';
 		gameWrapper.style.height = gameHeight + 'px';
 		gameWrapper.style.width = gameHeight + 'px';
 		if (windowWidth < gameHeight) {
@@ -24,22 +23,13 @@ function setGameSize() {
 			gameWrapper.style.height = windowWidth + 'px';
 		}
 	}
-	// if(game) {
-	// 	game.style.height = gameHeight + 'px';
-	// 	game.style.width = gameHeight + 'px';
-	// 	if(windowWidth < windowHeight) {
-	// 		game.style.width = windowWidth + 'px';
-	// 		game.style.height = windowWidth + 'px';
-	// 	}
-	// }
 }
 
 function generateRandomNumber(x, y) {
 	return Math.random() * (y - x) + x;
 };
 
-window.onload = function() { /* If mobile, don't do nothin' */
-
+document.addEventListener('DOMContentLoaded', function() {
 	function isMobileDevice() {
 		return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
 	}
@@ -47,9 +37,13 @@ window.onload = function() { /* If mobile, don't do nothin' */
 		document.body.classList.add('mobile');
 		return;
 	}
-	// window.addEventListener('resize', resizeApp);
-	// resizeFrame();
-	// resizeApp();
+	else {
+		document.body.classList.add('desktop');
+	}
+});
+
+window.onload = function() {
+
 	setGameSize();
 	window.addEventListener('resize', setGameSize);
 	idleData = {
@@ -114,67 +108,7 @@ window.onload = function() { /* If mobile, don't do nothin' */
 	}, 1200)
 
 }
-/*
-var resizeApp = function() {
-		let div = document.getElementById('gameframe');
 
-				// Check if device DPI messes up the width-height-ratio
-		if(document.getElementsByTagName('canvas')[0]){
-			let canvas = document.getElementsByTagName('canvas')[0];
-			let dpi_w = parseInt(div.style.width) / canvas.width;
-			let dpi_h = parseInt(div.style.height) / canvas.height;
-		} else {
-			dpi_w=1;
-			dpi_h=1;
-		}
-
-
-		if (window.innerHeight <= window.innerWidth) {
-			var barHeight = window.innerHeight/20;
-			height = window.innerHeight - (2*barHeight) * (dpi_w / dpi_h);
-			width = window.innerHeight - (2*barHeight) * (dpi_w / dpi_h);
-			spacer=0;
-		} else if (window.innerHeight > window.innerWidth) {
-			height = window.innerWidth * (dpi_w / dpi_h);
-			width = window.innerWidth * (dpi_w / dpi_h);
-			var barHeight = window.innerWidth/20;
-			spacer = (window.innerHeight - ((barHeight*2)+height))/2;
-		}
-
-		div.style.width = width + 'px';
-		div.style.height = height + 'px';
-
-		// Scale canvas
-		if(document.getElementsByTagName('canvas')[0]){
-			let canvas = document.getElementsByTagName('canvas')[0];
-			canvas.style.width = width + 'px';
-			canvas.style.height = height + 'px';
-			}
-			$('#menubar').css({
-				'height':barHeight + 'px',
-				'width': width + 'px',
-				'margin-top':spacer + 'px'
-			});
-			$('#footer').css({
-				'height':barHeight + 'px',
-				'width': width + 'px'
-			});
-			$('.barbutton').css({
-				'height':barHeight + 'px',
-			});
-			$('#barlogo').css({
-				'width': width*.25 + 'px'
-			});
-			$('#barhelp').css({
-				'width': width*.09 + 'px',
-				'left': (window.innerWidth-width)/2 + $('#barlogo').width()+'px'
-			});
-			$('#barkey').css({
-				'width': width*.11 + 'px',
-				'left': (window.innerWidth-width)/2 + $('#barlogo').width()+$('#barhelp').width()+'px'
-			});
-
-	}; */
 /* !inside the game */
 var _anims;
 var windowMask;
@@ -367,7 +301,7 @@ function preload() {
 	this.load.audio('plantcycle_sound2', 'assets/objects/plantcycle/audio/plantcycle-02.mp3');
 	this.load.audio('plantcycle_sound3', 'assets/objects/plantcycle/audio/plantcycle-03.mp3');
 	this.load.audio('plantcycle_sound4', 'assets/objects/plantcycle/audio/plantcycle-04.mp3');
-	
+
 	//middle room
 	this.load.audio('sq', 'assets/objects/couch/sq.wav');
 	this.load.audio('cardflipsound', 'assets/objects/card/audio/cardflip.mp3');
@@ -387,9 +321,7 @@ function preload() {
 	this.load.audio('chime8', 'assets/objects/books/audio/books-08.mp3');
 	this.load.audio('chime0', 'assets/objects/books/audio/books-no.mp3');
 	this.load.audio('hole_sound1', 'assets/objects/holes/audio/holes-01.mp3');
-	this.load.audio('hole_sound1r', 'assets/objects/holes/audio/holes-01r.mp3');
 	this.load.audio('hole_sound2', 'assets/objects/holes/audio/holes-02.mp3');
-	this.load.audio('hole_sound2r', 'assets/objects/holes/audio/holes-02r.mp3');
 	this.load.audio('hole_sound3', 'assets/objects/holes/audio/holes-03.mp3');
 	this.load.audio('hole_sound3r', 'assets/objects/holes/audio/holes-03r.mp3');
 	// !load images
@@ -816,19 +748,18 @@ function create() {
 	var closeSound = this.sound.add('close');
 	var doorOpened;
 	var doorQuips = [
-		['I think I left my key...', 'in deep space.', 'Yeah, pretty sure I left it in space.'],
-		['I said,','I think I left my key...', 'in deep space.', 'Yeah, pretty sure I left it in space.'],
-		['The door is locked.', 'Find the key.', 'Please.', 'Thank you! : - )'],
-		['How did I lock myself inside?', ': - /'],
-		['Wait... where do I put the key in?', 'Did I misplace my heyhole? What a day!']
+		['I think I left my key...', 'in deep space.', 'Yeah, that sounds right.'],
+		['Actually, this knob seems a little off too — ', 'but I\'m not sure why...'],
+		['Yep.', 'Definitely still locked.'],
+		['Wait... where do I put the key in?', 'Did I lose the KEYHOLE too? What a day!']
 	];
 	var helps = {
 		l: [
-			['I\'m really not sure how I got locked inside! : - /', 'How embarassing. I haven\'t swept under the', 'rug in a while... I don\'t leave my home', 'often because I really love it.'], ],
+			['I\'m really not sure how I got locked inside!', 'How embarassing. Maybe if I find the key...'], ],
 		m: [
-			['Things are always falling into my couch. I try to', 'play memory games to keep my mind sharp.', 'Try holding your mouse down on the arrows,', 'I think I left something in there : - )'], ],
+			['Things are always falling in my couch, so I try to', 'play games to keep my mind sharp. Try', 'holding your mouse down on the arrows —', 'I think I left something in there...'], ],
 		r: [
-			['I love to read and I love to sing ; - ) Have you', 'ever had a song stuck in your head, but you\'ve', 'forgotten how it goes? If you can help', 'me remember, I\'ll give you a reward...'], ],
+			['I love a good book almost as much as a good', 'card game. Actually, I was just about to', 'start one in the other room...'], ],
 	};
 	var mugSound = this.sound.add('mugsound');
 	mugSound.volume = 0.25;
@@ -837,8 +768,8 @@ function create() {
 	frontPlant = this.add.sprite(0, 2040, 'plantcycleatlas', 'plantcycle0').setOrigin(0).setInteractive(frontPlantPolygon, Phaser.Geom.Polygon.Contains);
 	// !middle room
 	var holeText = [
-		['What?', 'It looks like you found a... hole?', 'Looks like the perfect size to accept a key, if', 'only I knew where mine was...'],
-		['What?', 'It looks like you found a... keyhole?', 'Oh yeah! I forgot I left it there last Tuesday...']
+		['Wait!', 'Is that...a keyhole?', 'Looks like the perfect size for my key, if', 'only I knew where it was...'],
+		['Wait!', 'Is that...a keyhole?', 'Oh yeah! I forgot I left it there last Tuesday...']
 	];
 	card1a = this.add.sprite(2250, 1868, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1);
 	card1b = this.add.sprite(2320, 1832, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1);
@@ -1995,7 +1926,7 @@ function create() {
 			setTimeout(function() {
 				downPromptAnim.resume();
 			}, 500)
-			if (doorClicks <= 3) {
+			if (doorClicks <= 2) {
 				textBoxText.setText(doorQuips[doorClicks]);
 			} else {
 				doorClicks = 0;
@@ -2014,7 +1945,7 @@ function create() {
 			textBox.ready = true;
 			textBoxTweenUp.resume();
 			downPromptAnim.resume();
-			textBoxText.setText(doorQuips[4]);
+			textBoxText.setText(doorQuips[3]);
 			setTimeout(function() {
 				textBoxTweenDownPrep.resume();
 				downPromptAnim.pause();
@@ -2813,28 +2744,26 @@ function create() {
 		if (currentHoles === 0 && !mouseHoles.anims.isPlaying) {
 			if (whichHole < 1000) {
 				mouseHoles.anims.playReverse('mousehole1');
-				game.sound.play('hole_sound1r');
 			} else {
 				mouseHoles.anims.play('mousehole1');
-				game.sound.play('hole_sound1');
 			}
+			game.sound.play('hole_sound1');
 			currentHoles = 1;
 		} else if (currentHoles == 1 && !mouseHoles.anims.isPlaying) {
 			if (whichHole < 1000) {
 				mouseHoles.anims.playReverse('mousehole2');
-				game.sound.play('hole_sound2r');
 			} else {
 				mouseHoles.anims.play('mousehole2');
-				game.sound.play('hole_sound2');
 			}
+			game.sound.play('hole_sound2');
 			currentHoles = 2;
 		} else if (currentHoles == 2 && !mouseHoles.anims.isPlaying) {
 			if (whichHole < 1000) {
 				mouseHoles.anims.playReverse('mousehole3');
-				game.sound.play('hole_sound3r');
+				game.sound.play('hole_sound3');
 			} else {
 				mouseHoles.anims.play('mousehole3');
-				game.sound.play('hole_sound3');
+				game.sound.play('hole_sound3r');
 			}
 			currentHoles = 0;
 		}
