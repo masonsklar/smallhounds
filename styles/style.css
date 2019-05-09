@@ -8,10 +8,9 @@
 
 body{
   background-color: #ffca4d;
-  font-family: magistral, sans-serif;
+  font-family: "Magistral-BoldItalic", sans-serif;
   font-style: normal;
   font-weight: 300;
-  overflow: hidden;
   width: 100vw;
   max-height: 100vh;
   margin: 0;
@@ -20,6 +19,7 @@ body{
 #wrapper {
   position: relative;
   clear: both;
+  overflow: hidden;
 }
 
 
@@ -49,8 +49,11 @@ body.desktop #header {
   font-size: 1.8em;
   margin: 0.3em 0;
   margin-right: 1em;
+  font-weight: 400;
+  letter-spacing: 0px;
   transition: opacity 0.5s linear;
 }
+
 #header h1 a {
   text-decoration: none;
 }
@@ -72,7 +75,7 @@ body.desktop #header {
   color: white;
 }
 
-.baritem{
+.baritem {
   cursor: default;
   color: white;
   height: 100%;
@@ -84,7 +87,7 @@ body.desktop #header {
   transition: opacity 0.5s linear;
 }
 
-.baritem img{
+.baritem img {
   height: 1.2em;
   user-select: none;
 }
@@ -215,7 +218,7 @@ body.mobile #teaser-static {
   cursor: pointer;
   margin: 10px 1em 0;
   font-size: 1.5em;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .button:active, button:active {
