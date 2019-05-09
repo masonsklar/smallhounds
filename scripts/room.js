@@ -30,20 +30,25 @@ function generateRandomNumber(x, y) {
 };
 
 document.addEventListener('DOMContentLoaded', function() {
-	function isMobileDevice() {
-		return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
-	}
 	if (isMobileDevice()) {
 		document.body.classList.add('mobile');
-		return;
 	}
 	else {
 		document.body.classList.add('desktop');
 	}
+	if( ! isChrome && ! isFirefox ) {
+		document.body.classList.add('unsupported-browser');
+	}
+	document.getElementById('warning-close').addEventListener('click', function() {
+		document.getElementById('warning').style.display = "none";
+	})
 });
 
 window.onload = function() {
 
+	if (isMobileDevice() ) {
+		return;
+	}
 	setGameSize();
 	window.addEventListener('resize', setGameSize);
 	idleData = {
@@ -53,7 +58,7 @@ window.onload = function() {
 		loop: true,
 		prerender: true,
 		autoplay: true,
-		path: 'loadlogo.json',
+		path: 'assets/ui/loadlogo.json',
 	};
 
 	loadAnim = bodymovin.loadAnimation(idleData);
