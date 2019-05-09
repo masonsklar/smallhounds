@@ -286,12 +286,13 @@ function preload() {
 	//universal
 	this.load.audio('mugsound', 'assets/objects/mug/mug.mp3');
 	//left room
-	this.load.audio('locked', 'assets/objects/door/locked.wav');
-	this.load.audio('open', 'assets/objects/door/open.wav');
-	this.load.audio('close', 'assets/objects/door/close.wav');
-	this.load.audio('scratch', 'assets/objects/rugbump/scratch.wav');
-	this.load.audio('oww', 'assets/objects/rugbump/oww.wav');
-		this.load.audio('sizeposter1', 'assets/objects/sizeposter/audio/sizeposter1.mp3');
+	this.load.audio('locked', 'assets/objects/door/locked.mp3');
+	this.load.audio('open', 'assets/objects/door/open.mp3');
+	this.load.audio('close', 'assets/objects/door/close.mp3');
+	// this.load.audio('scratch', 'assets/objects/rugbump/scratch.mp3');
+
+	this.load.audio('oww', 'assets/objects/rugbump/oww.mp3');
+  this.load.audio('sizeposter1', 'assets/objects/sizeposter/audio/sizeposter1.mp3');
 	this.load.audio('sizeposter1', 'assets/objects/sizeposter/audio/sizeposter1.mp3');
 	this.load.audio('sizeposter2', 'assets/objects/sizeposter/audio/sizeposter2.mp3');
 	this.load.audio('sizeposter3', 'assets/objects/sizeposter/audio/sizeposter3.mp3');
@@ -308,7 +309,7 @@ function preload() {
 	this.load.audio('plantcycle_sound4', 'assets/objects/plantcycle/audio/plantcycle-04.mp3');
 
 	//middle room
-	this.load.audio('sq', 'assets/objects/couch/sq.wav');
+	this.load.audio('sq', 'assets/objects/couch/sq.mp3');
 	this.load.audio('cardflipsound', 'assets/objects/card/audio/cardflip.mp3');
 	this.load.audio('flipbacksound', 'assets/objects/card/audio/flipback.mp3');
 	this.load.audio('cardwinsound', 'assets/objects/card/audio/win.mp3');
@@ -328,7 +329,7 @@ function preload() {
 	this.load.audio('hole_sound1', 'assets/objects/holes/audio/holes-01.mp3');
 	this.load.audio('hole_sound2', 'assets/objects/holes/audio/holes-02.mp3');
 	this.load.audio('hole_sound3', 'assets/objects/holes/audio/holes-03.mp3');
-	this.load.audio('hole_sound3r', 'assets/objects/holes/audio/holes-03r.mp3');
+	this.load.audio('hole_sound3r', 'assets/objects/holes/audio/holes-03b.mp3');
 	// !load images
 	// universal
 	//this.load.image('room', 'assets/bg/room.png');
@@ -748,9 +749,6 @@ function create() {
 	var wallPoster = this.add.sprite(116, 1286, 'wallposter').setOrigin(0);
 	var frontTable = this.add.sprite(306, 2158, 'fronttable').setOrigin(0).setInteractive(doorKnobPolygon, Phaser.Geom.Polygon.Contains);
 	var door = this.add.sprite(328, 986, 'dooratlas', '5').setOrigin(0).setInteractive(doorKnobPolygon, Phaser.Geom.Polygon.Contains);
-	var lockSound = this.sound.add('locked');
-	var openSound = this.sound.add('open');
-	var closeSound = this.sound.add('close');
 	var doorOpened;
 	var doorQuips = [
 		['I think I left my key...', 'in deep space.', 'Yeah, that sounds right.'],
@@ -766,8 +764,6 @@ function create() {
 		r: [
 			['I love a good book almost as much as a good', 'card game. Actually, I was just about to', 'start one in the other room...'], ],
 	};
-	var mugSound = this.sound.add('mugsound');
-	mugSound.volume = 0.25;
 	var mug1 = this.add.sprite(1232, 2300, 'mugatlas', 'mug1').setOrigin(0).setInteractive();
 	mug1.pos = 1;
 	frontPlant = this.add.sprite(0, 2040, 'plantcycleatlas', 'plantcycle0').setOrigin(0).setInteractive(frontPlantPolygon, Phaser.Geom.Polygon.Contains);
@@ -889,9 +885,30 @@ function create() {
 	var lamp = this.add.sprite(3200, 770, 'lampatlas', 'lamp00').setOrigin(0).setInteractive(lampPolygon, Phaser.Geom.Polygon.Contains);
 	var mug4 = this.add.sprite(3670, 1156, 'mugatlas', 'mug6').setOrigin(0).setInteractive();
 	mug4.pos = 6;
+
+
+	//
+	// SOUNDS
+	//
 	// !create sounds
-	var wobbleSound = this.sound.add('wobblesound');
+	var mugSound = this.sound.add('mugsound');
+	mugSound.volume = 0.1;
 	// left room
+	let plantCycleVolume = 0.5;
+	let plantCycle1 = this.sound.add('plantcycle_sound1');
+	let plantCycle2 = this.sound.add('plantcycle_sound2');
+	let plantCycle3 = this.sound.add('plantcycle_sound3');
+	let plantCycle4 = this.sound.add('plantcycle_sound4');
+	plantCycle1.volume = plantCycleVolume;
+	plantCycle2.volume = plantCycleVolume;
+	plantCycle3.volume = plantCycleVolume;
+	plantCycle4.volume = plantCycleVolume;
+	var lockSound = this.sound.add('locked');
+	lockSound.volume = 0.2;
+	var openSound = this.sound.add('open');
+	openSound.volume = 0.5;
+	var closeSound = this.sound.add('close');
+	closeSound.volume = 0.4;
 	var sizePosterSound1 = this.sound.add('sizeposter1');
 	var sizePosterSound2 = this.sound.add('sizeposter2');
 	var sizePosterSound3 = this.sound.add('sizeposter3');
@@ -913,16 +930,33 @@ function create() {
 	sizePosterSound8.volume = sizePosterVolume;
 	sizePosterSound9.volume = sizePosterVolume;
 	sizePosterSound10.volume = sizePosterVolume;
-	var scratchSound = this.sound.add('scratch');
+	// var scratchSound = this.sound.add('scratch');
+	// scratchSound.volume = 0.1;
 	var owwSound = this.sound.add('oww');
+	owwSound.volume = 0.1;
 	// middle room
 	var shootSong = this.sound.add('shootloop');
 	shootSong.loop = true;
 	shootSong.volume = 0.3;
 	var dieSound = this.sound.add('die');
-	var sqSound = this.sound.add('sq');
 	dieSound.volume = 0.2;
+	var sqSound = this.sound.add('sq');
+	sqSound.volume = 0.2;
+	var bookstackSound = this.sound.add('bookstack_sound');
+	bookstackSound.volume = 0.4;
+	var cardFlipSound = this.sound.add('cardflipsound');
+	cardFlipSound.volume = 0.05;
+	var flipBackSound = this.sound.add('flipbacksound');
+	flipBackSound.volume = 0.05;
+	var cardWinSound = this.sound.add('cardwinsound');
+	cardWinSound.volume = 0.1;
 	// right room
+	var wobbleSound = this.sound.add('wobblesound');
+	wobbleSound.volume = 0.4;
+	var hole1 = this.sound.add('hole_sound1');
+	var hole2 = this.sound.add('hole_sound2');
+	var hole3 = this.sound.add('hole_sound3');
+	var hole3r = this.sound.add('hole_sound3r');
 	var chime1 = this.sound.add('chime1');
 	var chime2 = this.sound.add('chime2');
 	var chime3 = this.sound.add('chime3');
@@ -933,7 +967,7 @@ function create() {
 	var chime8 = this.sound.add('chime8');
 	var chime0 = this.sound.add('chime0');
 	var chimes = [chime1, chime2, chime3, chime4, chime5, chime6, chime7, chime8, chime0];
-	let chimeVolume = 0.1;
+	let chimeVolume = 0.05;
 	chime1.volume = chimeVolume;
 	chime2.volume = chimeVolume;
 	chime3.volume = chimeVolume;
@@ -943,6 +977,8 @@ function create() {
 	chime7.volume = chimeVolume;
 	chime8.volume = chimeVolume;
 	chime0.volume = chimeVolume;
+
+
 	// !create animations
 	// !universal
 	var timedEvent = this.time.addEvent({
@@ -1358,7 +1394,7 @@ function create() {
 		},
 		onRepeat: function() {
 			rugBumpJitterTween.pause();
-			scratchSound.play();
+			// scratchSound.play();
 		}
 	});
 	// !middle room
@@ -1973,19 +2009,19 @@ function create() {
 		if (currentPlant === 0) {
 			frontPlant.play('plantcycle1');
 			currentPlant = 1;
-			game.sound.play('plantcycle_sound1');
+			plantCycle1.play();
 		} else if (currentPlant == 1) {
 			frontPlant.play('plantcycle2');
 			currentPlant = 2;
-			game.sound.play('plantcycle_sound2');
+			plantCycle2.play();
 		} else if (currentPlant == 2) {
 			frontPlant.play('plantcycle3');
 			currentPlant = 3;
-			game.sound.play('plantcycle_sound3');
+			plantCycle3.play();
 		} else if (currentPlant == 3) {
 			frontPlant.play('plantcycle4');
 			currentPlant = 0;
-			game.sound.play('plantcycle_sound4');
+			plantCycle4.play();
 		}
 	}, this);
 	var mug1tween = this.tweens.add({
@@ -2154,7 +2190,7 @@ function create() {
 
 	bookStack.on('pointerdown', function() {
 		bookStack.anims.play('bookcirc');
-		game.sound.play('bookstack_sound');
+		bookstackSound.play();
 	}, this);
 
 	var shuffle = function(array) {
@@ -2170,11 +2206,6 @@ function create() {
 			}
 			return array;
 		};
-	var cardFlipSound = this.sound.add('cardflipsound');
-	cardFlipSound.volume = 0.1;
-	var flipBackSound = this.sound.add('flipbacksound');
-	flipBackSound.volume = 0.1;
-	var cardWinSound = this.sound.add('cardwinsound');
 	var cardFlip = function(x) {
 
 			cardContainer.bringToTop(x);
@@ -2752,7 +2783,7 @@ function create() {
 			} else {
 				mouseHoles.anims.play('mousehole1');
 			}
-			game.sound.play('hole_sound1');
+			hole1.play();
 			currentHoles = 1;
 		} else if (currentHoles == 1 && !mouseHoles.anims.isPlaying) {
 			if (whichHole < 1000) {
@@ -2760,15 +2791,15 @@ function create() {
 			} else {
 				mouseHoles.anims.play('mousehole2');
 			}
-			game.sound.play('hole_sound2');
+			hole2.play();
 			currentHoles = 2;
 		} else if (currentHoles == 2 && !mouseHoles.anims.isPlaying) {
 			if (whichHole < 1000) {
 				mouseHoles.anims.playReverse('mousehole3');
-				game.sound.play('hole_sound3');
+				hole3.play();
 			} else {
 				mouseHoles.anims.play('mousehole3');
-				game.sound.play('hole_sound3r');
+				hole3r.play();
 			}
 			currentHoles = 0;
 		}
