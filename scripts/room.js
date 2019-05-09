@@ -762,7 +762,7 @@ function create() {
 		l: [
 			['I\'m really not sure how I got locked inside!', 'How embarassing. Maybe if I find the key...'], ],
 		m: [
-			['Things are always falling in my couch, so I try to', 'play games to keep my mind sharp. Try', 'holding your mouse down on the arrows —', 'I think I left something in there...'], ],
+			['I\'m always losing things around the house, so I', 'play games to keep my mind sharp. Try', 'holding your mouse down on the arrows —', 'I think I left something in there...'], ],
 		r: [
 			['I love a good book almost as much as a good', 'card game. Actually, I was just about to', 'start one in the other room...'], ],
 	};
