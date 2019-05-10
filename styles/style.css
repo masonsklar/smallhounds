@@ -124,9 +124,11 @@ body.desktop.unsupported-browser #warning {
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  position: relative;
   bottom: 0;
   font-size: 1.2em;
   min-height: 4em;
+  font-weight: 400;
 }
 
 #footer p {
@@ -151,6 +153,7 @@ body.desktop.unsupported-browser #warning {
 
 #footer a {
   color: #225a89;
+  text-decoration: none;
 }
 
 #footer a:hover {
@@ -254,4 +257,41 @@ body.mobile #teaser-static {
 body.desktop #gameframe,
 body.desktop #startbutton {
   display: block;
+}
+
+
+/*
+ * Credits
+ */
+
+ #credits {
+   padding: 2em;
+   font-weight: 400;
+ }
+
+ #credits button {
+   margin: 0;
+ }
+
+#credits h2 {
+  margin-top: 0;
+}
+
+#credits li {
+  margin-bottom: 0.5em;
+}
+
+body.js-active #credits {
+  position: absolute;
+  display: none;
+  background: #222;
+  color: white;
+  border-radius: 4px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+body.js-active #credits a {
+  color: white;
 }

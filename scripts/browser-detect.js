@@ -19,3 +19,7 @@ var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.r
 
 // Blink engine detection
 var isBlink = (isChrome) && !!window.CSS;
+
+document.addEventListener('DOMContentLoaded', function() {
+	document.body.classList.add('js-active');
+});
