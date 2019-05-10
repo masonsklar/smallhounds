@@ -769,8 +769,8 @@ function create() {
 	frontPlant = this.add.sprite(0, 2040, 'plantcycleatlas', 'plantcycle0').setOrigin(0).setInteractive(frontPlantPolygon, Phaser.Geom.Polygon.Contains);
 	// !middle room
 	var holeText = [
-		['Wait!', 'Is that...a keyhole?', 'Looks like the perfect size for my key, if', 'only I knew where it was...'],
-		['Wait!', 'Is that...a keyhole?', 'Oh yeah! I forgot I left it there last Tuesday...']
+		['Wait!', 'Is that...a keyhole up there?', 'Looks like the perfect size for my key, if', 'only I knew where it was...'],
+		['Wait!', 'Is that...a keyhole up there?', 'Oh yeah! I forgot I left it there last Tuesday...']
 	];
 	card1a = this.add.sprite(2250, 1868, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1);
 	card1b = this.add.sprite(2320, 1832, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1);
@@ -2001,7 +2001,7 @@ function create() {
 
 	dl.on('pointerdown', function() {
 		if (doorOpened) {
-			openExternalLink('https://www.youtube.com/watch?v=Y5KMl11I7Zs');
+			openExternalLink('https://www.youtube.com/watch?v=udOvpn1nKzo');
 		}
 	});
 
