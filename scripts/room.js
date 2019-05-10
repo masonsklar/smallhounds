@@ -249,7 +249,8 @@ function preload() {
 		text: '0%',
 		style: {
 			font: '72pt magistral',
-			fill: '#ffffff'
+			fill: '#ffffff',
+			fontWeight: 400
 		}
 	});
 	progressBox.fillStyle(0xffffff, 0);
@@ -785,7 +786,7 @@ function create() {
 	card3c = this.add.sprite(2576, 1880, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3);
 	card3d = this.add.sprite(2648, 1844, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3);
 	//shooter
-	var keyText = ['Hey! Look at that!', 'You found my key! Thank you so much! Maybe', 'now I can finally get outa here and get some', 'fresh air...'];
+	var keyText = ['Hey! You found my key!', 'Thank you so much! Maybe now I can finally', 'get outta here and get some fresh air...'];
 	var CSTopPoly = new Phaser.Geom.Polygon([106, 46, 109, 90, 0, 141, 0, 96, 55, 2]);
 	var CSMidPoly = new Phaser.Geom.Polygon([109, 203, 0, 254, 1, 140, 108, 89]);
 	var CSBotPoly = new Phaser.Geom.Polygon([1, 298, 0, 255, 107, 204, 107, 249, 54, 344]);
@@ -906,9 +907,9 @@ function create() {
 	var lockSound = this.sound.add('locked');
 	lockSound.volume = 0.2;
 	var openSound = this.sound.add('open');
-	openSound.volume = 0.5;
+	openSound.volume = 0.3;
 	var closeSound = this.sound.add('close');
-	closeSound.volume = 0.4;
+	closeSound.volume = 0.3;
 	var sizePosterSound1 = this.sound.add('sizeposter1');
 	var sizePosterSound2 = this.sound.add('sizeposter2');
 	var sizePosterSound3 = this.sound.add('sizeposter3');
@@ -2648,25 +2649,25 @@ function create() {
 						if (bookChimes.indexOf(e) === 8) {
 							book1tween.resume();
 						} else if (bookChimes.indexOf(e) === 7) {
-							game.sound.play('chime7');
+							chime7.play();
 							book2tween.resume();
 						} else if (bookChimes.indexOf(e) === 6) {
-							game.sound.play('chime5');
+							chime5.play();
 							book3tween.resume();
 						} else if (bookChimes.indexOf(e) === 5) {
-							game.sound.play('chime6');
+							chime6.play();
 							book5tween.resume();
 						} else if (bookChimes.indexOf(e) === 4) {
-							game.sound.play('chime4');
+							chime4.play();
 							book6tween.resume();
 						} else if (bookChimes.indexOf(e) === 3) {
-							game.sound.play('chime3');
+							chime3.play();
 							book8tween.resume();
 						} else if (bookChimes.indexOf(e) === 2) {
-							game.sound.play('chime2');
+							chime2.play();
 							book9tween.resume();
 						} else if (bookChimes.indexOf(e) === 1) {
-							game.sound.play('chime1');
+							chime1.play();
 							book10tween.resume();
 						} else if (bookChimes.indexOf(e) === 0) {
 
@@ -2686,10 +2687,10 @@ function create() {
 					book9tween.resume();
 					book10tween.resume();
 					book11tween.resume();
-					game.sound.play('chime1');
-					game.sound.play('chime3');
-					game.sound.play('chime5');
-					game.sound.play('chime8');
+					chime1.play();
+					chime3.play();
+					chime5.play();
+					chime8.play();
 					prevTone = 1;
 					if (!holeGot) {
 						holeGot = true;
