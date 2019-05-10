@@ -239,6 +239,7 @@ body.mobile #teaser-static {
   cursor: pointer;
   margin: 10px 1em 0;
   font-size: 1.3em;
+  font-weight: 400;
 }
 
 .button:active, button:active {
