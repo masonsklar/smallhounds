@@ -248,9 +248,8 @@ function preload() {
 		y: 836,
 		text: '0%',
 		style: {
-			font: '72pt magistral',
-			fill: '#ffffff',
-			fontWeight: 400
+			font: '72pt magistral 300',
+			fill: '#ffffff'
 		}
 	});
 	progressBox.fillStyle(0xffffff, 0);
