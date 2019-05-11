@@ -1982,17 +1982,21 @@ function create() {
 			setTimeout(function() {
 				textBox.locked=false;
 			}, 4500)
-		} else if (keyGot && !holeGot) {
+		} else if (!textBox.ready && keyGot && !holeGot) {
+			textBox.locked=true;
 			lockSound.play();
-			textBox.ready = true;
 			textBoxTweenUp.resume();
-			downPromptAnim.resume();
-			textBoxText.setText(doorQuips[3]);
+			setTimeout(function() {
+				downPromptAnim.resume();
+			}, 500)
+				textBoxText.setText(doorQuips[3]);
 			setTimeout(function() {
 				textBoxTweenDownPrep.resume();
 				downPromptAnim.pause();
-				textBox.ready = false;
 			}, 4000);
+			setTimeout(function() {
+				textBox.locked=false;
+			}, 4500)
 		} else if (keyGot && holeGot) {
 			door.anims.play('dooropen');
 			openSound.play();
