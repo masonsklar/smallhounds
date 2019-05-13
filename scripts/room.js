@@ -49,6 +49,17 @@ window.onload = function() {
 	if (isMobileDevice() ) {
 		return;
 	}
+	// Enable credits link
+	document.addEventListener('DOMContentLoaded', function() {
+	  document.getElementById('credits-link').addEventListener('click', function() {
+	    document.getElementById('credits').style.display = 'block';
+	  });
+	  document.getElementById('credits-close').addEventListener('click', function() {
+	    document.getElementById('credits').style.display = 'none';
+	  });
+	})
+	document.getElementById('credits-link').style.display = "block";
+	// Load game start
 	setGameSize();
 	window.addEventListener('resize', setGameSize);
 	idleData = {

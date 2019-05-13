@@ -281,6 +281,10 @@ body.desktop #startbutton {
   margin-bottom: 0.5em;
 }
 
+#credits-link {
+  display: none;
+}
+
 body.js-active #credits {
   position: absolute;
   display: none;
