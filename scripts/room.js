@@ -902,9 +902,9 @@ function create() {
 							//
 							// !create sounds
 							var mugSound = this.sound.add('mugsound');
-							mugSound.volume = 0.1;
+							mugSound.volume = 0.2;
 							// left room
-							let plantCycleVolume = 0.5;
+							let plantCycleVolume = 1;
 							let plantCycle1 = this.sound.add('plantcycle_sound1');
 							let plantCycle2 = this.sound.add('plantcycle_sound2');
 							let plantCycle3 = this.sound.add('plantcycle_sound3');
@@ -914,11 +914,11 @@ function create() {
 							plantCycle3.volume = plantCycleVolume;
 							plantCycle4.volume = plantCycleVolume;
 							var lockSound = this.sound.add('locked');
-							lockSound.volume = 0.2;
+							lockSound.volume = 0.3;
 							var openSound = this.sound.add('open');
-							openSound.volume = 0.3;
+							openSound.volume = 0.6;
 							var closeSound = this.sound.add('close');
-							closeSound.volume = 0.3;
+							closeSound.volume = 0.6;
 							var sizePosterSound1 = this.sound.add('sizeposter1');
 							var sizePosterSound2 = this.sound.add('sizeposter2');
 							var sizePosterSound3 = this.sound.add('sizeposter3');
@@ -929,7 +929,7 @@ function create() {
 							var sizePosterSound8 = this.sound.add('sizeposter8');
 							var sizePosterSound9 = this.sound.add('sizeposter9');
 							var sizePosterSound10 = this.sound.add('sizeposter10');
-							let sizePosterVolume = 0.2;
+							let sizePosterVolume = 0.4;
 							sizePosterSound1.volume = sizePosterVolume;
 							sizePosterSound2.volume = sizePosterVolume;
 							sizePosterSound3.volume = sizePosterVolume;
@@ -943,30 +943,35 @@ function create() {
 							// var scratchSound = this.sound.add('scratch');
 							// scratchSound.volume = 0.1;
 							var owwSound = this.sound.add('oww');
-							owwSound.volume = 0.1;
+							owwSound.volume = 0.4;
 							// middle room
 							var shootSong = this.sound.add('shootloop');
 							shootSong.loop = true;
-							shootSong.volume = 0.3;
+							shootSong.volume = 1;
 							var dieSound = this.sound.add('die');
-							dieSound.volume = 0.2;
+							dieSound.volume = 0.6;
 							var sqSound = this.sound.add('sq');
-							sqSound.volume = 0.2;
+							sqSound.volume = 0.6;
 							var bookstackSound = this.sound.add('bookstack_sound');
-							bookstackSound.volume = 0.4;
+							bookstackSound.volume = 0.7;
 							var cardFlipSound = this.sound.add('cardflipsound');
-							cardFlipSound.volume = 0.05;
+							cardFlipSound.volume = 0.3;
 							var flipBackSound = this.sound.add('flipbacksound');
-							flipBackSound.volume = 0.05;
+							flipBackSound.volume = 0.3;
 							var cardWinSound = this.sound.add('cardwinsound');
-							cardWinSound.volume = 0.1;
+							cardWinSound.volume = 0.4;
 							// right room
 							var wobbleSound = this.sound.add('wobblesound');
-							wobbleSound.volume = 0.4;
+							wobbleSound.volume = 0.8;
 							var hole1 = this.sound.add('hole_sound1');
 							var hole2 = this.sound.add('hole_sound2');
 							var hole3 = this.sound.add('hole_sound3');
 							var hole3r = this.sound.add('hole_sound3r');
+							let holeVolume = 0.8;
+							hole1.volume = holeVolume;
+							hole2.volume = holeVolume;
+							hole3.volume = holeVolume;
+							hole3r.volume = holeVolume;
 							var chime1 = this.sound.add('chime1');
 							var chime2 = this.sound.add('chime2');
 							var chime3 = this.sound.add('chime3');
@@ -977,7 +982,7 @@ function create() {
 							var chime8 = this.sound.add('chime8');
 							var chime0 = this.sound.add('chime0');
 							var chimes = [chime1, chime2, chime3, chime4, chime5, chime6, chime7, chime8, chime0];
-							let chimeVolume = 0.05;
+							let chimeVolume = 0.3;
 							chime1.volume = chimeVolume;
 							chime2.volume = chimeVolume;
 							chime3.volume = chimeVolume;
