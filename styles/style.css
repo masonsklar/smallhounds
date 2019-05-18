@@ -31,6 +31,7 @@ body{
   background: #225a89;
   display: flex;
   align-content: center;
+  align-items: center;
   padding: 0 1em;
   top: 0;
   left: 0;
@@ -75,20 +76,31 @@ body.desktop #header {
   color: white;
 }
 
+#barline {
+  width: 1px;
+  height: 75%;
+  background: #fff;
+  opacity: 0;
+  margin-left: 2em;
+  margin-right: 1.4em;
+}
+
+#barhelp {
+  cursor: pointer;
+}
+
 .baritem {
   cursor: default;
   color: white;
-  height: 100%;
   font-size: 1.8em;
-  margin: 0.3em 0.5em 0 0;
-  font-weight: 300;
+  font-weight: 400;
   opacity: 0;
-  cursor: pointer;
-  transition: opacity 0.5s linear;
+  margin-right: 0.3em;
+  transition: opacity 0.3s linear;
 }
 
 .baritem img {
-  height: 1.2em;
+  max-height: 1.2em;
   user-select: none;
 }
 
@@ -98,8 +110,8 @@ body.desktop #header {
  */
 
 #warning {
-  padding: 0.5em 2em;
-  font-size: 1em;
+  padding: 0.6em 2em;
+  font-size: 1.15em;
   background: #222;
   color: white;
   position: relative;
@@ -107,7 +119,14 @@ body.desktop #header {
 }
 
 body.desktop.unsupported-browser #warning {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#warning #warning-icon {
+  font-size: 1.5em;
+  margin-right: 0.25em;
 }
 
 #warning a {

@@ -259,14 +259,14 @@ function preload() {
 		style: {
 			font: '72pt magistral',
 			fill: '#ffffff',
-			fontWeight: 300
+			fontWeight: 600
 		}
 	});
 	progressBox.fillStyle(0xffffff, 0);
 	progressBox.fillRect(400, 930, 600, 1200);
 	percentText.setOrigin(0.5, 0.5);
 	//var preTextBox = this.add.image(200, 1310, 'textboxbg').setOrigin(0);
-	var preTextBoxText = this.add.text(240, 1700, ['Huh. I really want to go out today, but I seem', 'to have misplaced my key...', 'Where could it be?'], {
+	var preTextBoxText = this.add.text(240, 1700, [''], {
 		fontFamily: 'fieldwork-hum',
 		fontSize: 54,
 		color: '#225a89'
@@ -277,7 +277,7 @@ function preload() {
 		progressBar.fillStyle(0x225a89, 2);
 		progressBar.fillRect(300, 766, 1000 * value, 140);
 		percentText.setText(parseInt(value * 100) + '% ');
-		preTextBoxText.setText(['Huh. I really want to go out today, but I seem', 'to have misplaced my key...', 'Where could it be?']);
+		preTextBoxText.setText(['']);
 	});
 	this.load.on('fileprogress', function(file) {
 		//percentText.setText(file.key);
@@ -725,7 +725,7 @@ function create() {
 			var cameraFocus = this.add.sprite(2400, -340).setInteractive();
 			var textBox = this.add.sprite(200, 0, 'textboxbg').setOrigin(0).setInteractive();
 			textBox.ready = false;
-			var textBoxText = this.add.text(240, 30, ['Huh. I really want to go out today, but I seem', 'to have misplaced my key...', 'Where could it be?'], {
+			var textBoxText = this.add.text(240, 30, ['Huh. I really want to go out today, but I seem', 'to have misplaced my key...', '', 'Where could it be?'], {
 				fontFamily: 'fieldwork-hum',
 				fontSize: 54,
 				color: '#225a89'
@@ -761,16 +761,16 @@ function create() {
 				var door = this.add.sprite(328, 986, 'dooratlas', '5').setOrigin(0).setInteractive(doorKnobPolygon, Phaser.Geom.Polygon.Contains);
 				var doorOpened;
 				var doorQuips = [
-					['I think I left my key...', 'in deep space.', 'Yeah, that sounds right.'],
+					['I think I left my key...in deep space.', '', 'Yeah, that sounds right.'],
 					['Actually, this knob seems a little off too — ', 'but I\'m not sure why...'],
-					['Yep.', 'Definitely still locked.'],
-					['Wait... where do I put the key in?', 'Did I lose the KEYHOLE too? What a day!']
+					['Yep. Definitely still locked.'],
+					['Wait...where do I put the key in?', '', 'Did I lose the KEYHOLE too? What a day!']
 				];
 				var helps = {
 					l: [
 						['I\'m really not sure how I got locked inside!', 'How embarassing. Maybe if I find the key...'], ],
 						m: [
-							['I\'m always losing things around the house, so I', 'play games to keep my mind sharp. Try', 'holding your mouse down on the arrows —', 'I think I left something in there...'], ],
+							['I\'m always losing things around the house, so', 'I play games to keep my mind sharp. Try', 'holding your mouse down on the arrows —', 'but watch out for asteroids...'], ],
 							r: [
 								['I love a good book almost as much as a good', 'card game. Actually, I was just about to', 'start one in the other room...'], ],
 							};
@@ -779,8 +779,8 @@ function create() {
 							frontPlant = this.add.sprite(0, 2040, 'plantcycleatlas', 'plantcycle0').setOrigin(0).setInteractive(frontPlantPolygon, Phaser.Geom.Polygon.Contains);
 							// !middle room
 							var holeText = [
-								['Wait!', 'Is that...a keyhole up there?', 'Looks like the perfect size for my key, if', 'only I knew where it was...'],
-								['Wait!', 'Is that...a keyhole up there?', 'Oh yeah! I forgot I left it there last Tuesday...']
+								['Look, up top: is that a keyhole?', '', 'Looks like the perfect size for my key, if', 'only I knew where it was...'],
+								['Look, up top: is that the keyhole?', '', 'Oh yeah! I forgot I left it there last Tuesday...']
 							];
 							card1a = this.add.sprite(2250, 1868, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1);
 							card1b = this.add.sprite(2320, 1832, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(1);
@@ -795,7 +795,7 @@ function create() {
 							card3c = this.add.sprite(2576, 1880, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3);
 							card3d = this.add.sprite(2648, 1844, 'cardatlas', 'flipstart00').setOrigin(0).setInteractive(cardPolygon, Phaser.Geom.Polygon.Contains).setDepth(3);
 							//shooter
-							var keyText = ['Hey! You found my key!', 'Thank you so much! Maybe now I can finally', 'get outta here and get some fresh air...'];
+							var keyText = ['Hey! You found my key!', '', 'Thank you so much! Maybe now I can finally', 'get outta here and get some fresh air...'];
 							var CSTopPoly = new Phaser.Geom.Polygon([106, 46, 109, 90, 0, 141, 0, 96, 55, 2]);
 							var CSMidPoly = new Phaser.Geom.Polygon([109, 203, 0, 254, 1, 140, 108, 89]);
 							var CSBotPoly = new Phaser.Geom.Polygon([1, 298, 0, 255, 107, 204, 107, 249, 54, 344]);
@@ -902,9 +902,9 @@ function create() {
 							//
 							// !create sounds
 							var mugSound = this.sound.add('mugsound');
-							mugSound.volume = 0.2;
+							mugSound.volume = 0.3;
 							// left room
-							let plantCycleVolume = 1;
+							let plantCycleVolume = 0.9;
 							let plantCycle1 = this.sound.add('plantcycle_sound1');
 							let plantCycle2 = this.sound.add('plantcycle_sound2');
 							let plantCycle3 = this.sound.add('plantcycle_sound3');
@@ -914,7 +914,7 @@ function create() {
 							plantCycle3.volume = plantCycleVolume;
 							plantCycle4.volume = plantCycleVolume;
 							var lockSound = this.sound.add('locked');
-							lockSound.volume = 0.3;
+							lockSound.volume = 0.4;
 							var openSound = this.sound.add('open');
 							openSound.volume = 0.6;
 							var closeSound = this.sound.add('close');
@@ -1816,16 +1816,16 @@ function create() {
 									}
 								}
 							});
-							$('#slot1').click(function() {
-								if (keyGot || holeGot) {
-									lockSound.play();
-								}
-							});
-							$('#slot2').click(function() {
-								if (keyGot && holeGot) {
-									lockSound.play();
-								}
-							});
+							// $('#slot1').click(function() {
+							// 	if (keyGot || holeGot) {
+							// 		lockSound.play();
+							// 	}
+							// });
+							// $('#slot2').click(function() {
+							// 	if (keyGot && holeGot) {
+							// 		lockSound.play();
+							// 	}
+							// });
 
 							tween = this.tweens.add({
 								targets: [fadeLogo, cameraFocus],
@@ -1841,7 +1841,8 @@ function create() {
 								onComplete: function() {
 									textBoxTweenUp.resume();
 									$('#barhelp').css({
-										'opacity': '1'
+										'opacity': '1',
+										'cursor': 'pointer'
 									});
 									downPrompt.alpha = 1;
 									setTimeout(function() {
@@ -2267,14 +2268,15 @@ function create() {
 														if (!keyGot) {
 															$('#slot1').html('<img src="assets/ui/hole.png"/>');
 															$('#slot1').css({
-																'opacity': '1',
-																'cursor': 'pointer'
+																'opacity': '1'
+															});
+															$('#barline').css({
+																'opacity': '0.3'
 															});
 														} else {
 															$('#slot2').html('<img src="assets/ui/hole.png"/>');
 															$('#slot2').css({
-																'opacity': '1',
-																'cursor': 'pointer'
+																'opacity': '1'
 															});
 														}
 														door.setFrame('0');
@@ -2556,14 +2558,15 @@ function create() {
 										if (!holeGot) {
 											$('#slot1').html('<img src="assets/ui/key.png"/>');
 											$('#slot1').css({
-												'opacity': '1',
-												'cursor': 'pointer'
+												'opacity': '1'
+											});
+											$('#barline').css({
+												'opacity': '0.3'
 											});
 										} else {
 											$('#slot2').html('<img src="assets/ui/keyl.png"/>');
 											$('#slot2').css({
-												'opacity': '1',
-												'cursor': 'pointer'
+												'opacity': '1'
 											});
 										}
 										pane1.play('obstacle0');
