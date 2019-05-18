@@ -902,9 +902,9 @@ function create() {
 							//
 							// !create sounds
 							var mugSound = this.sound.add('mugsound');
-							mugSound.volume = 0.3;
+							mugSound.volume = 0.4;
 							// left room
-							let plantCycleVolume = 0.9;
+							let plantCycleVolume = 0.8;
 							let plantCycle1 = this.sound.add('plantcycle_sound1');
 							let plantCycle2 = this.sound.add('plantcycle_sound2');
 							let plantCycle3 = this.sound.add('plantcycle_sound3');
@@ -914,7 +914,7 @@ function create() {
 							plantCycle3.volume = plantCycleVolume;
 							plantCycle4.volume = plantCycleVolume;
 							var lockSound = this.sound.add('locked');
-							lockSound.volume = 0.4;
+							lockSound.volume = 0.5;
 							var openSound = this.sound.add('open');
 							openSound.volume = 0.6;
 							var closeSound = this.sound.add('close');
@@ -943,7 +943,7 @@ function create() {
 							// var scratchSound = this.sound.add('scratch');
 							// scratchSound.volume = 0.1;
 							var owwSound = this.sound.add('oww');
-							owwSound.volume = 0.4;
+							owwSound.volume = 0.5;
 							// middle room
 							var shootSong = this.sound.add('shootloop');
 							shootSong.loop = true;
@@ -955,11 +955,11 @@ function create() {
 							var bookstackSound = this.sound.add('bookstack_sound');
 							bookstackSound.volume = 0.7;
 							var cardFlipSound = this.sound.add('cardflipsound');
-							cardFlipSound.volume = 0.3;
+							cardFlipSound.volume = 0.4;
 							var flipBackSound = this.sound.add('flipbacksound');
-							flipBackSound.volume = 0.3;
+							flipBackSound.volume = 0.4;
 							var cardWinSound = this.sound.add('cardwinsound');
-							cardWinSound.volume = 0.4;
+							cardWinSound.volume = 0.5;
 							// right room
 							var wobbleSound = this.sound.add('wobblesound');
 							wobbleSound.volume = 0.8;
