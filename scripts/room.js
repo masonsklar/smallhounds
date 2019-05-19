@@ -26,9 +26,7 @@ function setGameSize() {
 		}
 		let gameWrapperStyle = window.getComputedStyle(gameWrapper);
 		let gameWidth = parseFloat(gameWrapperStyle.getPropertyValue('width') );
-		console.log(gameWidth);
 		let helpButtonLeftPos = (windowWidth / 2) - (gameWidth / 2);
-		console.log(helpButtonLeftPos);
 		helpButton.style.left = helpButtonLeftPos;
 	}
 }
