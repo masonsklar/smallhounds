@@ -7,6 +7,8 @@ function setGameSize() {
 	let
 	header = document.getElementById('header'), footer = document.getElementById('footer'), gameWrapper = document.getElementById('gameframe');
 	let
+	helpButton = document.getElementById('help-button');
+	let
 	headerStyle = window.getComputedStyle(header), footerStyle = window.getComputedStyle(footer);
 	let
 	headerHeight = parseFloat(headerStyle.getPropertyValue('height')), footerHeight = parseFloat(footerStyle.getPropertyValue('height'));
@@ -22,6 +24,12 @@ function setGameSize() {
 			gameWrapper.style.width = windowWidth + 'px';
 			gameWrapper.style.height = windowWidth + 'px';
 		}
+		let gameWrapperStyle = window.getComputedStyle(gameWrapper);
+		let gameWidth = parseFloat(gameWrapperStyle.getPropertyValue('width') );
+		console.log(gameWidth);
+		let helpButtonLeftPos = (windowWidth / 2) - (gameWidth / 2);
+		console.log(helpButtonLeftPos);
+		helpButton.style.left = helpButtonLeftPos;
 	}
 }
 
@@ -1800,7 +1808,7 @@ function create() {
 							_anims = this.anims;
 							// !create interactions
 							// !universal
-							$('#barhelp').click(function() {
+							$('#help-button').click(function() {
 								if (textBox.ready == false && !textBox.up) {
 									textBox.ready = true;
 									textBoxTweenUp.resume();
@@ -1840,9 +1848,8 @@ function create() {
 								},
 								onComplete: function() {
 									textBoxTweenUp.resume();
-									$('#barhelp').css({
-										'opacity': '1',
-										'cursor': 'pointer'
+									$('#help-button').css({
+										'opacity': '1'
 									});
 									downPrompt.alpha = 1;
 									setTimeout(function() {

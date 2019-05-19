@@ -58,20 +58,24 @@ body.desktop #header {
 #header h1 a {
   text-decoration: none;
 }
+
 #header ul {
   margin: 0;
   padding: 0;
   display: flex;
   align-items: center;
 }
+
 #header li {
   list-style: none;
   margin-right: 1em;
   font-size: 1em;
 }
+
 #header li.icon {
   font-size: 1.3em;
 }
+
 #header a {
   color: white;
 }
@@ -81,8 +85,7 @@ body.desktop #header {
   height: 75%;
   background: #fff;
   opacity: 0;
-  margin-left: 2em;
-  margin-right: 1.4em;
+  margin-right: 1em;
 }
 
 #barhelp {
@@ -148,6 +151,7 @@ body.desktop.unsupported-browser #warning {
   font-size: 1.2em;
   min-height: 4em;
   font-weight: 400;
+  text-transform: lowercase;
 }
 
 #footer p {
@@ -221,6 +225,39 @@ svg {
   transition: opacity 0.5s linear;
 }
 
+#help-button {
+  border-radius: 1000px;
+  position: absolute;
+  font-size: 0.9em;
+  padding: 0.2em 0.5em;
+  font-weight: 400;
+  color: #225a89;
+  border: 2px solid #225a89;
+  opacity: 0;
+  cursor: pointer;
+  top: 3.5em;
+  left: 1.4em;
+  text-align: center;
+  transition: opacity 0.3s ease;
+}
+
+#help-button:hover {
+  background: #225a89;
+  color: white;
+}
+
+#help-button:after {
+  content: 'Help';
+  text-transform: lowercase;
+}
+
+@media (min-height: 400px) {
+
+  #help-button {
+    font-size: 1.2em;
+  }
+
+}
 
 /*
 * Actions, teaser
