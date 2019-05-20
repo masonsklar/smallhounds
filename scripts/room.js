@@ -1823,6 +1823,14 @@ function create() {
 									} else if (currentRoom == 2) {
 										textBoxText.setText(helps.r[0]);
 									}
+								setTimeout(function() {
+										textBoxTweenDownPrep.resume();
+										downPromptAnim.pause();
+									}, 4000);
+									setTimeout(function() {
+										textBox.locked=false;
+										textBox.ready=false;
+									}, 4500);
 								}
 							});
 							// $('#slot1').click(function() {
@@ -1854,9 +1862,17 @@ function create() {
 									});
 									downPrompt.alpha = 1;
 									setTimeout(function() {
-										textBox.ready = true;
+										textBox.ready = false;
 										downPromptAnim.resume();
 									}, 1250);
+								setTimeout(function() {
+										textBoxTweenDownPrep.resume();
+										downPromptAnim.pause();
+									}, 4000);
+									setTimeout(function() {
+										textBox.locked=false;
+										textBox.ready=false;
+									}, 4500);
 								}
 							});
 							tween = this.tweens.add({
@@ -1944,13 +1960,13 @@ function create() {
 									});
 								}
 							}, this);
-							textBox.on('pointerdown', function() {
+							/*textBox.on('pointerdown', function() {
 								if (textBox.ready && textBox.up) {
 									downPromptAnim.pause();
 									textBoxTweenDownPrep.resume();
 									textBox.ready = false;
 								}
-							}, this);
+							}, this);*/
 							// !left room
 							rugContain.on('pointerover', function() {
 								if (!rugContain.isUp && !doorOpened) {
@@ -1991,12 +2007,10 @@ function create() {
 									setTimeout(function() {
 										downPromptAnim.resume();
 									}, 500)
-									if (doorClicks <= 2) {
-										textBoxText.setText(doorQuips[doorClicks]);
-									} else {
+									if (doorClicks > 2) {
 										doorClicks = 0;
-										textBoxText.setText(doorQuips[doorClicks]);
 									}
+									textBoxText.setText(doorQuips[doorClicks]);
 									doorClicks++;
 									setTimeout(function() {
 										textBoxTweenDownPrep.resume();
@@ -2004,7 +2018,8 @@ function create() {
 									}, 4000);
 									setTimeout(function() {
 										textBox.locked=false;
-									}, 4500)
+										textBox.ready=false;
+									}, 4500);
 								} else if (!textBox.ready && keyGot && !holeGot) {
 									textBox.locked=true;
 									lockSound.play();
@@ -2019,7 +2034,8 @@ function create() {
 									}, 4000);
 									setTimeout(function() {
 										textBox.locked=false;
-									}, 4500)
+										textBox.ready=false;
+									}, 4500);
 								} else if (keyGot && holeGot) {
 									door.anims.play('dooropen');
 									openSound.play();
@@ -2298,6 +2314,14 @@ function create() {
 																textBoxText.setText(holeText[1]);
 															}
 														}
+														setTimeout(function() {
+															textBoxTweenDownPrep.resume();
+															downPromptAnim.pause();
+														}, 4000);
+														setTimeout(function() {
+															textBox.locked=false;
+															textBox.ready=false;
+														}, 4500);
 													}
 												}, 8000);
 												flipOrder.forEach(function(e) {
@@ -2583,6 +2607,14 @@ function create() {
 											textBoxTweenUp.resume();
 											downPromptAnim.resume();
 											textBoxText.setText(keyText);
+											setTimeout(function() {
+												textBoxTweenDownPrep.resume();
+												downPromptAnim.pause();
+											}, 4000);
+											setTimeout(function() {
+												textBox.locked=false;
+												textBox.ready=false;
+											}, 4500);
 										}
 									}
 								}, 250);
@@ -2729,6 +2761,9 @@ function create() {
 													'opacity': '1',
 													'cursor': 'pointer'
 												});
+												$('#barline').css({
+																'opacity': '0.3'
+															});
 											} else {
 												$('#slot2').html('<img src="assets/ui/hole.png"/>');
 												$('#slot2').css({
@@ -2747,6 +2782,14 @@ function create() {
 												} else {
 													textBoxText.setText(holeText[1]);
 												}
+												setTimeout(function() {
+													textBoxTweenDownPrep.resume();
+													downPromptAnim.pause();
+												}, 4000);
+												setTimeout(function() {
+													textBox.locked=false;
+													textBox.ready=false;
+												}, 4500);
 											}
 										}
 									}, 4500)
