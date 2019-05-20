@@ -962,7 +962,7 @@ function create() {
 							var sqSound = this.sound.add('sq');
 							sqSound.volume = 0.6;
 							var bookstackSound = this.sound.add('bookstack_sound');
-							bookstackSound.volume = 0.7;
+							bookstackSound.volume = 0.6;
 							var cardFlipSound = this.sound.add('cardflipsound');
 							cardFlipSound.volume = 0.4;
 							var flipBackSound = this.sound.add('flipbacksound');
