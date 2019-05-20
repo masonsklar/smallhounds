@@ -115,10 +115,13 @@ body.desktop #header {
 #warning {
   padding: 0.6em 2em;
   font-size: 1.15em;
-  background: #222;
+  background: rgba(34, 34, 34, 0.9);
   color: white;
-  position: relative;
+  position: absolute;
   display: none;
+  opacity: 1;
+  width: 100%;
+  z-index: 2;
 }
 
 body.desktop.unsupported-browser #warning {
