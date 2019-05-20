@@ -301,6 +301,7 @@ function preload() {
 	this.load.audio('wobblesound', 'assets/objects/lamp/audio/lamp.mp3');
 	//universal
 	this.load.audio('mugsound', 'assets/objects/mug/mug.mp3');
+	this.load.audio('intro-pan', 'assets/ui/intro-pan.mp3');
 	//left room
 	this.load.audio('locked', 'assets/objects/door/locked.mp3');
 	this.load.audio('open', 'assets/objects/door/open.mp3');
@@ -728,6 +729,8 @@ function create() {
 			floater7.mask = new Phaser.Display.Masks.BitmapMask(this, windowMask);
 			floaters = [floater1, floater2, floater3, floater4, floater5, floater6, floater7];
 			var fadeLogo = this.add.sprite(2400, -504, 'logo').setInteractive();
+			let introSound = this.sound.add('intro-pan');
+			introSound.play();
 			var cameraFocus = this.add.sprite(2400, -340).setInteractive();
 			var textBox = this.add.sprite(200, 0, 'textboxbg').setOrigin(0).setInteractive();
 			textBox.ready = false;
